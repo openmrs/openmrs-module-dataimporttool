@@ -22,9 +22,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:svn:https://svn.openmrs.org/openmrs-modules/dataimporttool/trunk/</connection>
-		<developerConnection>scm:svn:https://svn.openmrs.org/openmrs-modules/dataimporttool/trunk/</developerConnection>
-		<url>https://svn.openmrs.org/openmrs-modules/dataimporttool/trunk/</url>
+		<connection>scm:git:git@github.com:Ch3ck/openmrs-module-dataimporttool.git</connection>
+		<developerConnection>scm:git:git@github.com:Ch3ck/openmrs-module-dataimporttool.git</developerConnection>
+		<url>https://github.com/Ch3ck/openmrs-module-dataimporttool</url>
 	</scm>
 
 	<modules>
