@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <!--[if lt IE 9]>
@@ -43,14 +43,39 @@ $ git checkout gh-pages
 <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>The main architectural idea is to have a tool that takes a matching file as input, validates the matches, translates them into SQL SELECT, INSERT and/or UPDATE statements (mapping), and execute the resulting mapping.
+The tool tries to accomplish the following: </p>
+
+<p>Reusability - Developed once and used when needed. The mapping created is based on input logic
+Configurability - The migration logic is structured in a user friendly OpenMRS interface.
+Auditability -  Provides user feedback with appropriate error messages.</p>
 
 <h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a id="development-environment-specs" class="anchor" href="#development-environment-specs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development Environment Specs</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>For the development of data migration tool here are the minimum specs of the development environment:</p>
+
+<p>Windows OS 7+ (currently being used by the majority)
+Eclipse or Netbeans IDE 
+Java 7+ 
+Apache Maven 3 (<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>)
+Git (<a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a>)</p>
+
+<h3>
+<a id="test-and-production-environment-specs" class="anchor" href="#test-and-production-environment-specs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test and Production environment Specs</h3>
+
+<p>In order to execute the system in test environment make sure you have the following tools installed:</p>
+
+<p>Java 7 
+Apache Maven 3 (<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>)
+Git (<a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a>)
+Perform the following steps using command line:</p>
+
+<p>1.) Clone the project repository from github git clone <a href="https://github.com/Ch3ck/openmrs-module-dataimporttool.git">https://github.com/Ch3ck/openmrs-module-dataimporttool.git</a></p>
+
+<p>...</p>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
