@@ -201,7 +201,6 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-
       <!-- creates profile for testing against OpenMRS 11 -->
 	<profiles>
 		<profile>

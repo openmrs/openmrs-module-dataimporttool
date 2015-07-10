@@ -10,32 +10,28 @@
 
 	<artifactId>dataimporttool-omod</artifactId>
 	<packaging>jar</packaging>
-	<name>Data Import Tool Module OMOD</name>
+	<name>Data Import Tool OMOD</name>
 	<description>OMOD project for DataImportTool</description>
 
 	<dependencies>
 
-		<!-- 
-		Add other dependencies from parent's pom: 
+	<!-- Add other dependencies  
 		<dependency> 
 			<groupId>org.other.library</groupId> 
-			<artifactId>library-name</artifactId> 
-		</dependency> 
-		-->
-		
-		<!-- Begin OpenMRS modules -->
-		
+			<artifactId>library-name</artifactId>
+		 </dependency>                      -->
+
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>${project.parent.artifactId}-api</artifactId>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>dataimporttool-api</groupId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
-				
-		<!-- End OpenMRS modules -->
-		
 
-		<!-- Begin OpenMRS core -->
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>dataimporttool-api-1.0</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
@@ -69,9 +65,6 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- End OpenMRS core -->
-
 	</dependencies>
 
 	<build>
@@ -114,6 +107,59 @@
 						<includeEmptyDirs>true</includeEmptyDirs>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.5.5.201112152213</version>
+					<executions>
+						<execution>
+							<id>jacoco-initialize</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>jacoco-site</id>
+							<phase>package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.openmrs.maven.plugins</groupId>
+					<artifactId>maven-openmrs-plugin</artifactId>
+					<extensions>true</extensions>
+					<executions>
+						<execution>
+							<id>init</id>
+							<phase>initialize</phase>
+							<goals>
+								<goal>initialize-module</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>pack</id>
+							<phase>package</phase>
+							<goals>
+								<goal>package-module</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugin>
+
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
@@ -200,5 +246,44 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<properties>
+		<MODULE_ID>${project.parent.artifactId}</MODULE_ID>
+		<MODULE_NAME>${project.parent.name}</MODULE_NAME>
+		<MODULE_VERSION>${project.parent.version}</MODULE_VERSION>
+		<MODULE_PACKAGE>${project.parent.groupId}.${project.parent.artifactId}</MODULE_PACKAGE>
+	</properties>
+
+	<!-- different profiles for building/testing against different version of 
+		openmrs -->
+	<profiles>
+		<profile>
+			<id>deploy-web</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<copy todir="${deploy.path}/WEB-INF/view/module/${project.parent.artifactId}">
+											<fileset dir="src/main/webapp" includes="**/*" />
+										</copy>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 
 </project>
