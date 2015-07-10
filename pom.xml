@@ -6,7 +6,7 @@
 	<artifactId>dataimporttool</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Data Import Tool Module</name>
+	<name>Data Import Tool</name>
 	<description>A system to migrate from SQL-based databases to OpenMRS</description>
 	<url>https://wiki.openmrs.org/display/docs/Data+Import+Tool+Module+Module</url>
 	
@@ -26,6 +26,20 @@
 		<developerConnection>scm:git:git@github.com:Ch3ck/openmrs-module-dataimporttool.git</developerConnection>
 		<url>https://github.com/Ch3ck/openmrs-module-dataimporttool</url>
 	</scm>
+	
+	<!-- TODO: Distribution Management link to be added once  module is ready.-->
+	<distributionManagement>
+		<repository>
+			<id>openmrs-repo-modules</id>
+			<name>Modules</name>
+			<url></url>
+		</repository>
+        <snapshotRepository>
+            <id>openmrs-repo-snapshots</id>
+            <name>OpenMRS Snapshots</name>
+            <url></url>
+        </snapshotRepository>
+	</distributionManagement>
 
 	<modules>
 		<module>api</module>
@@ -33,24 +47,42 @@
 	</modules>
 	
 	<properties>
-		<openMRSVersion>1.8.0</openMRSVersion>
+		<openMRSVersion>1.11.0</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-		
-			<!--
-			Libraries to add as dependencies with compile or runtime scope:
-			Find matching dependencies in the maven central repository.
 			<dependency>
-				<groupId>org.other.library</groupId>
-				<artifactId>library-name</artifactId>
-				<version>library.version</version>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.10</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.jexcelapi</groupId>
+				<artifactId>jxl</artifactId>
+				<version>2.6.12</version>
 				<scope>compile</scope>
 			</dependency>
-			-->
-
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.9.5</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.lambdaj</groupId>
+				<artifactId>lambdaj</artifactId>
+				<version>2.3.3</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>3.2.7</version>
+			</dependency>
+		
 			<!-- MySQL/mariadb jdbc connector-->
 			<dependency>
 				<groupId>mysql</groupId>
@@ -73,7 +105,7 @@
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
-				<version>${openMRSVersion}</version>
+				<version>1.11.1</version>
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
@@ -81,7 +113,7 @@
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
-				<version>${openMRSVersion}</version>
+				<version>1.11.1</version>
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
@@ -89,7 +121,7 @@
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
-				<version>${openMRSVersion}</version>
+				<version>1.11.1</version>
 				<type>test-jar</type>
 				<scope>test</scope>
 			</dependency>
@@ -97,7 +129,7 @@
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
-				<version>${openMRSVersion}</version>
+				<version>1.11.1</version>
 				<type>test-jar</type>
 				<scope>test</scope>
 			</dependency>
@@ -105,7 +137,7 @@
 			<dependency>
 				<groupId>org.openmrs.test</groupId>
 				<artifactId>openmrs-test</artifactId>
-				<version>${openMRSVersion}</version>
+				<version>1.11.1</version>
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
@@ -136,6 +168,16 @@
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.4</version>
 				</plugin>
+				<!-- Configuring file encoding -->
+				<plugin>
+			  		<groupId>org.apache.maven.plugins</groupId>
+			 		 <artifactId>maven-compiler-plugin</artifactId>
+			  		<configuration>
+			    			<source>1.7</source>
+			    			<target>1.7</target>
+			    			<encoding>ISO-8859-1</encoding>
+			  		</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -158,5 +200,17 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
+
+      <!-- creates profile for testing against OpenMRS 11 -->
+	<profiles>
+		<profile>
+			<id>openmrs-1.11</id>
+			<properties>
+				<openMRSVersion>1.11.1</openMRSVersion>
+				<openMRSMinorVersion>1.11</openMRSMinorVersion>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
