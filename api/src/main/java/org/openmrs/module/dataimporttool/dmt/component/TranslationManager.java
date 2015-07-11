@@ -37,11 +37,9 @@ import org.openmrs.module.dataimporttool.matchingschema.ValueMatchType;
  * This manager is responsible to generate SQL queries to either SELECT or
  * INSERT data from source into target databases
  * 
- * @author Valério João
- * @author Salimone Nhancume
- * @since 5-09-2014
  *
  */
+
 public class TranslationManager implements LogIt {
 	private TupleTree tree;
 	private DatabaseUtil sourceDAO;

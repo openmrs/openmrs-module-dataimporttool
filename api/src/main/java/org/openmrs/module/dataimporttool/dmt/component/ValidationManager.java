@@ -1,9 +1,14 @@
-packageorg.openmrs.module.dataimporttool.dmt.component;
+package org.openmrs.module.dataimporttool.dmt.component;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import org.openmrs.BaseOpenmrsObject;
 
 import org.openmrs.module.dataimporttool.dmt.helper.EventCodeContants;
 import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
@@ -31,27 +36,19 @@ import org.openmrs.module.dataimporttool.matchingschema.TupleType;
 
 /**
  * The manager that performs the validation of the matches
- * 
- * @author Valério João
- * @since 28-08-2014
- *
  */
-public class ValidationManager implements LogIt {
+@Entity
+@Table(name = "Validation Manager")
+public class ValidationManager extends BaseOpenmrsObject implements Serializable, LogIt {
+
+	private static final long serialVersionUID = 1L;
 	private XlsProcessor processor;
 	private LogWriter writer;
 	private DatatypeMappingReader dmr;
 	private TupleTree tree;
 	private EventCode eventCode;
-	private final Map<Integer, TupleType> LINEAR_TUPLES = new HashMap<Integer, TupleType>();// allow
-																							// to
-																							// order
-																							// and
-																							// access
-																							// tuples
-																							// in
-																							// a
-																							// linear
-																							// fashion
+	private final Map<Integer, TupleType> LINEAR_TUPLES = new HashMap<Integer, TupleType>();// allow to order and access tuples 													// in a linear fashion
+																							// 
 	// counters for log report
 	private int warningCount, tupleCount, matchCount, leftRefCount,
 			rightRefCount = 0;
