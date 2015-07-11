@@ -45,7 +45,7 @@ Perform the following steps using command line:
 
 
 ### Authors and Contributors
-In 2015 Nyah Check@Ch3ck, as a Google Summer of code student was inspired by the eSaude Data Migration System developed by Pascal Brandt(psbrandt) and Valerio Joao(@vjoao) to work on the Data Import Tool for OpenMRS.
+In 2015 Nyah Check(Ch3ck), as a Google Summer of code student was inspired by the eSaude Data Migration System developed by Valerio Joao(@vjoao) to work on the Data Import Tool for OpenMRS.
 
 
 ### Support or Contact
