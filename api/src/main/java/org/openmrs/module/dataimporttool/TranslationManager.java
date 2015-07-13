@@ -1,4 +1,4 @@
-package org.openmrs.module.dataimporttool.dmt.component;
+package org.openmrs.module.dataimporttool;
 
 import static ch.lambdaj.Lambda.on;
 import static ch.lambdaj.Lambda.sort;
@@ -39,7 +39,6 @@ import org.openmrs.module.dataimporttool.matchingschema.ValueMatchType;
  * 
  *
  */
-
 public class TranslationManager implements LogIt {
 	private TupleTree tree;
 	private DatabaseUtil sourceDAO;

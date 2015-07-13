@@ -1,14 +1,9 @@
-package org.openmrs.module.dataimporttool.dmt.component;
+package org.openmrs.module.dataimporttool;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.Serializable;
-
-import javax.persistence.*;
-
-import org.openmrs.BaseOpenmrsObject;
 
 import org.openmrs.module.dataimporttool.dmt.helper.EventCodeContants;
 import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
@@ -37,9 +32,7 @@ import org.openmrs.module.dataimporttool.matchingschema.TupleType;
 /**
  * The manager that performs the validation of the matches
  */
-@Entity
-@Table(name = "Validation Manager")
-public class ValidationManager extends BaseOpenmrsObject implements Serializable, LogIt {
+public class ValidationManager implements LogIt {
 
 	private static final long serialVersionUID = 1L;
 	private XlsProcessor processor;
