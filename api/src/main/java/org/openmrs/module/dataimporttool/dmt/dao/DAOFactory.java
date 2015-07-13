@@ -1,13 +1,13 @@
-package org.esaude.dmt.dao;
+package org.openmrs.module.dataimporttool.dmt.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.esaude.dmt.config.schema.DatasourceType;
-import org.esaude.dmt.helper.DAOTypes;
-import org.esaude.dmt.helper.SystemException;
-import org.esaude.dmt.util.ConfigReader;
+import org.openmrs.module.dataimporttool.dmt.config.schema.DatasourceType;
+import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.dmt.util.ConfigReader;
 
 /**
  * This class is a factory that generates instances of {@link DatabaseUtil }

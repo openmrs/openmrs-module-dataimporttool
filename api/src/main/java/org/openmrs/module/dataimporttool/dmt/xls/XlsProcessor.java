@@ -1,4 +1,4 @@
-package org.esaude.dmt.xls;
+package org.openmrs.module.dataimporttool.dmt.xls;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-import org.esaude.dmt.config.schema.Config;
-import org.esaude.dmt.util.ConfigReader;
+import org.openmrs.module.dataimporttool.dmt.config.schema.Config;
+import org.openmrs.module.dataimporttool.dmt.util.ConfigReader;
 
 /**
  * A tool that reads data from XLS files. It uses JXL API

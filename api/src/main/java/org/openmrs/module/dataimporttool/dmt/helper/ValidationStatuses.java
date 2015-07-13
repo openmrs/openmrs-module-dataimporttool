@@ -1,4 +1,4 @@
-package org.esaude.dmt.helper;
+package org.openmrs.module.dataimporttool.dmt.helper;
 
 public enum ValidationStatuses {
 	RIGHT_TO_LEFT_DATATYPE_COMPATIBILITY,

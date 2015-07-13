@@ -1,11 +1,11 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.esaude.dmt.helper.SystemException;
-import org.esaude.matchingschema.ReferenceSideType;
-import org.esaude.matchingschema.ReferenceType;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.matchingschema.ReferenceSideType;
+import org.openmrs.module.dataimporttool.matchingschema.ReferenceType;
 
 /**
  * A builder that creates the {@link ReferenceType } instances

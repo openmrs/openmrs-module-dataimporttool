@@ -1,4 +1,4 @@
-package org.esaude.dmt.util.datatypemapping;
+package org.openmrs.module.dataimporttool.dmt.util.datatypemapping;
 
 import java.util.ArrayList;
 import java.util.List;

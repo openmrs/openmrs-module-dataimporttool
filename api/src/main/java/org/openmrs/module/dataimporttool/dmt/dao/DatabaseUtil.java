@@ -1,7 +1,7 @@
 /*
  *
  */
-package org.esaude.dmt.dao;
+package org.openmrs.module.dataimporttool.dmt.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -14,8 +14,8 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.esaude.dmt.helper.MatchConstants;
-import org.esaude.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 /**
  * This class is used to manipulate SQL-based databases using SQL native queries

@@ -1,4 +1,4 @@
-package org.esaude.dmt.util.datatypemapping;
+package org.openmrs.module.dataimporttool.dmt.util.datatypemapping;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

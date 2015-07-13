@@ -1,7 +1,7 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
-import org.esaude.dmt.helper.SystemException;
-import org.esaude.matchingschema.TupleType;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.matchingschema.TupleType;
 
 /**
  * A builder that creates the {@link TupleType } instances

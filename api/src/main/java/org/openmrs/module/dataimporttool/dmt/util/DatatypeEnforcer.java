@@ -1,7 +1,7 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
-import org.esaude.dmt.helper.MatchConstants;
-import org.esaude.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 /**
  * This class enforces string values to be of a certain datatype format

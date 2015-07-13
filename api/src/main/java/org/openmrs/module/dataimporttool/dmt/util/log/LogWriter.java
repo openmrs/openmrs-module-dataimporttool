@@ -5,7 +5,7 @@
  * @author Valério João
  * @since 21-08-2014
  */
-package org.esaude.dmt.util.log;
+package org.openmrs.module.dataimporttool.dmt.util.log;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;

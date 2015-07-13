@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://schema.config.dmt.esaude.org", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.esaude.dmt.config.schema;
+package org.openmrs.module.dataimporttool.dmt.config.schema;

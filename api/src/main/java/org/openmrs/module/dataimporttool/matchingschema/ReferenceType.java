@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.esaude.dmt.helper.ValidationStatuses;
+import org.openmrs.module.dataimporttool.dmt.helper.ValidationStatuses;
 
 
 /**

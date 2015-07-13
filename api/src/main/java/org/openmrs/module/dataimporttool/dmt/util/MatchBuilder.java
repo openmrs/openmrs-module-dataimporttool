@@ -1,11 +1,11 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.esaude.dmt.helper.SystemException;
-import org.esaude.matchingschema.MatchSideType;
-import org.esaude.matchingschema.MatchType;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.matchingschema.MatchSideType;
+import org.openmrs.module.dataimporttool.matchingschema.MatchType;
 
 /**
  * A builder that creates the {@link MatchType } instances

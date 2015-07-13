@@ -1,4 +1,4 @@
-package org.esaude.dmt.util.log;
+package org.openmrs.module.dataimporttool.dmt.util.log;
 
 /**
  * This contract must be implemented by all the components performing logs

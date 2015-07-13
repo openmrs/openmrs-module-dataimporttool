@@ -1,9 +1,9 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.esaude.dmt.helper.SystemException;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 /**
  * This class create pools of TOPs, it is used to access a TOP value from a

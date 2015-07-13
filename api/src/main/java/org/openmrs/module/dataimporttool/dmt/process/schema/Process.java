@@ -6,7 +6,7 @@
 //
 
 
-package org.esaude.dmt.process.schema;
+package org.openmrs.module.dataimporttool.dmt.process.schema;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

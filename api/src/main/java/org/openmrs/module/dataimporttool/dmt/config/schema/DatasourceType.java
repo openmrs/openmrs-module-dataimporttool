@@ -6,7 +6,7 @@
 //
 
 
-package org.esaude.dmt.config.schema;
+package org.openmrs.module.dataimporttool.dmt.config.schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

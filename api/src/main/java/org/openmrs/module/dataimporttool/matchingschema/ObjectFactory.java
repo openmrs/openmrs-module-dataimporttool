@@ -9,7 +9,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the org.esaude.matchingschema package. 
+ * generated in the org.openmrs.module.dataimporttool.matchingschema package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -27,7 +27,7 @@ public class ObjectFactory {
     private final static QName _Tuple_QNAME = new QName("http://esaude.org/matchingschema", "tuple");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.esaude.matchingschema
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.openmrs.module.dataimporttool.matchingschema
      * 
      */
     public ObjectFactory() {

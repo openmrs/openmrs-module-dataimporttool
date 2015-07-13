@@ -1,10 +1,10 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.esaude.matchingschema.TupleType;
+import org.openmrs.module.dataimporttool.matchingschema.TupleType;
 
 public class TupleTree {
 	//to be set during translation phase

@@ -1,4 +1,4 @@
-package org.esaude.dmt.util;
+package org.openmrs.module.dataimporttool.dmt.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,8 +22,8 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.Result;
 
-import org.esaude.dmt.App;
-import org.esaude.dmt.process.schema.Process;
+import org.openmrs.module.dataimporttool.dmt.App;
+import org.openmrs.module.dataimporttool.dmt.process.schema.Process;
 
 /**
  * Tool that reads info from XML configuration file for translation/execution process. This tool uses JAXB API to
@@ -39,7 +39,7 @@ public final class ProcessReader {
 
 	private ProcessReader() {
 		try {
-			jaxbContext = JAXBContext.newInstance("org.esaude.dmt.process.schema");
+			jaxbContext = JAXBContext.newInstance("org.openmrs.module.dataimporttool.dmt.process.schema");
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
