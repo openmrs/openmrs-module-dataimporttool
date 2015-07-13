@@ -27,7 +27,7 @@
 	</appender>
 
 	<logger name="org.openmrs">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 
 		<!-- Root debugger -->
