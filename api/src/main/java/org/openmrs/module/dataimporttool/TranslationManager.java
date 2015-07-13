@@ -1,7 +1,7 @@
 package org.openmrs.module.dataimporttool;
 
-import static ch.lambdaj.Lambda.on;
-import static ch.lambdaj.Lambda.sort;
+import static ch.lambdaj.Lambda.*;
+//import static ch.lambdaj.Lambda.sort;
 
 import java.util.ArrayList;
 import java.util.Calendar;
