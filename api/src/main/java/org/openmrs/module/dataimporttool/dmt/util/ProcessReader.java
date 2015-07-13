@@ -22,7 +22,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.Result;
 
-import org.openmrs.module.dataimporttool.dmt.App;
+import org.openmrs.module.dataimporttool.DataImportToolActivator;
 import org.openmrs.module.dataimporttool.dmt.process.schema.Process;
 
 /**
@@ -66,7 +66,7 @@ public final class ProcessReader {
 		Process process = null;
 		try {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			process  = (Process) jaxbUnmarshaller.unmarshal(new FileInputStream(App.MAIN_PATH + "/process.xml"));
+			process  = (Process) jaxbUnmarshaller.unmarshal(new FileInputStream(DataImportToolActivator.MAIN_PATH + "/process.xml"));
 
 		} catch (JAXBException | FileNotFoundException e) {
 			e.printStackTrace();
@@ -96,7 +96,7 @@ public final class ProcessReader {
 		process.setLastStopStatus(status);
 		
 		try {
-			File file = new File(App.MAIN_PATH + "/process.xml");
+			File file = new File(DataImportToolActivator.MAIN_PATH + "/process.xml");
 			Marshaller m = jaxbContext.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			m.marshal(process, file);

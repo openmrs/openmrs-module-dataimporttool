@@ -8,7 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import org.openmrs.module.dataimporttool.dmt.App;
+import org.openmrs.module.dataimporttool.DataImportToolActivator;
 import org.openmrs.module.dataimporttool.dmt.config.schema.Config;
 
 /**
@@ -49,7 +49,7 @@ public final class ConfigReader {
 			JAXBContext jaxbContext = JAXBContext.newInstance("org.openmrs.module.dataimporttool.dmt.config.schema");
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			config  = (Config) jaxbUnmarshaller.unmarshal(new FileInputStream(App.MAIN_PATH + "/config.xml"));
+			config  = (Config) jaxbUnmarshaller.unmarshal(new FileInputStream(DataImportToolActivator.MAIN_PATH + "/config.xml"));
 
 		} catch (JAXBException | FileNotFoundException e) {
 			e.printStackTrace();
