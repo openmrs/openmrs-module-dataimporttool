@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.openmrs.module.dataimporttool">
 
-<!--
+
 	<class name="DataImportTool"
 		table="${project.parent.artifactId}_DataImportTool">
 		<id name="id" type="int" column="id" unsaved-value="0">
@@ -14,9 +14,22 @@
 		<discriminator column="id" insert="false" />
 		<property name="uuid" type="java.lang.String" column="uuid"
 			length="38" unique="true" />
-	</class>
--->
 
-	
+		<property name="treeLimit" type="int" ></property>
+		<property name="allowCommit" type="boolean" ></property>
+		<property name="resetProcess" type="boolean" ></property>
+		<property name="matchFile" type="java.lang.String"></property>
+		<property name="leftDbDriver" type="java.lang.String" ></property>
+		<property name="leftUserName" type="java.lang.String" ></property>
+		<property name="leftPassword" type="java.lang.String" ></property>
+		<property name="leftDbLocation" type="java.lang.String"></property>
+		<property name="rightDbDriver" type="java.lang.String"></property>
+		<property name="rightUserName" type="java.lang.String"></property>
+		<property name="rightPassword" type="java.lang.String"></property>
+		<property name="rightDbLocation" type="java.lang.String"></property>
+	</class>
+
+
+
 
 </hibernate-mapping>
