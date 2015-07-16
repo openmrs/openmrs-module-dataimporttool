@@ -15,18 +15,41 @@
 		<property name="uuid" type="java.lang.String" column="uuid"
 			length="38" unique="true" />
 
-		<property name="treeLimit" type="int" ></property>
-		<property name="allowCommit" type="boolean" ></property>
-		<property name="resetProcess" type="boolean" ></property>
-		<property name="matchFile" type="java.lang.String"></property>
-		<property name="leftDbDriver" type="java.lang.String" ></property>
-		<property name="leftUserName" type="java.lang.String" ></property>
-		<property name="leftPassword" type="java.lang.String" ></property>
-		<property name="leftDbLocation" type="java.lang.String"></property>
-		<property name="rightDbDriver" type="java.lang.String"></property>
-		<property name="rightUserName" type="java.lang.String"></property>
-		<property name="rightPassword" type="java.lang.String"></property>
-		<property name="rightDbLocation" type="java.lang.String"></property>
+		<property name="treeLimit" type="int"
+			column="Tree_Limit" length="20" />
+
+		<property name="allowCommit" type="boolean"
+			column="allow_commit" length="10" />
+
+		<property name="resetProcess" type="boolean"
+			column="reset_process" length="10" />
+
+		<property name="matchFile" type="java.lang.String"
+			column="Matching_File" length="255"/>
+
+		<property name="leftDbDriver" type="java.lang.String"
+			column="Left_DB_Driver" length="150" />
+
+		<property name="leftUserName" type="java.lang.String"
+			column="Left_UserName" length="150" />
+
+		<property name="leftPassword" type="java.lang.String"
+			column="Left_Password" length="150" />
+
+		<property name="leftDbLocation" type="java.lang.String"
+			column="Left_DB_Location" length="150" />
+
+		<property name="rightDbDriver" type="java.lang.String"
+			column="Right_DB_Driver" length="150" />
+
+		<property name="rightUserName" type="java.lang.String"
+			column="Right_UserName" length="150" />
+
+		<property name="rightPassword" type="java.lang.String"
+			column="Right_Password" length="150" />
+
+		<property name="rightDbLocation" type="java.lang.String"
+			column="Right_DB_Location" length="150" />
 	</class>
 
 
