@@ -4,30 +4,28 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.dmt.config.schema.DatasourceType;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
-import org.openmrs.module.dataimporttool.dmt.util.ConfigReader;
 
 /**
  * This class is a factory that generates instances of {@link DatabaseUtil }
- * @author Valério João
- * @since 10-09-2014
  *
  */
 public final class DAOFactory {
-	private ConfigReader cr;
+	private DataImportTool dit; 
 	private DatabaseUtil sourceDAO;
 	private DatabaseUtil targetDAO;
 	private static DAOFactory instance;
 	private Connection connection;
 
 	private DAOFactory() {
-		cr = ConfigReader.getInstance();
+		dit = new DataImportTool();
 	}
 	
-	private DAOFactory(ConfigReader cr) {
-		this.cr = cr;
+	private DAOFactory(DataImportTool dit) {
+		this.dit = dit;
 	}
 	
 	/**
@@ -46,9 +44,9 @@ public final class DAOFactory {
 	 * @param cr
 	 * @return
 	 */
-	public static DAOFactory getInstance(ConfigReader cr) {
+	public static DAOFactory getInstance(DataImportTool dit) {
 		if(instance == null) {
-			instance = new DAOFactory(cr);
+			instance = new DAOFactory(dit);
 		}
 		return instance;
 	}
@@ -61,44 +59,40 @@ public final class DAOFactory {
 	 * @throws SystemException
 	 */
 	public DatabaseUtil getDAO(DAOTypes type) throws SystemException {
-		DatasourceType ds = null;
+		
+			if (type == DAOTypes.SOURCE) {
+				sourceDAO = createDAOs(dit, type);
 
-		if (type == DAOTypes.SOURCE) {
-			ds = cr.getConfig().getSourceDs();
-			// create DAO if not exists
-			if (sourceDAO == null) {
-				sourceDAO = createDAOs(ds, type);
+				try {
+					// set the database driver class
+					Class.forName(dit.getRightDbDriver());
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				return sourceDAO;
+
+			} else if (type == DAOTypes.TARGET) {
+				// create DAO if not exists
+					
+				targetDAO = createDAOs(dit, type);
+				try {
+					Class.forName(dit.getLeftDbDriver());
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				return targetDAO;
+
+			} else {
+				throw new SystemException("The type of datasource is invalid");
 			}
-			// set the database driver class
-			try {
-				Class.forName(ds.getDriveName());
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return sourceDAO;
-		} else if (type == DAOTypes.TARGET) {
-			ds = cr.getConfig().getTargetDs();
-			// create DAO if not exists
-			if (targetDAO == null) {
-				targetDAO = createDAOs(ds, type);
-			}
-			// set the database driver class
-			try {
-				Class.forName(ds.getDriveName());
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return targetDAO;
-		} else {
-			throw new SystemException("The type of datasource is invalid");
-		}
+		
 	}
 	
 	/**
 	 * Destroy all DAO resources
 	 * @param type
 	 */
-	public void destroy(DAOTypes type) throws SystemException {
+	public void destroyDAO(DAOTypes type) throws SystemException {
 		try {
 			if (type == DAOTypes.SOURCE) {
 				sourceDAO.close();
@@ -121,39 +115,46 @@ public final class DAOFactory {
 	 * @return
 	 * @throws SystemException
 	 */
-	private DatabaseUtil createDAOs(final DatasourceType ds, DAOTypes type)
+	private DatabaseUtil createDAOs(final DataImportTool dit, DAOTypes type)
 			throws SystemException {
-		// create connections using config.xml
-		if (ds == null) {
+		// create connections DataImportTool Entity object.
+		if (dit == null) {
 			throw new SystemException(
-					"The datasource info doesn't exist in config.xml");
+					"The datasource info doesn't exist in entity object");
 		}
-		try {
-			connection = DriverManager.getConnection(
-					ds.getDatabaseLocation() + ds.getDatabaseName(),
-					ds.getUsername(), ds.getPassword());
-			// only for target DS
-			if (type == DAOTypes.TARGET) {
-				// only for target datasource
-				try {
-					connection.setAutoCommit(false);// disable auto-commit
-					connection
-							.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);// allow
-																								// to
-																								// access
-																								// uncommitted
-																								// data
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+		
+		if (type == DAOTypes.TARGET) { //only for target data source
+		
+			try {
+				connection.setAutoCommit(false);// disable auto-commit
+				connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);			
+							
+				connection = DriverManager.getConnection(
+					dit.getLeftDbLocation() + dit.getLeftDbName(),
+					dit.getLeftUserName(), dit.getLeftPassword());
 
-			if (connection != null) {
-				return new DatabaseUtil(connection);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+				if (connection != null)
+					return new DatabaseUtil(connection);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}//end try - catch blog
+
+		} else {
+			
+			try {						
+				connection = DriverManager.getConnection(
+					dit.getRightDbLocation() + dit.getRightDbName(),
+					dit.getRightUserName(), dit.getRightPassword());
+				
+				if (connection != null) 
+					return new DatabaseUtil(connection);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} //end try-catch blog
 		}
+
 		return null;
 	}
 }
