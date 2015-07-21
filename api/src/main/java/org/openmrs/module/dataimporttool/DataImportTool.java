@@ -24,12 +24,11 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private int treeLimit = 0;                                    /* Limit on number of trees to be processed */
 	private boolean allowCommit = true, resetProcess = false;     /* Further details during migration process */
 
-	private String leftUserName,leftPassword, leftDbLocation;     /* Details of the left DB User for the Migration */
-	private String rightUserName, rightPassword, rightDbLocation; /* Details for the right DB for the Migration */
+	private String leftUserName,leftPassword, leftDbLocation, leftDbName;     /* Details of the left DB User for the Migration */
+	private String rightUserName, rightPassword, rightDbLocation, rightDbName; /* Details for the right DB for the Migration */
 	private String leftDbDriver, rightDbDriver;                   /* Left and Right DB Drivers */
 	private String matchFile;                                     /* Details of the matching file */
 	
@@ -132,6 +131,24 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	}
 
 	/**
+	 * sets the left database Name
+	 *
+	 * @param leftDbName
+	 */
+	public void setLeftDbName(String leftDbName) {
+		this.leftDbName = leftDbName;
+	}
+
+	/**
+	 * Gets the left DB Name
+	 *
+	 * @return leftDbName
+	 */
+	public String getLeftDbName() {
+		return leftDbName;
+	}
+
+	/**
 	 * Sets left DB username
 	 *
 	 * @param leftUserName
@@ -202,6 +219,25 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	public String getRightDbDriver() {
 		return rightDbDriver;
 	}
+
+	/**
+	 * sets the Right database Name
+	 *
+	 * @param rightDbName
+	 */
+	public void setRightDbName(String rightDbName) {
+		this.rightDbName = rightDbName;
+	}
+
+	/**
+	 * Gets the right DB Name
+	 *
+	 * @return rightDbName
+	 */
+	public String getRightDbName() {
+		return rightDbName;
+	}
+
 
 	/**
 	 * Sets right DB username
