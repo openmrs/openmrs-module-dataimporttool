@@ -48,7 +48,7 @@ public class TranslationManager implements LogIt {
 	private EventCode eventCode;
 	private boolean skip;// this variable indicates whether or not a tuple must
 							// return an insert query or an empty string.
-	private final Config config = ConfigReader.getInstance().getConfig();
+	private final DataImportTool config = new DataImportTool();
 	private int processCount, treeCount, totalTreeNo, currTupleId;
 	private boolean firstRun = true;
 
@@ -87,7 +87,7 @@ public class TranslationManager implements LogIt {
 				eventCode.getString(EventCodeContants.SEPARATOR));
 
 		// reset processing point if config says so
-		if (config.isResetProcess()) {
+		if (config.getReturnProcess()) {
 			ProcessReader.getInstance().recordProcess(0,
 					Calendar.getInstance().getTime(), ProcessStatuses.RESET);
 		}
@@ -181,14 +181,14 @@ public class TranslationManager implements LogIt {
 			}
 			// commit a transaction from root
 			if (t.getParent() == null) {
-				if (config.isAllowCommit()) {
+				if (config.getAllowCommit()) {
 					targetDAO.commit();
 				}
 				// increment process counter for each tree
 				processCount++;
 				treeCount++;
 				// stop if reached the limit of executions
-				if (treeCount == config.getTreeLimit().longValue()) {
+				if (treeCount == config.getTreeLimit()) {
 					// record current process as paused
 					ProcessReader.getInstance().recordProcess(processCount,
 							Calendar.getInstance().getTime(),

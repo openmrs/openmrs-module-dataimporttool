@@ -103,6 +103,14 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	public void setMatchFile(String matchFile) {
 		this.matchFile = matchFile;
 	}
+	
+	public void setMatchFormat(String matchFormat) {
+		this.matchFormat = matchFormat;
+	}
+
+	public void setMatchLocation(String matchFileLocation) {
+		this.matchFileLocation = matchLocation;
+	}
 
 	/**
 	 * Gets the matching file
@@ -111,6 +119,15 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	 */
 	public String getMatchFile() {
 		return matchFile;
+	}
+
+	public String getMatchFormat() {
+		return matchFormat;
+	}
+
+	public String getMatchLocation() {
+		return matchLocation;
+
 	}
 
 	/**

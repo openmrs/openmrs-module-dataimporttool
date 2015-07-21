@@ -7,8 +7,7 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-import org.openmrs.module.dataimporttool.dmt.config.schema.Config;
-import org.openmrs.module.dataimporttool.dmt.util.ConfigReader;
+import org.openmrs.module.dataimporttool.DataImportTool;
 
 /**
  * A tool that reads data from XLS files. It uses JXL API
@@ -18,7 +17,7 @@ import org.openmrs.module.dataimporttool.dmt.util.ConfigReader;
  *
  */
 public class XlsProcessor {
-	private final Config config = ConfigReader.getInstance().getConfig();
+	private final DataImportTool config = new DataImportTool();
 	private Workbook workbook;
 
 	/**
@@ -26,9 +25,9 @@ public class XlsProcessor {
 	 */
 	public XlsProcessor() {
 		// get the matching file using config info
-		File inputWorkbook = new File(config.getMatchingInput().getLocation()
-				+ "/" + config.getMatchingInput().getFileName() + "."
-				+ config.getMatchingInput().getFormat());
+		File inputWorkbook = new File(config.getMatchLocation()
+				+ "/" + config.getMatchFile + "."
+				+ config.getMatchFormat());
 
 		try {
 			workbook = Workbook.getWorkbook(inputWorkbook);
