@@ -23,6 +23,7 @@ import org.openmrs.BaseOpenmrsMetadata;
 public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	
 	private int treeLimit = 0;                                    /* Limit on number of trees to be processed */
 	private boolean allowCommit = true, resetProcess = false;     /* Further details during migration process */
@@ -30,7 +31,7 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	private String leftUserName,leftPassword, leftDbLocation, leftDbName;     /* Details of the left DB User for the Migration */
 	private String rightUserName, rightPassword, rightDbLocation, rightDbName; /* Details for the right DB for the Migration */
 	private String leftDbDriver, rightDbDriver;                   /* Left and Right DB Drivers */
-	private String matchFile;                                     /* Details of the matching file */
+	private String matchFile, matchFormat, matchLocation;                                     /* Details of the matching file */
 	
 	@Override
 	public Integer getId() {

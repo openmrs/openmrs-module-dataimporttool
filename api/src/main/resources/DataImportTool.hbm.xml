@@ -26,9 +26,18 @@
 
 		<property name="matchFile" type="java.lang.String"
 			column="Matching_File" length="255"/>
+		
+		<property name="matchFileFormat" type="java.lang.String"
+			column="Matching_file_format" length="15"/>
+
+		<property name="matchFileLocation" type="java.lang.String"
+			column="Matching_File_Location" length="255"/>
 
 		<property name="leftDbDriver" type="java.lang.String"
 			column="Left_DB_Driver" length="150" />
+
+		<property name="leftDbName" type="java.lang.String"
+			column="Left_DB_Name" length="150" />
 
 		<property name="leftUserName" type="java.lang.String"
 			column="Left_UserName" length="150" />
@@ -41,6 +50,9 @@
 
 		<property name="rightDbDriver" type="java.lang.String"
 			column="Right_DB_Driver" length="150" />
+
+		<property name="rightDbName" type="java.lang.String"
+			column="Right_DB_Name" length="150" />
 
 		<property name="rightUserName" type="java.lang.String"
 			column="Right_UserName" length="150" />

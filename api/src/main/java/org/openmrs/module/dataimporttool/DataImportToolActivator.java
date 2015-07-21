@@ -47,12 +47,7 @@ public class DataImportToolActivator implements ModuleActivator {
 	 */
 	public void willStart() {
 		log.info("Starting Data Import Tool Module");
-		ValidationManager vm = new ValidationManager();
-    		if(!vm.execute())
-			return;
-
-    		TranslationManager tm = new TranslationManager(vm.getTree());
-    		tm.execute();
+		//doMigrationService goes on here..
 	}
 	
 	/**
