@@ -108,8 +108,8 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 		this.matchFormat = matchFormat;
 	}
 
-	public void setMatchLocation(String matchFileLocation) {
-		this.matchFileLocation = matchLocation;
+	public void setMatchLocation(String matchLocation) {
+		this.matchLocation = matchLocation;
 	}
 
 	/**

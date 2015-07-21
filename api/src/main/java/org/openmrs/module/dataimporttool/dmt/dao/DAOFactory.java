@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.openmrs.module.dataimporttool.DataImportTool;
-import org.openmrs.module.dataimporttool.dmt.config.schema.DatasourceType;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 

@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.ibatis.jdbc.SQL;
-import org.openmrs.module.dataimporttool.dmt.config.schema.Config;
 import org.openmrs.module.dataimporttool.dmt.dao.DAOFactory;
 import org.openmrs.module.dataimporttool.dmt.dao.DatabaseUtil;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
@@ -19,7 +18,6 @@ import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
 import org.openmrs.module.dataimporttool.dmt.helper.ProcessPhases;
 import org.openmrs.module.dataimporttool.dmt.helper.ProcessStatuses;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
-import org.openmrs.module.dataimporttool.dmt.util.ConfigReader;
 import org.openmrs.module.dataimporttool.dmt.util.DatatypeEnforcer;
 import org.openmrs.module.dataimporttool.dmt.util.ProcessReader;
 import org.openmrs.module.dataimporttool.dmt.util.TupleTree;

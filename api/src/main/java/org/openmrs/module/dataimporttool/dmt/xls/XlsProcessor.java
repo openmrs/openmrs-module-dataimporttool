@@ -12,9 +12,6 @@ import org.openmrs.module.dataimporttool.DataImportTool;
 /**
  * A tool that reads data from XLS files. It uses JXL API
  * 
- * @author Valério João
- * @since 21-08-2014
- *
  */
 public class XlsProcessor {
 	private final DataImportTool config = new DataImportTool();
@@ -26,7 +23,7 @@ public class XlsProcessor {
 	public XlsProcessor() {
 		// get the matching file using config info
 		File inputWorkbook = new File(config.getMatchLocation()
-				+ "/" + config.getMatchFile + "."
+				+ "/" + config.getMatchFile() + "."
 				+ config.getMatchFormat());
 
 		try {
