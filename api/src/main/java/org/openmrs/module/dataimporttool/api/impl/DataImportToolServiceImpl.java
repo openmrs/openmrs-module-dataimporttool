@@ -16,8 +16,12 @@ package org.openmrs.module.dataimporttool.api.impl;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import org.openmrs.module.dataimporttool.ValidationManager;
+import org.openmrs.module.dataimporttool.TranslationManager;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
-import org.openmrs.module.dataimporttool.api.db.DataImportToolDAO;
+import org.openmrs.module.dataimporttool.dmt.dao.DAOFactory;
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 /**
  * It is a default implementation of {@link DataImportToolService}.
@@ -26,19 +30,35 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private DataImportToolDAO dao;
+	private DAOFactory dao;
 	
 	/**
-     * @param dao the dao to set
-     */
-    public void setDao(DataImportToolDAO dao) {
-	    this.dao = dao;
-    }
+    	 * @param dao the dao to set
+    	 */
+    	public void setDao(DAOFactory dao) {
+	   	this.dao = dao;
+    	}
     
-    /**
-     * @return the dao
-     */
-    public DataImportToolDAO getDao() {
-	    return dao;
-    }
+    	/**
+    	 * @return the dao
+    	 */
+   	public DAOFactory getDao() {
+		return dao;
+  	}
+
+	/**
+	 * doMigration performs the migration process.
+	 *
+	 * @throws SystemException
+	 */
+	@Override
+	public void doMigration() throws SystemException {
+		ValidationManager vm = new ValidationManager();
+    		if(!vm.execute()) return;
+
+    		TranslationManager tm = new TranslationManager(vm.getTree());
+    		tm.execute();
+	}
+
+	
 }

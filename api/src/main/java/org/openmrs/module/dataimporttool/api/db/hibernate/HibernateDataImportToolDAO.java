@@ -27,16 +27,16 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
 	private SessionFactory sessionFactory;
 	
 	/**
-     * @param sessionFactory the sessionFactory to set
-     */
-    public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
-    }
+     	 * @param sessionFactory the sessionFactory to set
+     	 */
+     	public void setSessionFactory(SessionFactory sessionFactory) {
+	   	this.sessionFactory = sessionFactory;
+    	}
     
 	/**
-     * @return the sessionFactory
-     */
-    public SessionFactory getSessionFactory() {
-	    return sessionFactory;
-    }
+     	 * @return the sessionFactory
+    	 */
+    	public SessionFactory getSessionFactory() {
+	   	return sessionFactory;
+   	 }
 }

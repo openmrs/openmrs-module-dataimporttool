@@ -16,6 +16,9 @@ package org.openmrs.module.dataimporttool.api;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
+
+
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
  * <p>
@@ -33,4 +36,13 @@ public interface DataImportToolService extends OpenmrsService {
 	 * Add service methods here
 	 * 
 	 */
+
+	 /**
+	 * This performs the migration of the data
+	 * datatype
+	 * 
+	 * @param null
+	 * @throws SystemException
+	 */
+	public void doMigration() throws SystemException;
 }
