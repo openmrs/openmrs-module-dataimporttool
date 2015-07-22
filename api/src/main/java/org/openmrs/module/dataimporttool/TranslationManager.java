@@ -85,7 +85,7 @@ public class TranslationManager implements LogIt {
 				eventCode.getString(EventCodeContants.SEPARATOR));
 
 		// reset processing point if config says so
-		if (config.getReturnProcess()) {
+		if (config.getResetProcess()) {
 			ProcessReader.getInstance().recordProcess(0,
 					Calendar.getInstance().getTime(), ProcessStatuses.RESET);
 		}

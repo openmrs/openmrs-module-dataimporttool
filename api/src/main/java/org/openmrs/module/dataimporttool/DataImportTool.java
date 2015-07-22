@@ -92,7 +92,7 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	 *
 	 * @return returnProcess
 	 */
-	public boolean getReturnProcess() {
+	public boolean getResetProcess() {
 		return resetProcess;
 	}
 

@@ -14,17 +14,34 @@
 package org.openmrs.module.dataimporttool.api;
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.BaseModuleContextSensitiveTest;
+import org.openmrs.module.dataimporttool.DataImportTool;
+
 
 /**
  * Tests {@link ${DataImportToolService}}.
+ * Tests the ability to read configurations from entity class.
  */
-public class  DataImportToolServiceTest extends BaseModuleContextSensitiveTest {
-	
-	@Test
-	public void shouldSetupContext() {
-		assertNotNull(Context.getService(DataImportToolService.class));
+public class  DataImportToolServiceTest {
+
+	private DataImportTool dit;
+
+	@Before
+	public void setUp() throws Exception {
+		dit = new DataImportTool();
 	}
+
+	@Test
+	public void testReadConfigData() {
+		
+		assertNotNull(dit);
+		//assertNotNull(dit.getMatchFile());
+		//assertNotNull(dit.getMatchFormat());
+		//assertNotNull(dit.getMatchLocation());
+		//assertNotNull(dit.getResetProcess());
+	}
+	
 }
