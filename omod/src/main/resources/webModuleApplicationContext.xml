@@ -21,6 +21,7 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the web context -->
+	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration"/>
 
 	 
 	<!-- Annotation based controllers -->
