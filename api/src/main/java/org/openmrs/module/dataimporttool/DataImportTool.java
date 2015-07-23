@@ -13,6 +13,8 @@
  */
 package org.openmrs.module.dataimporttool;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
@@ -21,6 +23,9 @@ import org.openmrs.BaseOpenmrsMetadata;
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
 public class DataImportTool extends BaseOpenmrsObject implements Serializable {
+
+	//creates a logger for this class
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;

@@ -8,5 +8,28 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
-    
+    <changeSet author="Nyah Check" id="20150723-1">
+        <comment>Create Data Import Tool Table</comment>
+        <createTable tableName="DataImportTool_DataImportTool">
+         	<column autoIncrement="true" name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            	</column>
+            	<column name="treeLimit" type="int" />
+            	<column name="allowCommit" type="boolean" />
+            	<column name="resetProcess" type="boolean" />
+	    	<column name="matchFile" type="varchar(255)" />
+	    	<column name="matchFormat" type="char(10)" />
+            	<column name="matchLocation" type="varchar(255)" />
+            	<column name="leftDbDriver" type="varchar(150)" />
+	    	<column name="leftDbName" type="varchar(150)" />
+	    	<column name="leftUserName" type="varchar(150)" />
+	    	<column name="leftPassword" type="varchar(150)" />
+	    	<column name="leftDbLocation" type="varchar(150)" />
+		<column name="rightDbDriver" type="varchar(150)" />
+	    	<column name="rightDbName" type="varchar(150)" />
+	    	<column name="rightUserName" type="varchar(150)" />
+	    	<column name="rightPassword" type="varchar(150)" />
+	    	<column name="rightDbLocation" type="varchar(150)" />
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

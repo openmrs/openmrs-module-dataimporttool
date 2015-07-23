@@ -13,7 +13,7 @@
  */
 package org.openmrs.module.dataimporttool.api.db;
 
-import org.openmrs.module.dataimporttool.api.DataImportToolService;
+import org.openmrs.module.dataimporttool.DataImportTool;
 
 import java.util.List;
 
@@ -28,7 +28,35 @@ import org.openmrs.api.db.DAOException;
 public interface DataImportToolDAO {
 
 	/**
-	 * Interface will contain nothing
-	 * DAO are in dmt/dao
- 	 */
+	 * runUpdateQuery
+	 *
+	 * @param queryString
+	 */
+	public int runUpdateQuery(String queryString);
+
+	/**
+	 * runListQuery, executes the SQL queries on the list
+ 	 *
+	 * @param queryString
+	 * @return List
+	 */
+	public List runListQuery(String queryString);
+
+
+	 /**
+         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getAllDataImportTools()
+         */
+        public List<DataImportTool> getAllDataImportTools();
+        /**
+         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getDataImportTool(java.lang.Integer)
+         */
+        public DataImportTool getDataImportTool(Integer ditId);
+        /**
+         * @see org.openmrs.module.dataimportool.api.DataImportToolService#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
+         */
+        public DataImportTool saveDataImportTool(DataImportTool dit);
+        /**
+         * @see org.openmrs.module.dataimportool.api.DataImportToolService#purgeDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
+         */
+        void purgeDataImportTool(DataImportTool dit);
 }

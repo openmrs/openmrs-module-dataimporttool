@@ -13,8 +13,11 @@
  */
 package org.openmrs.module.dataimporttool.api.db.hibernate;
 
+import java.util.List;
+import org.openmrs.module.dataimporttool.DataImportTool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.openmrs.module.dataimporttool.api.db.DataImportToolDAO;
 
@@ -39,4 +42,46 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
     	public SessionFactory getSessionFactory() {
 	   	return sessionFactory;
    	 }
+
+	@Override
+	public int runUpdateQuery(String queryString) {
+		Query q = sessionFactory.getCurrentSession().createQuery(queryString);
+		return q.executeUpdate();
+	}
+
+	@Override
+	public List runListQuery(String queryString) {
+		Query q = sessionFactory.getCurrentSession().createQuery(queryString);
+		return q.list();
+	}
+
+	/**
+         * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#getAllDepartments()
+         */
+        @Override
+        public List<DataImportTool> getAllDataImportTools() {
+                return sessionFactory.getCurrentSession().createCriteria(DataImportTool.class).list();
+        }
+        /**
+         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getDataImportTool(java.lang.Integer)
+         */
+        @Override
+        public DataImportTool getDataImportTool(Integer Id) {
+                return (DataImportTool) sessionFactory.getCurrentSession().get(DataImportTool.class, Id);
+        }
+        /**
+         * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
+         */
+        @Override
+        public DataImportTool saveDataImportTool(DataImportTool dit) {
+                sessionFactory.getCurrentSession().save(dit);
+                return dit;
+        }
+        /**
+         * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#purgeDataImportTool(org.openmrs.module.dataImportTool.DataImportTool)
+         */
+        @Override
+        public void purgeDataImportTool(DataImportTool dit) {
+                sessionFactory.getCurrentSession().delete(dit);
+        }
 }

@@ -27,10 +27,10 @@
 		<property name="matchFile" type="java.lang.String"
 			column="Matching_File" length="255"/>
 		
-		<property name="matchFileFormat" type="java.lang.String"
+		<property name="matchFormat" type="java.lang.String"
 			column="Matching_file_format" length="15"/>
 
-		<property name="matchFileLocation" type="java.lang.String"
+		<property name="matchLocation" type="java.lang.String"
 			column="Matching_File_Location" length="255"/>
 
 		<property name="leftDbDriver" type="java.lang.String"
