@@ -28,6 +28,7 @@ import org.openmrs.module.dataimporttool.dmt.process.schema.Process;
 /**
  * Tool that reads info from XML configuration file for translation/execution process. This tool uses JAXB API to
  * unmarshal/marshal XML into Java Objects.
+ * Note: This tool needs to be refactored since migration settings are read from the Entity class.
  * 
  * @author Valério João
  * @since 188-11-2014

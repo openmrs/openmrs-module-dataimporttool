@@ -18,7 +18,7 @@ import java.util.List;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.dataimporttool.api.DataImportToolService
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.module.dataimporttool.ValidationManager;
 import org.openmrs.module.dataimporttool.TranslationManager;
 import org.openmrs.module.dataimporttool.DataImportTool;
@@ -75,7 +75,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
          */
         @Override
         public void purgeDataImportTool(DataImportTool dit) {
-	    dao.purgeDataImportTool(department);
+	    dao.purgeDataImportTool(dit);
         }
 
 	/**

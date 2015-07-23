@@ -16,60 +16,48 @@ package org.openmrs.module.dataimporttool;
 
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.ModuleActivator;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.Activator;
+import org.openmrs.GlobalProperty;
+import org.openmrs.module.Extension;
+import org.openmrs.module.Module;
+import org.openmrs.module.ModuleFactory;
+
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
-public class DataImportToolActivator implements ModuleActivator {
+public class DataImportToolActivator implements Activator {
 
-	public static final String MAIN_PATH = "omod/src/main/resources";
-	public static final String TEST_PATH = "api/src/test/resources";
+	public static final String MAIN_PATH = "api/target";
+	public static final String TEST_PATH = "api/src/test";
 	
 	protected Log log = LogFactory.getLog(getClass());
 		
 	/**
-	 * @see ModuleActivator#willRefreshContext()
+	 * @see org.openmrs.module.Activator#startup()
 	 */
-	public void willRefreshContext() {
-		log.info("Refreshing Data Import Tool Module");
-	}
-	
-	/**
-	 * @see ModuleActivator#contextRefreshed()
-	 */
-	public void contextRefreshed() {
-		log.info("Data Import Tool Module refreshed");
-	}
-	
-	/**
-	 * @see ModuleActivator#willStart()
-	 */
-	public void willStart() {
-		log.info("Starting Data Import Tool Module");
-		//doMigrationService goes on here..
-	}
-	
-	/**
-	 * @see ModuleActivator#started()
-	 */
-	public void started() {
-		log.info("Data Import Tool Module started");
+	public void startup() {
 		
+		// create necessary default migration settings if they have not been created
+		
+		
+		
+		
+		// configure extension points based on global properties
+		
+		
+		log.info("Starting Data Import Tool");
 	}
 	
 	/**
-	 * @see ModuleActivator#willStop()
+	 * @see org.openmrs.module.Activator#shutdown()
 	 */
-	public void willStop() {
-		log.info("Stopping Data Import Tool Module");
-	}
-	
-	/**
-	 * @see ModuleActivator#stopped()
-	 */
-	public void stopped() {
-		log.info("Data Import Tool Module stopped");
+	public void shutdown() {
+		
+		// need to delete the migration settings stored here to assure that they aren't double-loaded on next startup
+		
+		log.info("Shutting down Patient Flags Module");
 	}
 		
 }

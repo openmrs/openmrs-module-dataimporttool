@@ -19,7 +19,7 @@ import org.openmrs.module.dataimporttool.dmt.helper.ProcessPhases;
 import org.openmrs.module.dataimporttool.dmt.helper.ProcessStatuses;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 import org.openmrs.module.dataimporttool.dmt.util.DatatypeEnforcer;
-import org.openmrs.module.dataimporttool.dmt.util.ProcessReader;
+import org.openmrs.module.dataimporttool.dmt.util.ProcessReader;//To be refactored.
 import org.openmrs.module.dataimporttool.dmt.util.TupleTree;
 import org.openmrs.module.dataimporttool.dmt.util.log.Event;
 import org.openmrs.module.dataimporttool.dmt.util.log.EventCode;
@@ -86,7 +86,7 @@ public class TranslationManager implements LogIt {
 
 		// reset processing point if config says so
 		if (config.getResetProcess()) {
-			ProcessReader.getInstance().recordProcess(0,
+			ProcessReader.getInstance().recordProcess(0,//To be re designed.
 					Calendar.getInstance().getTime(), ProcessStatuses.RESET);
 		}
 		// set the process position to start
@@ -99,7 +99,7 @@ public class TranslationManager implements LogIt {
 			ex.printStackTrace();
 			targetDAO.rollback();
 			// record current process as failed
-			ProcessReader.getInstance().recordProcess(processCount,
+			ProcessReader.getInstance().recordProcess(processCount, //To be redesigned
 					Calendar.getInstance().getTime(), ProcessStatuses.FAILED);
 			throw new SystemException(
 					"An error occured durring translation/execution phase while processing tuple # "
@@ -188,7 +188,7 @@ public class TranslationManager implements LogIt {
 				// stop if reached the limit of executions
 				if (treeCount == config.getTreeLimit()) {
 					// record current process as paused
-					ProcessReader.getInstance().recordProcess(processCount,
+					ProcessReader.getInstance().recordProcess(processCount,//NOTE: To be redesigned.
 							Calendar.getInstance().getTime(),
 							ProcessStatuses.PAUSED);
 					break;
@@ -206,7 +206,7 @@ public class TranslationManager implements LogIt {
 			// record end of process
 			if (processCount == totalTreeNo) {
 				// record current process as completed
-				ProcessReader.getInstance().recordProcess(0/*
+				ProcessReader.getInstance().recordProcess(0/* NOTE: To be redesigned
 															 * next time start
 															 * one tree ahead
 															 */,
