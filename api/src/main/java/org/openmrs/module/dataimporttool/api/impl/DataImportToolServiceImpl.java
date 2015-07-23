@@ -13,14 +13,17 @@
  */
 package org.openmrs.module.dataimporttool.api.impl;
 
+
+import java.util.List;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
+import org.openmrs.module.dataimporttool.api.DataImportToolService
 import org.openmrs.module.dataimporttool.ValidationManager;
 import org.openmrs.module.dataimporttool.TranslationManager;
+import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.db.DataImportToolDAO;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
-import org.openmrs.module.dataimporttool.dmt.dao.DAOFactory;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 /**
@@ -30,21 +33,50 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private DAOFactory dao;
-	
-	/**
-    	 * @param dao the dao to set
-    	 */
-    	public void setDao(DAOFactory dao) {
-	   	this.dao = dao;
+	private DataImportToolDAO dao;
+
+        /**
+         * @param dao the dao to set
+         */
+        public void setDao(DataImportToolDAO dao) {
+                this.dao = dao;
+        }
+
+        /**
+         * @return the dao
+         */
+        public DataImportToolDAO getDao() {
+                return dao;
+        }
+
+        /**
+         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getAllDataImportTools()
+         */
+        @Override
+        public List<DataImportTool> getAllDataImportTools() {
+                return dao.getAllDataImportTools();
+        }
+        /**
+         * @see org.openmrs.module.department.api.DataImportToolService#getDataImportTool(java.lang.Integer)
+         */
+        @Override
+    	public DataImportTool getDataImportTool(Integer Id) {
+            	return dao.getDataImportTool(Id);
     	}
-    
-    	/**
-    	 * @return the dao
-    	 */
-   	public DAOFactory getDao() {
-		return dao;
-  	}
+        /**
+         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
+         */
+        @Override
+        public DataImportTool saveDataImportTool(DataImportTool dit) {
+                return dao.saveDataImportTool(dit);
+        }
+        /**
+         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#purgeDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
+         */
+        @Override
+        public void purgeDataImportTool(DataImportTool dit) {
+	    dao.purgeDataImportTool(department);
+        }
 
 	/**
 	 * doMigration performs the migration process.

@@ -13,9 +13,11 @@
  */
 package org.openmrs.module.dataimporttool.api;
 
+import java.util.List;
+
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 
@@ -31,11 +33,6 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
  */
 @Transactional
 public interface DataImportToolService extends OpenmrsService {
-     
-	/*
-	 * Add service methods here
-	 * 
-	 */
 
 	 /**
 	 * This performs the migration of the data
@@ -45,4 +42,33 @@ public interface DataImportToolService extends OpenmrsService {
 	 * @throws SystemException
 	 */
 	public void doMigration() throws SystemException;
+
+	/**
+         * Gets a list of migration settings.
+         *
+         * @return the DataImportTool list.
+         */
+        @Transactional(readOnly = true)
+        List<DataImportTool> getAllDataImportTools();
+        /**
+         * Gets a migration setting for a given id.
+         *
+         * @param id the dit id
+         * @return the dit with the given id
+         */
+        @Transactional(readOnly = true)
+        DataImportTool getDataImportTool(Integer Id);
+        /**
+         * Saves a new or existing setting.
+         *
+         * @param dit the migration setting to save.
+         * @return the saved setting.
+         */
+        DataImportTool saveDataImportTool(DataImportTool dit);
+        /**
+         * Deletes a migration setting from the database.
+         *
+         * @param dit the setting to delete.
+         */
+        void purgeDataImportTool(DataImportTool dit);
 }
