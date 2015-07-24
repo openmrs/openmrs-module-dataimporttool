@@ -1,44 +1,62 @@
-Welcome to <b> The OpenMRS</b> <b><i>Data Import Tool</i></b>.
+<!-- multistep form -->
+<form id="msform">
+	<!-- progressbar -->
+<ul id="progressbar">
+<li class="active">Matching Input</li>
+<li>Target Database</li>
+<li>Source Database</li>
+<li>Migration Settings</li>
+</ul>
 
+	<!-- fieldsets -->
+	<fieldset>
+		<h2 class="fs-title">Matching File Data</h2>
+		<h3 class="fs-subtitle">Please fill in the details</h3>
+		<input type="text" name="MatchFile" placeholder="Matching File Name" />
+		<input type="text" name="matchFormat" value="xls" placeholder="Match File Type" />
+		<input type="text" name="matchLocation" placeholder="Matching File Location" />
+		<input type="button" name="next" class="next action-button" value="Next" />
+	</fieldset>
+	<fieldset>
+		<h2 class="fs-title">Target Database Data</h2>
+		<h3 class="fs-subtitle">Please fill in the left database details</h3>
+		<input type="text" name="leftUserName" placeholder="User Name" />
+		<input type="password" name="leftPassword" placeholder="Password" />
+		<input type="text" name="leftDbDriver" placeholder="Database Driver" value="com.mysql.jdbc.Driver"/>
+<input type="text" name="leftDbName"
+    placeholder="Database Name" value="openmrs"/>
+<input type="text" name="leftDbLocation" 
+    placeholder="Database Location" />
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+		<input type="button" name="next" class="next action-button" value="Next" />
+	</fieldset>
+ 	<fieldset>
+		<h2 class="fs-title">Source Database</h2>
+		<h3 class="fs-subtitle">Please fill in the left database details</h3>
+		<input type="text" name="rightUserName" placeholder="User Name" />
+		<input type="password" name="rightPassword" placeholder="Password" />
+		<input type="text" name="rightDbDriver" placeholder="Database Driver" value="com.mysql.jdbc.Driver"/>
+		<input type="text" name="rightDbName"
+    			placeholder="Database Name" />
+		<input type="text" name="rightDbLocation" 
+    			placeholder="Database Location" />
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+		<input type="button" name="next" class="next action-button" value="Next" />
+	</fieldset>
+	<fieldset>
+		<h2 class="fs-title">Migration Options</h2>
+		<h3 class="fs-subtitle">Configuration</h3>
+    
+		<input type="text" name="allowCommit" placeholder="Allow Commit" value="true" />
+		<input type="text" name="resetProcess" value="false" placeholder="Reset Process" />   
+		<input type="text" name="treeLimit" 
+    			placeholder="Tree Limit" value="0" />
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+		<input type="submit" name="submit" class="submit action-button" value="Start Migration" />
+	</fieldset>
+</form>
 
-This System enables Data Migration from SQL-based databases into OpenMRS 
-Please fill the form below with your desired Migration Settings
-
-
-${ ui.includeFragment("uiframework", "helloUser") }
-${ ui.includeFragment("dataimporttool", "migrationSetting") }
-
-
-
-
-The matching file in XLS info goes here:
-	
-	File name:
-	Format(xls):
-	Location: 
-	
-
-The Left side database info goes here(Target Database Information)
-
-	Driver name(com.mysql.jdbc.Driver): 
-	UserName: 
-	Password: 
-	Database Name: 
-	Database Location(jdbc:mysql://localhost:3306/dbname):
-	
-The Right side database info goes here(Source Database Information)
-	
-	Driver name(sun.jdbc.odbc.JdbcOdbcDriver):
-	UserName: 
-	Password:
-	Database Name:
-	Database Location(jdbc:odbc:Driver={Microsoft Access Driver()};dblocation):
-
-Limit on number of Trees to be processed(0, -x(unlimited):
-
-whether or not results will be committed.
-	Allow commits(T/F):
-
-whether the process should start from zero or last stopped point
-	Reset Process(T/F): 
-	
+<!-- jQuery -->
+<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<!-- jQuery easing plugin -->
+<script src="js/jquery.easing.min.js" type="text/javascript"></script>	

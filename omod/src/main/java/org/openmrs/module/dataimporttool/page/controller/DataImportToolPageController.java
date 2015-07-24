@@ -14,10 +14,13 @@
 package org.openmrs.module.dataimporttool.page.controller;
 
 import java.util.List;
+
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
+import org.openmrs.ui.framework.UiUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -29,8 +32,29 @@ public class DataImportToolPageController {
 
 	public void get(@SpringBean DataImportToolService service,
 			PageModel pageModel) {
-		List<DataImportTool> migrationSettings = service.getAllDataImportTools();
+		DataImportTool migrationSettings = service.getAllDataImportTools().get(0);
 		pageModel.put("MigrationSettings", migrationSettings);	
+		
+	}
+
+	public String get(@SpringBean DataImportToolService service,
+			@RequestParam("matchFile") String matchFile, @RequestParam("matchFormat") String matchFormat,
+			@RequestParam("matchLocation") String matchLocation, @RequestParam("leftDbDriver") String leftDbDriver,
+			@RequestParam("leftUserName") String leftUserName, @RequestParam("leftPassword") String leftPassword, 
+			@RequestParam("leftDbLocation") String leftDbLocation, @RequestParam String leftDbName, 
+			@RequestParam("rightDbDriver") String rightDbDriver, @RequestParam("rightUserName") String rightUserName,
+			@RequestParam("rightPassword") String rightPassword, @RequestParam("rightDbLocation") String rightDbLocation,
+			@RequestParam("rightDbName") String rightDbName, @RequestParam("treeLimit") int treeLimit, 
+			@RequestParam("allowCommit") boolean allowCommit, @RequestParam("resetProcess") boolean resetProcess,
+			UiUtils ui) {
+
+		DataImportTool dit = new DataImportTool(matchFile, matchFormat, matchLocation, leftDbDriver,leftUserName,leftPassword,
+							leftDbLocation,leftDbName,rightDbDriver,rightUserName, rightPassword, 
+							rightDbLocation, rightDbName, treeLimit, allowCommit, resetProcess);
+
+		service.saveDataImportTool(dit);
+		return "redirect:" + ui.pageLink("dataimporttool", "migrationSetting");
+
 		
 	}
 

@@ -24,6 +24,12 @@
 	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration" >
         	<property name="moduleId" value="dataimporttool"/>
    	 </bean>
+	 <bean class="org.openmrs.ui.framework.formatter.HandlebarsFormatterFactory">
+    		<property name="forClass" value="org.openmrs.module.dataimporttool.DataImportTool"/>
+    		<property name="template">
+        <value> {{message 'general.none'}}  </value>
+    </property>
+</bean>
 
 	 
 	<!-- Annotation based controllers -->
