@@ -13,6 +13,7 @@
 	</description>
 	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
 	<require_version>${openMRSVersion}</require_version>
+
 	<!-- / Module Properties -->
 	<require_modules>
     		<require_module>

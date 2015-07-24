@@ -18,6 +18,13 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the API context -->
+
+	<bean id="validationManager" class="org.openmrs.module.dataimporttool.ValidationManager" />
+		<!-- <constructor-arg ref="validationManager" /> -->
+
+	<bean id="translationManager" class="org.openmrs.module.dataimporttool.TranslationManager"/>
+		<!-- <constructor-arg ref="translationManager" /> -->
+
 	<bean id="DataImportToolService"
 	    class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
@@ -26,12 +33,12 @@
 		<property name="target">
 			<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.DataImportToolServiceImpl">
 				<property name="dao">
-			<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateDataImportToolDAO">
-				<property name="sessionFactory">
-					<ref bean="sessionFactory" />
+				<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateDataImportToolDAO">
+					<property name="sessionFactory">
+						<ref bean="sessionFactory" />
+					</property>
+				</bean>
 				</property>
-			</bean>
-		</property>
 			</bean>
 		</property>
 		<property name="preInterceptors">

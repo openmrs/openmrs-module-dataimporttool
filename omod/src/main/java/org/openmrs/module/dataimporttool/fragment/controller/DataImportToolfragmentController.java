@@ -13,19 +13,37 @@
  */
 package org.openmrs.module.dataimporttool.fragment.controller;
 
-
-
-
-
+import java.util.List;
+import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
+import org.openmrs.ui.framework.annotation.SpringBean;
+import org.openmrs.ui.framework.fragment.FragmentModel;
 
 
 
 /**
- * Controller that handles
- * ".."
+ * DataImportTool fragment 
+ * 
  */
 public class DataImportToolfragmentController {
 
 
+	public void controller(FragmentModel model, @SpringBean("ditService") DataImportToolService service) {
+
+		DataImportTool dit = new DataImportTool();
+		dit.setId(1);
+        	dit.setTreeLimit(0);
+        	dit.setAllowCommit(true);
+        	dit.setResetProcess(false);
+        	dit.setMatchFormat("xls");
+        	dit.setLeftDbDriver("com.mysql.jdbc.Driver");
+		dit.setLeftDbLocation("jdbc:mysql://localhost:3306/");
+		dit.setLeftDbName("openmrs");
+		dit.setRightDbDriver("sun.jdbc.odbc.JdbcOdbcDriver");
+		dit.setRightDbLocation("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Backup actual Cidade de XaiXai/");
+
+ 
+        model.addAttribute("migrationSettings", service.getDataImportTool(1));
+    }
 
 }

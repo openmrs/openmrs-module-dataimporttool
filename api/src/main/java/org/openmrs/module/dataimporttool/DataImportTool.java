@@ -36,7 +36,37 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	private String leftUserName,leftPassword, leftDbLocation, leftDbName;     /* Details of the left DB User for the Migration */
 	private String rightUserName, rightPassword, rightDbLocation, rightDbName; /* Details for the right DB for the Migration */
 	private String leftDbDriver, rightDbDriver;                   /* Left and Right DB Drivers */
-	private String matchFile, matchFormat, matchLocation;                                     /* Details of the matching file */
+	private String matchFile, matchFormat, matchLocation;         /* Details of the matching file */
+
+	/**
+	 * Constructors creates the DIT entity object with MigrationSettings
+	 */
+	public DataImportTool() {
+
+	}
+
+	public DataImportTool( String matchFile, String matchFormat, String matchLocation,
+			String leftDbDriver, String leftUserName, String leftPassword, String leftDbLocation, String leftDbName,
+			String rightDbDriver, String rightUserName, String rightPassword, String rightDbLocation, String rightDbName,
+			int treeLimit, boolean allowCommit, boolean resetProcess) {
+
+		setMatchFile(matchFile);
+		setMatchFormat(matchLocation);
+		setMatchLocation(matchLocation);
+		setLeftDbDriver(leftDbDriver);
+		setLeftUserName(leftUserName);
+		setLeftPassword(leftPassword);
+		setLeftDbLocation(leftDbLocation);
+		setLeftDbName(leftDbName);
+		setRightDbDriver(rightDbDriver);
+		setRightUserName(rightUserName);
+		setRightPassword(rightPassword);
+		setRightDbLocation(rightDbLocation);
+		setRightDbName(rightDbName);
+		setTreeLimit(treeLimit);
+		setAllowCommit(allowCommit);
+		setResetProcess(resetProcess);
+	}
 	
 	@Override
 	public Integer getId() {
