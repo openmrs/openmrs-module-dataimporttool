@@ -13,20 +13,27 @@
  */
 package org.openmrs.module.dataimporttool.page.controller;
 
-
-
-
-
+import java.util.List;
+import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
+import org.openmrs.ui.framework.annotation.SpringBean;
+import org.openmrs.ui.framework.page.PageModel;
 
 
 
 /**
- * Controller that handles the input of migration settings via the webUI Called by http request
+ * Controller that handles the input of migration settings via the webUI
  * ".."
  */
 public class DataImportToolPageController {
 
-	
+	public void get(@SpringBean DataImportToolService service,
+			PageModel pageModel) {
+		List<DataImportTool> migrationSettings = service.getAllDataImportTools();
+		pageModel.put("MigrationSettings", migrationSettings);	
+		
+	}
 
+	
 
 }
