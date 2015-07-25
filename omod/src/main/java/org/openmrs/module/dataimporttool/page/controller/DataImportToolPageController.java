@@ -14,13 +14,26 @@
 package org.openmrs.module.dataimporttool.page.controller;
 
 import java.util.List;
-
+import javax.servlet.http.HttpSession;
+import org.openmrs.api.context.Context;
+import org.openmrs.web.WebConstants;
+import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.annotation.BindParams;
+import org.openmrs.ui.framework.annotation.InjectBeans;
+import org.springframework.validation.BindingResult;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.WebRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -30,34 +43,37 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class DataImportToolPageController {
 
-	public void get(@SpringBean DataImportToolService service,
-			PageModel pageModel) {
-		DataImportTool migrationSettings = service.getAllDataImportTools().get(0);
-		pageModel.put("MigrationSettings", migrationSettings);	
+	private static final Logger log = LoggerFactory.getLogger(DataImportToolPageController.class);
+
+
+	@RequestMapping(value = "/module/dataimporttool/MigrationSettingsForm.form", method = RequestMethod.POST)
+	 public String startMigration(WebRequest request, HttpSession httpSession, ModelMap model,
+                                   @RequestParam(required = false, value = "action") String action,
+                                   @ModelAttribute("dit") DataImportTool dit, BindingResult errors) {
 		
-	}
+        	MessageSourceService mss = Context.getMessageSourceService();
+       	 	DataImportToolService ditService = Context.getService(DataImportToolService.class);
+		if (!Context.isAuthenticated()) {
+            		errors.reject("dit.auth.required");
 
-	public String get(@SpringBean DataImportToolService service,
-			@RequestParam("matchFile") String matchFile, @RequestParam("matchFormat") String matchFormat,
-			@RequestParam("matchLocation") String matchLocation, @RequestParam("leftDbDriver") String leftDbDriver,
-			@RequestParam("leftUserName") String leftUserName, @RequestParam("leftPassword") String leftPassword, 
-			@RequestParam("leftDbLocation") String leftDbLocation, @RequestParam String leftDbName, 
-			@RequestParam("rightDbDriver") String rightDbDriver, @RequestParam("rightUserName") String rightUserName,
-			@RequestParam("rightPassword") String rightPassword, @RequestParam("rightDbLocation") String rightDbLocation,
-			@RequestParam("rightDbName") String rightDbName, @RequestParam("treeLimit") int treeLimit, 
-			@RequestParam("allowCommit") boolean allowCommit, @RequestParam("resetProcess") boolean resetProcess,
-			UiUtils ui) {
+        	} else if (mss.getMessage("dit.purgeDataImportTool").equals(action)) {
+			
+			try {
+                		ditService.purgeDataImportTool(dit);
+                		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dit.delete.success");
+                		return "redirect:ditList.list";
 
-		DataImportTool dit = new DataImportTool(matchFile, matchFormat, matchLocation, leftDbDriver,leftUserName,leftPassword,
-							leftDbLocation,leftDbName,rightDbDriver,rightUserName, rightPassword, 
-							rightDbLocation, rightDbName, treeLimit, allowCommit, resetProcess);
+           		} catch (Exception ex) {
+                		httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "dit.delete.failure");
+                		log.error("Failed to Delete Migration Settings", ex);
+                		return "redirect:MigrationSettingsForm.form?DataImportToolId=" + request.getParameter("MigrationSettingId");
+            		}
 
-		service.saveDataImportTool(dit);
-		return "redirect:" + ui.pageLink("dataimporttool", "migrationSetting");
+		} else {
+            		ditService.saveDataImportTool(dit);
+            		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dit.saved");
+        	}
 
-		
-	}
-
-	
-
+       		return "redirect:ditList.list";
+    }
 }
