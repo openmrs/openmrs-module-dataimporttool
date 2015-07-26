@@ -26,7 +26,7 @@ import java.util.Map;
 public final class DatatypeMappingReader {
 	private boolean match;
 	private BufferedReader br = null;
-	private final String csvFile = "src/main/resources/datatype_mapping.csv";
+	private final String csvFile = "api/src/main/resources/datatype_mapping.csv";
 	private Map<String, DatatypeMapping> headMappings;
 	private Map<String, DatatypeMapping> currentMappings;
 	
