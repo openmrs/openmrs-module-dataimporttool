@@ -19,11 +19,8 @@
 
 	<!-- Add here beans related to the API context -->
 
-	<bean id="validationManager" class="org.openmrs.module.dataimporttool.ValidationManager" />
-		<!-- <constructor-arg ref="validationManager" /> -->
-
-	<bean id="translationManager" class="org.openmrs.module.dataimporttool.TranslationManager"/>
-		<!-- <constructor-arg ref="translationManager" /> -->
+	<bean id="DataImportTool" class="org.openmrs.module.dataimporttool.DataImportTool" scope="singleton" />
+		<!-- <constructor-arg ref="DataImportTool" /> -->
 
 	<bean id="DataImportToolService"
 	    class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
@@ -32,7 +29,7 @@
 		</property>
 		<property name="target">
 			<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.DataImportToolServiceImpl">
-				<property name="dao">
+					<property name="dao">
 				<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateDataImportToolDAO">
 					<property name="sessionFactory">
 						<ref bean="sessionFactory" />
@@ -41,6 +38,12 @@
 				</property>
 			</bean>
 		</property>
+		<property name="vm">
+                    <bean class="${project.parent.groupId}.${project.parent.artifactId}.ValidationManager" scope="singleton"/>
+                </property>
+                <property name="tm">
+                    <bean class="${project.parent.groupId}.${project.parent.artifactId}.TranslationManager" scope="singleton"/>
+                </property>
 		<property name="preInterceptors">
 			<ref bean="serviceInterceptors" />
 		</property>
