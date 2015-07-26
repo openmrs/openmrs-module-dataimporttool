@@ -7,15 +7,11 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * Classe que faz a Leitura do ficheiro .properties contendo código e descrição
- * de eventos ERROR e WARNING
- * 
- * @author Edias Jambaia
- * @author Valério João
- * @since 27-08-2014
+ *  Event Code, contains the migration error messages.
+ *  NOTE: Should be moved to messages.properties file
  */
 public class EventCode {
-	private final String BUNDLE_NAME = "src/main/resources/eventcode.properties";
+	private final String BUNDLE_NAME = "api/src/main/resources/messages.properties";
 	private final Properties props = new Properties();
 
 	public EventCode() {
