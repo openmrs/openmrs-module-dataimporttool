@@ -44,9 +44,8 @@ public class AdminList extends AdministrationSectionExt {
 	 */
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("/module/dataimporttool/startMigration.form", "dataimporttool.startMigration");
-		map.put("/module/dataimportool/migrationResults", "dataimporttool.migrationResults");
-		map.put("/module/dataimporttool/help.form", "dataimportool.help");
+		map.put("/module/dataimporttool/addMigrationSettings.form", "Start Migration");
+		map.put("/module/dataimporttool/help.form", "View Help");
 
 		return map;
 	}
