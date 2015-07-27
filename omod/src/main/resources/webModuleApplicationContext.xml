@@ -21,21 +21,17 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the web context -->
-	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration" >
-        	<property name="moduleId" value="dataimporttool"/>
-   	 </bean>
-	 <bean class="org.openmrs.ui.framework.formatter.HandlebarsFormatterFactory">
-    		<property name="forClass" value="org.openmrs.module.dataimporttool.DataImportTool"/>
-    		<property name="template">
-        <value> {{message 'general.none'}}  </value>
-    </property>
-</bean>
+
+
 
 	 
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	
 	<context:component-scan base-package="org.openmrs.module.dataimporttool.web.controller" />
- 
+ 	
+	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration" >
+        	<property name="moduleId" value="${project.parent.artifactId}"/>
+   	 </bean>
 		
 </beans>

@@ -1,4 +1,4 @@
-<form method="POST">
+<form method="GET">
 
 	<!-- fieldsets -->
 	<fieldset>
@@ -81,7 +81,5 @@
 		<c:if test="${status.errorMessage != ''}"><span class="error">${status.errorMessage}</span></c:if>
             	</spring:bind>
 	</fieldset>
-	<input type="submit"value="<openmrs:message code="dit.save" name ="startMigration"class="submit action-button" value="Start Migration" />
+	<input type="submit name="startMigration" class="submit action-button" value="Start Migration" />
 </form>
-
-<%@ include file="/WEB-INF/template/footer.jsp"%>
