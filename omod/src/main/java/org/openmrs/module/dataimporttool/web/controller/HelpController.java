@@ -28,28 +28,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller("dataimportool.HelpController")
 public class HelpController {
 	
+/*
 	@RequestMapping("/module/dataimporttool/help")
 	public void showPage(ModelMap map, HttpServletRequest request) throws IllegalAccessException, InstantiationException,
 	        IOException, ConversionException {
+
+		return;
 		
 		// TODO put content into map about controller annotations and resource
 		// views
-		
-		StringBuilder baseUrl = new StringBuilder();
-		String scheme = request.getScheme();
-		int port = request.getServerPort();
-		
-		baseUrl.append(scheme); // http, https
-		baseUrl.append("://");
-		baseUrl.append(request.getServerName());
-		if ((scheme.equals("http") && port != 80) || (scheme.equals("https") && port != 443)) {
-			baseUrl.append(':');
-			baseUrl.append(request.getServerPort());
-		}
-		
-		
-		String url = Context.getAdministrationService().g
-		
-		map.put("data", ResourceDocCreator.create(url));
+
 	}
+*/
 }
