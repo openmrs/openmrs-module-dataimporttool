@@ -11,43 +11,41 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.dataimporttool.page.controller;
+package org.openmrs.module.dataimporttool.web.controller;
 
 import java.util.List;
-import javax.servlet.http.HttpSession;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import javax.servlet.http.HttpSession;
 import org.openmrs.web.WebConstants;
 import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
-import org.openmrs.ui.framework.annotation.SpringBean;
-import org.openmrs.ui.framework.page.PageModel;
-import org.openmrs.ui.framework.UiUtils;
-import org.openmrs.ui.framework.annotation.BindParams;
-import org.openmrs.ui.framework.annotation.InjectBeans;
 import org.springframework.validation.BindingResult;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 
 /**
- * Controller that handles the input of migration settings via the webUI
- * ".."
+ * The main controller.
+ * manages the migration settings for the DIT module.
+ * behind the startMigrationSettings page.
  */
-public class DataImportToolPageController {
-
-	private static final Logger log = LoggerFactory.getLogger(DataImportToolPageController.class);
-
-
-	@RequestMapping(value = "/module/dataimporttool/addMigrationSettings.form", method = RequestMethod.GET)
-	 public String startMigration(WebRequest request, HttpSession httpSession, ModelMap model,
+@Controller("dataimportool.DataImportToolStartMigrationController")
+@RequestMapping("/module/dataimportool/startMigration")
+public class  DataImportToolStartMigrationController {
+	
+	protected final Log log = LogFactory.getLog(getClass());
+	
+	@RequestMapping(value = "/module/dataimporttool/startMigration", method = RequestMethod.GET)
+	public String startMigration(WebRequest request, HttpSession httpSession, ModelMap model,
                                    @RequestParam(required = false, value = "action") String action,
                                    @ModelAttribute("dit") DataImportTool dit, BindingResult errors) {
 		
@@ -66,7 +64,7 @@ public class DataImportToolPageController {
            		} catch (Exception ex) {
                 		httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "dit.delete.failure");
                 		log.error("Failed to Delete Migration Settings", ex);
-                		return "redirect:MigrationSettingsForm.form?DataImportToolId=" + request.getParameter("MigrationSettingId");
+                		return "redirect:startMigration.form?DataImportToolId=" + request.getParameter("MigrationSettingId");
             		}
 
 		} else {
@@ -74,6 +72,6 @@ public class DataImportToolPageController {
             		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dit.saved");
         	}
 
-       		return "redirect:ditList.list";
+       		return "redirect:startMigration.form";
     }
 }
