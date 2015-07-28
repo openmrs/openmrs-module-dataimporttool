@@ -41,6 +41,7 @@ public interface DataImportToolService extends OpenmrsService {
 	 * @param null
 	 * @throws SystemException
 	 */
+	@Transactional
 	public void doMigration() throws SystemException;
 
 	/**
@@ -64,11 +65,13 @@ public interface DataImportToolService extends OpenmrsService {
          * @param dit the migration setting to save.
          * @return the saved setting.
          */
+	@Transactional
         DataImportTool saveDataImportTool(DataImportTool dit);
         /**
          * Deletes a migration setting from the database.
          *
          * @param dit the setting to delete.
          */
+	@Transactional
         void purgeDataImportTool(DataImportTool dit);
 }

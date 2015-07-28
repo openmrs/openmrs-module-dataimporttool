@@ -18,6 +18,7 @@ import org.openmrs.module.dataimporttool.DataImportTool;
 import java.util.List;
 
 import org.openmrs.api.db.DAOException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *  Database methods for {@link DataImportToolService}.
@@ -25,6 +26,7 @@ import org.openmrs.api.db.DAOException;
  * This class is used to manipulate SQL-based databases using SQL native queries
  *
  */
+@Transactional
 public interface DataImportToolDAO {
 
 	/**
@@ -44,12 +46,12 @@ public interface DataImportToolDAO {
 
 
 	 /**
-         * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getAllDataImportTools()
-         */
+          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getAllDataImportTools()
+          */
         public List<DataImportTool> getAllDataImportTools();
         /**
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getDataImportTool(java.lang.Integer)
-         */
+	 */
         public DataImportTool getDataImportTool(Integer ditId);
         /**
          * @see org.openmrs.module.dataimportool.api.DataImportToolService#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)

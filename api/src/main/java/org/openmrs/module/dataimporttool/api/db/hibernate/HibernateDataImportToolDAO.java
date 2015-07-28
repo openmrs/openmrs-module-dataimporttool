@@ -15,11 +15,13 @@ package org.openmrs.module.dataimporttool.api.db.hibernate;
 
 import java.util.List;
 import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.db.DataImportToolDAO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.openmrs.module.dataimporttool.api.db.DataImportToolDAO;
+import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * It is a default implementation of  {@link DataImportToolDAO}.
@@ -44,12 +46,14 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
    	 }
 
 	@Override
+	@Transactional
 	public int runUpdateQuery(String queryString) {
 		Query q = sessionFactory.getCurrentSession().createQuery(queryString);
 		return q.executeUpdate();
 	}
 
 	@Override
+	@Transactional
 	public List runListQuery(String queryString) {
 		Query q = sessionFactory.getCurrentSession().createQuery(queryString);
 		return q.list();
@@ -59,6 +63,7 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
          * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#getAllDepartments()
          */
         @Override
+	@Transactional
         public List<DataImportTool> getAllDataImportTools() {
                 return sessionFactory.getCurrentSession().createCriteria(DataImportTool.class).list();
         }
@@ -66,6 +71,7 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getDataImportTool(java.lang.Integer)
          */
         @Override
+	@Transactional
         public DataImportTool getDataImportTool(Integer Id) {
                 return (DataImportTool) sessionFactory.getCurrentSession().get(DataImportTool.class, Id);
         }
@@ -73,6 +79,7 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
          * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
          */
         @Override
+	@Transactional
         public DataImportTool saveDataImportTool(DataImportTool dit) {
                 sessionFactory.getCurrentSession().save(dit);
                 return dit;
@@ -81,6 +88,7 @@ public class HibernateDataImportToolDAO implements DataImportToolDAO {
          * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#purgeDataImportTool(org.openmrs.module.dataImportTool.DataImportTool)
          */
         @Override
+	@Transactional
         public void purgeDataImportTool(DataImportTool dit) {
                 sessionFactory.getCurrentSession().delete(dit);
         }
