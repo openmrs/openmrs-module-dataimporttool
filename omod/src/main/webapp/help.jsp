@@ -4,7 +4,7 @@
 
 <%@ include file="localHeader.jsp"%>
 
-<openmrs:require anyPrivilege="Manage Data Migration" otherwise="/login.htm" redirect="/module/dataimportool/help.form" />
+<openmrs:require anyPrivilege="Start Migration" otherwise="/login.htm" redirect="/module/dataimportool/help.form" />
 
 <h2><spring:message code="dataimporttool.help.title" /></h2>
 
