@@ -45,6 +45,10 @@
 		<file>messages.properties</file>
 	</messages>
 	<!-- /Internationalization -->
+	<privilege>
+		<name>Start Migration</name>
+		<description>Allows to Migration configuration and Starts Data Migration</description>
+	</privilege>
 
 </module>
 
