@@ -19,7 +19,7 @@
 
 	<!-- Add here beans related to the API context -->
 
-	<bean id="DataImportTool" class="org.openmrs.module.dataimporttool.DataImportTool" scope="singleton" />
+	<bean id="dit" class="org.openmrs.module.dataimporttool.DataImportTool" scope="singleton" />
 		<!-- <constructor-arg ref="DataImportTool" /> -->
 
 	<bean id="DataImportToolService"
@@ -38,12 +38,6 @@
 				</property>
 			</bean>
 		</property>
-		<property name="vm">
-                    <bean class="${project.parent.groupId}.${project.parent.artifactId}.ValidationManager" scope="singleton"/>
-                </property>
-                <property name="tm">
-                    <bean class="${project.parent.groupId}.${project.parent.artifactId}.TranslationManager" scope="singleton"/>
-                </property>
 		<property name="preInterceptors">
 			<ref bean="serviceInterceptors" />
 		</property>

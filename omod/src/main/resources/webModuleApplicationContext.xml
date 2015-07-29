@@ -29,7 +29,6 @@
 				<prop key="/startMigration.jsp">dataImportToolStartMigrationController</prop>
 				<prop key="/continueMigration.jsp">continueMigration</prop>
 				<prop key="/help.jsp">Help</prop>
-				<prop key="/migrationSuccess.jsp">migrationSuccess</prop>
 			</props>
 		</property>
 	</bean>	
@@ -38,9 +37,9 @@
 	<bean id="dataImportToolStartMigrationController"
 		class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController">
 		<property name="sessionForm" value="true" />
-		<property name="commandName" value="startMigration"/>
+		<property name="commandName" value="Proceed"/>
 		<property name="commandClass" value="org.openmrs.module.dataimporttool.DataImportTool">
-		<property name="formView" value="startMigration" />
+		<property name="formView" value="onSubmit" />
 		<property name="successView" value="continueMigration" />
 	</bean>
 
@@ -48,7 +47,6 @@
 
 	<bean id="Help" class="org.openmrs.module.dataimporttool.web.controller.HelpController" />
 
-	<bean id="migrationSuccess" class="org.openmrs.module.dataimporttool.web.controller.MigrationSuccessController" />
 	 
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>

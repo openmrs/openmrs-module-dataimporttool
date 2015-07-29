@@ -26,6 +26,7 @@ import org.openmrs.module.web.extension.AdministrationSectionExt;
  */
 public class AdminList extends AdministrationSectionExt {
 	
+	public static final String DO_MIGRATION = "Start Migration";
 	/**
 	 * @see AdministrationSectionExt#getMediaType()
 	 */
@@ -46,12 +47,7 @@ public class AdminList extends AdministrationSectionExt {
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 
-		if (Context.isAuthenticated()) {
-			map.put("/module/dataimporttool/startMigration.form", "Start Migration");
-			map.put("/module/dataimporttool/help.form", "View Help");
-
-		} else {
-			Context.getAuthenticatedUser();
+		if (Context.hasPrivilege(DO_MIGRATION)) {
 			map.put("/module/dataimporttool/startMigration.form", "Start Migration");
 			map.put("/module/dataimporttool/help.form", "View Help");
 		}
