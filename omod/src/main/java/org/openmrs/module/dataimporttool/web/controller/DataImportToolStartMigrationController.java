@@ -29,6 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Validator;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Errors;
 
 
 
@@ -104,6 +107,34 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 		return dit;
 	
 	}
+	
+	public class DataImportToolValidator implements Validator {
+
+		public boolean supports(Class clazz) {
+			return DataImportTool.class.equals(clazz);
+		}
+	
+		//This validator only validates DataImportTool objects
+		public void validate(Object obj, Errors e) {
+
+			ValidationUtils.rejectIfEmptyOrWhitespace(e, "matchFile", "matchFile.empty");
+			ValidationUtils.rejectIfEmpty(e, "leftDbDriver", "leftDbDriver.empty");
+			ValidationUtils.rejectIfEmpty(e, "rightDbDriver", "rightDbDriver.empty");
+			ValidationUtils.rejectIfEmpty(e, "MatchLocation", "MatchLocation.empty");
+			ValidationUtils.rejectIfEmpty(e, "rightDbLocation", "rightDbLocation.empty");
+			ValidationUtils.rejectIfEmpty(e, "leftDbLocation", "leftDbLocation.empty");
+			ValidationUtils.rejectIfEmpty(e, "leftDbName", "leftDbName.empty");
+			ValidationUtils.rejectIfEmpty(e, "rightDbName", "rightDbName.empty");
+
+
+			DataImportTool dit = (DataImportTool) obj;
+			if (dit.getMatchFormat().compareToIgnoreCase("xls") != 0)
+				e.rejectValue("matchFormat", "Match format must be xls");
+
+		}
+
+	}
+
 	
 
         /****
