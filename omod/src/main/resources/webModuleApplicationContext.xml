@@ -22,8 +22,33 @@
 
 	<!-- Add here beans related to the web context -->
 
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/startMigration.jsp">dataImportToolStartMigrationController</prop>
+				<prop key="/continueMigration.jsp">continueMigration</prop>
+				<prop key="/help.jsp">Help</prop>
+				<prop key="/migrationSuccess.jsp">migrationSuccess</prop>
+			</props>
+		</property>
+	</bean>	
 
 
+	<bean id="dataImportToolStartMigrationController"
+		class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="startMigration"/>
+		<property name="commandClass" value="org.openmrs.module.dataimporttool.DataImportTool">
+		<property name="formView" value="startMigration" />
+		<property name="successView" value="continueMigration" />
+	</bean>
+
+	<bean id="continueMigration" class="org.openmrs.module.dataimporttool.web.controller.ContinueMigrationController" />
+
+	<bean id="Help" class="org.openmrs.module.dataimporttool.web.controller.HelpController" />
+
+	<bean id="migrationSuccess" class="org.openmrs.module.dataimporttool.web.controller.MigrationSuccessController" />
 	 
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
@@ -34,4 +59,13 @@
         	<property name="moduleId" value="${project.parent.artifactId}"/>
    	 </bean>
 		
+
+	<!-- JSP View Resolver -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 </beans>

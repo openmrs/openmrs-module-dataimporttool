@@ -14,22 +14,21 @@
 package org.openmrs.module.dataimporttool.web.controller;
 
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
-import org.openmrs.web.WebConstants;
-import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.SimpleFormController;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletException;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
@@ -40,11 +39,76 @@ import org.springframework.web.context.request.WebRequest;
  */
 @Controller("dataimportool.DataImportToolStartMigrationController")
 @RequestMapping("/module/dataimportool/startMigration")
-public class  DataImportToolStartMigrationController {
+public class  DataImportToolStartMigrationController extends SimpleFormController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/dataimporttool/startMigration", method = RequestMethod.GET)
+	@Override
+	protected Map referenceData(HttpServletRequest request) throws Exception {
+
+		//send some extra data for the view.
+		
+		HashMap<String, Boolean> dataMap = new HashMap<String, Boolean>();
+		dataMap.put("Yes", true);
+		dataMap.put("No", false);
+
+		return dataMap;
+	}
+
+	@Override
+	public ModelAndView onSubmit(Object command) throws ServletException {
+
+		//user just submitted the form and form parameters are in the command obj.
+		//this is where we would save form data to a db or invoke a service method
+		// to save data.
+		DataImportTool dit = (DataImportTool)command;
+		log.info("Migration Settings submitted by user" + 
+			dit.getMatchFile() +
+			dit.getMatchFormat() +
+			dit.getMatchLocation() +
+			dit.getLeftDbDriver() +
+			dit.getLeftUserName() +
+			dit.getLeftPassword() +
+			dit.getLeftDbLocation() +
+			dit.getLeftDbName() +
+			dit.getRightDbDriver() +
+			dit.getRightUserName() +
+			dit.getRightPassword() +
+			dit.getRightDbLocation() +
+			dit.getRightDbName() +
+			dit.getTreeLimit() +
+			dit.getAllowCommit() +
+			dit.getResetProcess());
+
+		return new ModelAndView(getSuccessView(), "startMigration", dit);
+	}
+
+
+	@Override
+	protected DataImportTool formBackingObject(HttpServletRequest request) 
+		throws ServletException {
+		//populate the objec which will set values in our form.
+
+		DataImportTool dit = new DataImportTool();
+		dit.setId(1);
+        	dit.setTreeLimit(0);
+        	dit.setAllowCommit(true);
+        	dit.setResetProcess(false);
+        	dit.setMatchFormat("xls");
+        	dit.setLeftDbDriver("com.mysql.jdbc.Driver");
+		dit.setLeftDbLocation("jdbc:mysql://localhost:3306/");
+		dit.setLeftDbName("openmrs");
+		dit.setRightDbDriver("sun.jdbc.odbc.JdbcOdbcDriver");
+		dit.setRightDbLocation("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Backup actual Cidade de XaiXai/");
+
+		return dit;
+	
+	}
+	
+
+        /****
+
+	@RequestMapping(value = "/module/dataimporttool/startMigration", method = RequestMethod.POST)
 	public String startMigration(WebRequest request, HttpSession httpSession, ModelMap model,
                                    @RequestParam(required = false, value = "action") String action,
                                    @ModelAttribute("dit") DataImportTool dit, BindingResult errors) {
@@ -73,5 +137,6 @@ public class  DataImportToolStartMigrationController {
         	}
 
        		return "redirect:startMigration.form";
-    }
+    	}
+       ***/
 }

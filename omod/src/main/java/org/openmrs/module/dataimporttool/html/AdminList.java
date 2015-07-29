@@ -16,6 +16,7 @@ package org.openmrs.module.dataimporttool.extension.html;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.openmrs.api.context.Context;
 import org.openmrs.module.Extension;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
 
@@ -44,8 +45,16 @@ public class AdminList extends AdministrationSectionExt {
 	 */
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("/module/dataimporttool/addMigrationSettings.form", "Start Migration");
-		map.put("/module/dataimporttool/help.form", "View Help");
+
+		if (Context.isAuthenticated()) {
+			map.put("/module/dataimporttool/startMigration.form", "Start Migration");
+			map.put("/module/dataimporttool/help.form", "View Help");
+
+		} else {
+			Context.getAuthenticatedUser();
+			map.put("/module/dataimporttool/startMigration.form", "Start Migration");
+			map.put("/module/dataimporttool/help.form", "View Help");
+		}
 
 		return map;
 	}
