@@ -12,7 +12,7 @@
 </head>
 <body>
 <form:form method="post" commandName="Proceed">
-
+<form:errors />
 	<!-- fieldsets -->
 	<fieldset>
 		<h2 class="fs-title">Matching File Data</h2>
@@ -22,8 +22,10 @@
 			<form:errors path="matchFile" />
 			<input type="text" name="matchFormat" value="xls" placeholder="Match File Type" />
 			<form:input path="matchFormat"/>
+			<form:errors path="matchFormat" />
 			<input type="text" name="matchLocation" value="${status.value}" placeholder="Matching File Location" />
 			<form:input path="matchLocation"/>
+			<form:errors path="matchLocation" />
 	</fieldset>	
 	<fieldset>
 		<h2 class="fs-title">Target Database Data</h2>
@@ -35,13 +37,16 @@
 			<input type="password" name="leftPassword" value="${status.value}" placeholder="Password" />
 			
 		<form:input path="leftDbDriver">
+		<form:errors path="leftDbDriver" />
 			<input type="text" name="leftDbDriver" value="${status.value}" placeholder="Database Driver" value="com.mysql.jdbc.Driver"/>
 			
-		<form:input path="leftDbDriver">
+		<form:input path="leftDbName">
+		<form:errors path="leftDbName" />
 			<input type="text" name="leftDbName" value="${status.value}" placeholder="Database Name" value="openmrs"/>
 			
 		<form:input path="leftDbLocation">
-			<input type="text" name="rightDbLocation" value="${status.value}" placeholder="Database Location" />
+		<form:errors path="leftDbLocation" />
+			<input type="text" name="leftDbLocation" value="${status.value}" placeholder="Database Location" />
 			
 	</fieldset>
  	<fieldset>
@@ -53,12 +58,15 @@
 		<form:input path="rightPassword">
 			<input type="password" name="rightPassword" value="${status.value}" placeholder="Password" />
 		<form:input path="rightDbDriver">
+		<form:errors path="rightDbDriver" />
 			<input type="text" name="rightDbDriver" value="${status.value}" placeholder="Database Driver" value="com.mysql.jdbc.Driver"/>
 			
-		<form:input path="rightDbDriver">
+		<form:input path="rightDbName">
+		<form:errors path="rightDbName" />
 			<input type="text" name="rightDbName" value="${status.value}" placeholder="Database Name" value="openmrs"/>
 			
 		<form:input path="rightDbLocation">
+		<form:errors path="rightDbLocation" />
 			<input type="text" name="rightDbLocation" value="${status.value}" placeholder="Database Location" />
 	</fieldset>
 	<fieldset>
