@@ -34,14 +34,14 @@
 	</bean>	
 
 	<bean id="dataImportToolValidator" 
-		 class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController.DataImportToolValidator" />
+		 class="org.openmrs.module.dataimporttool.resources.DataImportToolValidator" />
 
 	<bean id="dataImportToolStartMigrationController"
 		class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController">
 		<property name="sessionForm" value="true" />
 		<property name="commandName" value="Proceed"/>
 		<property name="commandClass" value="org.openmrs.module.dataimporttool.DataImportTool">
-		<property name="formView" value="onSubmit" />
+		<property name="formView" value="startMigration" />
 		<property name="successView" value="continueMigration" />
 		<property name="validator"> <ref bean="dataImportToolValidator" /> </property>
 
