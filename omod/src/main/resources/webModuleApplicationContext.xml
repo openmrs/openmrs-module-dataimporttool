@@ -22,34 +22,15 @@
 
 	<!-- Add here beans related to the web context -->
 
-	<bean id="urlMapping"
-		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="mappings">
-			<props>
-				<prop key="/startMigration.jsp">dataImportToolStartMigrationController</prop>
-				<prop key="/continueMigration.jsp">continueMigration</prop>
-				<prop key="/help.jsp">Help</prop>
-			</props>
-		</property>
-	</bean>	
 
 	<bean id="dataImportToolValidator" 
 		 class="org.openmrs.module.dataimporttool.resources.DataImportToolValidator" />
 
 	<bean id="dataImportToolStartMigrationController"
-		class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController">
-		<property name="sessionForm" value="true" />
-		<property name="commandName" value="Proceed"/>
-		<property name="commandClass" value="org.openmrs.module.dataimporttool.DataImportTool">
-		<property name="formView" value="startMigration" />
-		<property name="successView" value="continueMigration" />
-		<property name="validator"> <ref bean="dataImportToolValidator" /> </property>
-
-	</bean>
+		class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController" />
 
 	<bean id="continueMigration" class="org.openmrs.module.dataimporttool.web.controller.ContinueMigrationController" />
 
-	<bean id="Help" class="org.openmrs.module.dataimporttool.web.controller.HelpController" />
 
 	 
 	<!-- Annotation based controllers -->
@@ -62,12 +43,4 @@
    	 </bean>
 		
 
-	<!-- JSP View Resolver -->
-	<bean id="jspViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/view/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
 </beans>

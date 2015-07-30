@@ -34,7 +34,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Controller behind the "help.jsp" page. Should list off available urls and representations.
  */
-@Controller("dataimporttool.HelpController")
+@Controller
 public class HelpController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
@@ -57,13 +57,10 @@ public class HelpController {
 	 * All the parameters are optional based on the necessity
 	 * 
 	 * @param httpSession
-	 * @param anyRequestObject
-	 * @param errors
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(HttpSession httpSession, @ModelAttribute("anyRequestObject") Object anyRequestObject,
-	        BindingResult errors) {
+	public String onSubmit(HttpSession httpSession) {
 		
 		return SUCCESS_FORM_VIEW;
 	}
