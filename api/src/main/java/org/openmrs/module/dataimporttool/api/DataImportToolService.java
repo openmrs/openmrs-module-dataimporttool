@@ -42,7 +42,7 @@ public interface DataImportToolService extends OpenmrsService {
 	 * @throws SystemException
 	 */
 	@Transactional
-	public void doMigration() throws SystemException;
+	public int doMigration() throws SystemException;
 
 	/**
          * Gets a list of migration settings.

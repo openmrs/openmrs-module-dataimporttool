@@ -90,12 +90,14 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 	 */
 	@Override
 	@Transactional
-	public void doMigration() throws SystemException {
+	public int doMigration() throws SystemException {
 		ValidationManager vm = new ValidationManager();
-    		if(!vm.execute()) return;
+    		if(!vm.execute()) return -1;
 
     		TranslationManager tm = new TranslationManager(vm.getTree());
     		tm.execute();
+
+		return 0;
 	}
 
 	
