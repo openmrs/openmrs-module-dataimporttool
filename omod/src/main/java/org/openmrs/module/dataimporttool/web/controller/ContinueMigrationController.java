@@ -14,14 +14,38 @@
 package org.openmrs.module.dataimporttool.web.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.context.ServiceContext;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 
 
+public class ContinueMigrationController extends ParameterizableViewController{
 
+	/** Logger for this class and subclasses */
+	protected final Log log = LogFactory.getLog(getClass());
 
-
-
-public class ContinueMigrationController {
-
-
+	/**
+    	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 *	javax.servlet.http.HttpServletResponse)
+     	 */
+    	@Override
+    	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    	Map<String, Object> model = new HashMap<String, Object>();
+	    
+	    	DataImportToolService svc = (DataImportToolService)ServiceContext.getInstance().getService(DataImportToolService.class);
+	    
+	    	log.info("Starting Data Migration" + " for Migration Setting " + svc.getDataImportTool(0));
+	    	model.put("Data Migration", svc.doMigration());
+	    
+	    	return new ModelAndView(getViewName(), model);
+    	}
 }
