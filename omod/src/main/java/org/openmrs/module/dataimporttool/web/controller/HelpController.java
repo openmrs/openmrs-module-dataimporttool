@@ -25,19 +25,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Controller behind the "help.jsp" page. Should list off available urls and representations.
  */
-@Controller("dataimportool.HelpController")
+@Controller("dataimporttool.HelpController")
 public class HelpController {
 	
-/*
-	@RequestMapping("/module/dataimporttool/help")
-	public void showPage(ModelMap map, HttpServletRequest request) throws IllegalAccessException, InstantiationException,
-	        IOException, ConversionException {
+	protected final Log log = LogFactory.getLog(getClass());
 
-		return;
-		
-		// TODO put content into map about controller annotations and resource
-		// views
+	/** Success form view name */
+	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/help";
 
+	
+	/**
+	 * Initially called after the formBackingObject method to get the landing form name
+	 * 
+	 * @return String form view name
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public String showForm() {
+		return SUCCESS_FORM_VIEW;
 	}
-*/
+	
+	/**
+	 * All the parameters are optional based on the necessity
+	 * 
+	 * @param httpSession
+	 * @param anyRequestObject
+	 * @param errors
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST)
+	public String onSubmit(HttpSession httpSession, @ModelAttribute("anyRequestObject") Object anyRequestObject,
+	        BindingResult errors) {
+		
+		return SUCCESS_FORM_VIEW;
+	}
 }

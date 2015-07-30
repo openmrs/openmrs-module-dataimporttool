@@ -17,35 +17,52 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.context.ServiceContext;
 import org.springframework.stereotype.Controller;
-import javax.servlet.http.HttpSession;
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.ServletException;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.validation.Validator;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Errors;
+import org.springframework.validation.BindException;
+
+
 
 
 
 /**
- * The main controller.
- * manages the migration settings for the DIT module.
- * behind the startMigrationSettings page.
+ * This controller backs the /web/module/startMigration.jsp page. This controller is tied to that
+ * jsp page in the /resources/webmoduleApplicationContext.xml file
  */
 @Controller("dataimportool.DataImportToolStartMigrationController")
 @RequestMapping("/module/dataimportool/startMigration")
 public class  DataImportToolStartMigrationController extends SimpleFormController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+
 	
+	/**
+	 * Initially called after the formBackingObject method to get the landing form name
+	 * 
+	 * @return String form view name
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public String showForm() {
+		return "/module/dataimporttool/startMigration";
+	}
+
 	@Override
 	protected Map referenceData(HttpServletRequest request) throws Exception {
 
@@ -58,116 +75,60 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 		return dataMap;
 	}
 
+	/**
+	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
+	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
+	 *      org.springframework.validation.BindException)
+	 */
 	@Override
-	public ModelAndView onSubmit(Object command) throws ServletException {
-
-		//user just submitted the form and form parameters are in the command obj.
-		//this is where we would save form data to a db or invoke a service method
-		// to save data.
-		DataImportTool dit = (DataImportTool)command;
-		log.info("Migration Settings submitted by user" + 
-			dit.getMatchFile() +
-			dit.getMatchFormat() +
-			dit.getMatchLocation() +
-			dit.getLeftDbDriver() +
-			dit.getLeftUserName() +
-			dit.getLeftPassword() +
-			dit.getLeftDbLocation() +
-			dit.getLeftDbName() +
-			dit.getRightDbDriver() +
-			dit.getRightUserName() +
-			dit.getRightPassword() +
-			dit.getRightDbLocation() +
-			dit.getRightDbName() +
-			dit.getTreeLimit() +
-			dit.getAllowCommit() +
-			dit.getResetProcess());
-
-		return new ModelAndView(getSuccessView(), "startMigration", dit);
-	}
-
-
-	@Override
-	protected DataImportTool formBackingObject(HttpServletRequest request) 
-		throws ServletException {
-		//populate the objec which will set values in our form.
-
-		DataImportTool dit = new DataImportTool();
-		dit.setId(1);
-        	dit.setTreeLimit(0);
-        	dit.setAllowCommit(true);
-        	dit.setResetProcess(false);
-        	dit.setMatchFormat("xls");
-        	dit.setLeftDbDriver("com.mysql.jdbc.Driver");
-		dit.setLeftDbLocation("jdbc:mysql://localhost:3306/");
-		dit.setLeftDbName("openmrs");
-		dit.setRightDbDriver("sun.jdbc.odbc.JdbcOdbcDriver");
-		dit.setRightDbLocation("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Backup actual Cidade de XaiXai/");
-
-		return dit;
-	
-	}
-	
-	public class DataImportToolValidator implements Validator {
-
-		public boolean supports(Class clazz) {
-			return DataImportTool.class.equals(clazz);
-		}
-	
-		//This validator only validates DataImportTool objects
-		public void validate(Object obj, Errors e) {
-
-			ValidationUtils.rejectIfEmptyOrWhitespace(e, "matchFile", "matchFile.empty");
-			ValidationUtils.rejectIfEmpty(e, "leftDbDriver", "leftDbDriver.empty");
-			ValidationUtils.rejectIfEmpty(e, "rightDbDriver", "rightDbDriver.empty");
-			ValidationUtils.rejectIfEmpty(e, "MatchLocation", "MatchLocation.empty");
-			ValidationUtils.rejectIfEmpty(e, "rightDbLocation", "rightDbLocation.empty");
-			ValidationUtils.rejectIfEmpty(e, "leftDbLocation", "leftDbLocation.empty");
-			ValidationUtils.rejectIfEmpty(e, "leftDbName", "leftDbName.empty");
-			ValidationUtils.rejectIfEmpty(e, "rightDbName", "rightDbName.empty");
-
-
-			DataImportTool dit = (DataImportTool) obj;
-			if (dit.getMatchFormat().compareToIgnoreCase("xls") != 0)
-				e.rejectValue("matchFormat", "Match format must be xls");
-
-		}
-
-	}
-
-	
-
-        /****
-
-	@RequestMapping(value = "/module/dataimporttool/startMigration", method = RequestMethod.POST)
-	public String startMigration(WebRequest request, HttpSession httpSession, ModelMap model,
-                                   @RequestParam(required = false, value = "action") String action,
-                                   @ModelAttribute("dit") DataImportTool dit, BindingResult errors) {
+	@RequestMapping(method = RequestMethod.POST)
+	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object object,
+	                                BindException exceptions) throws Exception {
 		
-        	MessageSourceService mss = Context.getMessageSourceService();
-       	 	DataImportToolService ditService = Context.getService(DataImportToolService.class);
-		if (!Context.isAuthenticated()) {
-            		errors.reject("dit.auth.required");
+		if (Context.isAuthenticated()) {
+			DataImportTool dit = (DataImportTool) object;
+			DataImportToolService svc = (DataImportToolService) ServiceContext.getInstance().getService(DataImportToolService.class);
+			svc.saveDataImportTool(dit);
+		}
+		
+		return new ModelAndView(new RedirectView(getSuccessView()));
+	}
 
-        	} else if (mss.getMessage("dit.purgeDataImportTool").equals(action)) {
-			
-			try {
-                		ditService.purgeDataImportTool(dit);
-                		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dit.delete.success");
-                		return "redirect:ditList.list";
+	
+	/**
+	 * This class returns the form backing object. This can be a string, a boolean, or a normal java
+	 * pojo. The type can be set in the /config/moduleApplicationContext.xml file or it can be just
+	 * defined by the return type of this method
+	 * 
+	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
+	protected DataImportTool formBackingObject(HttpServletRequest request) throws Exception {
+		
+		DataImportTool dit = null;
+		
+		if (Context.isAuthenticated()) {
+			DataImportToolService svc = (DataImportToolService) ServiceContext.getInstance().getService(DataImportToolService.class);
+			String ditId = request.getParameter("id");
+			if (ditId != null)
+				dit = svc.getDataImportTool(Integer.valueOf(ditId));
+		}
+		
+		if (dit == null) {
+			dit = new DataImportTool();
+			dit.setId(0);
+        		dit.setTreeLimit(0);
+        		dit.setAllowCommit(true);
+        		dit.setResetProcess(false);
+        		dit.setMatchFormat("xls");
+        		dit.setLeftDbDriver("com.mysql.jdbc.Driver");
+			dit.setLeftDbLocation("jdbc:mysql://localhost:3306/");
+			dit.setLeftDbName("openmrs");
+			dit.setRightDbDriver("sun.jdbc.odbc.JdbcOdbcDriver");
+			dit.setRightDbLocation("jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:/Backup actual Cidade de XaiXai/");
 
-           		} catch (Exception ex) {
-                		httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "dit.delete.failure");
-                		log.error("Failed to Delete Migration Settings", ex);
-                		return "redirect:startMigration.form?DataImportToolId=" + request.getParameter("MigrationSettingId");
-            		}
-
-		} else {
-            		ditService.saveDataImportTool(dit);
-            		httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "dit.saved");
-        	}
-
-       		return "redirect:startMigration.form";
-    	}
-       ***/
+		}
+		
+		return dit;
+	}
 }
