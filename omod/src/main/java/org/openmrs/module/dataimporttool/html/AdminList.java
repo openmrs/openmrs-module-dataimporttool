@@ -48,7 +48,7 @@ public class AdminList extends AdministrationSectionExt {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 
 		if (Context.hasPrivilege(DO_MIGRATION)) {
-			map.put("/module/dataimporttool/startMigration.form", "Start Migration");
+			map.put("/module/dataimporttool/addMigrationSettings.form", "Start Migration");
 			map.put("/module/dataimporttool/help.form", "View Help");
 		}
 

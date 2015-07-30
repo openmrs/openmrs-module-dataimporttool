@@ -46,8 +46,8 @@ import org.springframework.validation.BindException;
  * This controller backs the /web/module/startMigration.jsp page. This controller is tied to that
  * jsp page in the /resources/webmoduleApplicationContext.xml file
  */
-@Controller("dataimportool.DataImportToolStartMigrationController")
-@RequestMapping("/module/dataimportool/startMigration")
+@Controller
+@RequestMapping(value="/module/dataimporttool/startMigration.form")
 public class  DataImportToolStartMigrationController extends SimpleFormController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
@@ -81,7 +81,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	 *      org.springframework.validation.BindException)
 	 */
 	@Override
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/module/dataimporttool/startMigration.form", method = RequestMethod.POST)
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object object,
 	                                BindException exceptions) throws Exception {
 		
@@ -97,7 +97,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	
 	/**
 	 * This class returns the form backing object. This can be a string, a boolean, or a normal java
-	 * pojo. The type can be set in the /config/moduleApplicationContext.xml file or it can be just
+	 * pojo. The type can be set in the /config/webmoduleApplicationContext.xml file or it can be just
 	 * defined by the return type of this method
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
