@@ -81,7 +81,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	 *      org.springframework.validation.BindException)
 	 */
 	@Override
-	@RequestMapping(value="/module/dataimporttool/addMigrationSettings.form", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object object,
 	                                BindException exceptions) throws Exception {
 		
