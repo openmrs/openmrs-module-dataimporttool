@@ -35,6 +35,7 @@ import org.apache.commons.logging.LogFactory;
  * Controller behind the "help.jsp" page. Should list off available urls and representations.
  */
 @Controller
+@RequestMapping(value="/module/dataimporttool/help.form")
 public class HelpController {
 	
 	protected final Log log = LogFactory.getLog(getClass());

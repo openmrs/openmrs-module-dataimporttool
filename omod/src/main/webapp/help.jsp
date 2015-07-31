@@ -2,14 +2,12 @@
 
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
-<%@ include file="localHeader.jsp"%>
+<%@ include file="template/localHeader.jsp"%>
 
-<openmrs:require anyPrivilege="Start Migration" otherwise="/login.htm" redirect="/module/dataimportool/help.form" />
-
-<h2><spring:message code="dataimporttool.help.title" /></h2>
 
 Main documentation page for the Data Import Tool is on Github: 
-<a href="https://github.com/esaude/dmt-guide>Data Migration Tool Guide</a>
+
+DMT Guide: https://github.com/esaude/dmt-guide
 
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
