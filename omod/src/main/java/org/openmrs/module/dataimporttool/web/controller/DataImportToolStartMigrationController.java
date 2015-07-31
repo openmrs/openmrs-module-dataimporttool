@@ -47,7 +47,7 @@ import org.springframework.validation.BindException;
  * jsp page in the /resources/webmoduleApplicationContext.xml file
  */
 @Controller
-@RequestMapping(value="/module/dataimporttool/startMigration.form")
+@RequestMapping(value="/module/dataimporttool/addMigrationSettings.form")
 public class  DataImportToolStartMigrationController extends SimpleFormController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
@@ -60,7 +60,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {
-		return "/module/dataimporttool/startMigration";
+		return "/module/dataimporttool/addMigrationSettings";
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	 *      org.springframework.validation.BindException)
 	 */
 	@Override
-	@RequestMapping(value="/module/dataimporttool/startMigration.form", method = RequestMethod.POST)
+	@RequestMapping(value="/module/dataimporttool/addMigrationSettings.form", method = RequestMethod.POST)
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object object,
 	                                BindException exceptions) throws Exception {
 		
