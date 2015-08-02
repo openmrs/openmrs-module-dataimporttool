@@ -44,6 +44,11 @@ Perform the following steps using command line:
 ...
 
 
+### Launching the DIT from OpenMRS 
+
+
+
+
 ### Authors and Contributors
 In 2015 Nyah Check(Ch3ck), as a Google Summer of code student was inspired by the eSaude Data Migration System developed by Valerio Joao(@vjoao) to work on the Data Import Tool for OpenMRS.
 
