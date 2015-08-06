@@ -56,14 +56,14 @@
 	 <p>
     	<form:select path="allowCommit"/>
 		Allow Commit
-		<input type="checkbox" name="allowCommit" value="True"checked>
-  		<input type="checkbox" name="allowCommit" value="False" >
+		<input type="checkbox" name="allowCommit" value="True"checked>True
+  		<input type="checkbox" name="allowCommit" value="False" >False
 		<form:select path="resetProcess"/>
 		Reset Process
-			<input type="checkbox" name="resetProcess" value="True">
-  			<input type="checkbox" name="resetProcess" value="False" checked>
+			<input type="checkbox" name="resetProcess" value="True">True
+  			<input type="checkbox" name="resetProcess" value="False" checked>False
 		<form:input path="treeLimit"/>
-		Tree Limit<input type="number" name="treeLimit" placeholder="Tree Limit" value="0" />
+		Tree Limit<input type="number" name="treeLimit" value="0" />
 	</p>
 </form:form>
 <a href="continueMigration.jsp">Proceed with Migration</a>
