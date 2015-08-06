@@ -8,62 +8,62 @@
 <body>
 <form:form method="post">
 <form:errors />
-<br><b><i>Please Fill in the Migration Settings</i></b><br>
-	<h2>Matching File Data</h2>
+<b><i>Please Fill in the Migration Settings</i></b>
+	<h3>Matching File Data</h3>
 	<p>
-		<input type="text" name="MatchFile" value="${status.value}" placeholder="Matching File Name" />
+		Matching File Name: <input type="text" name="MatchFile" value="${status.value}" />
 		<form:input path="matchFile" />
 		<form:errors path="matchFile" />
-		<input path="matchFormat" type="text" name="matchFormat" value="xls" placeholder="Match File Type" />
+		Match File Type: <input path="matchFormat" type="text" name="matchFormat" value="xls" />
 		<form:errors path="matchFormat" />
 		<form:input path="matchLocation"/>
-		<input type="text" name="matchLocation" value="${status.value}" placeholder="Matching File Location" />
+		Matching File Location: <input type="text" name="matchLocation" value="${status.value}" />
 		<form:errors path="matchLocation" />
-	
 	</p>
-	<h2>Target Database Data</h2>
+	<h3>Target Database Data</h3>
 	<p>
 		<form:input path="leftUserName" />
-		<input type="text" name="leftUserName" value="${status.value}" placeholder="User Name" />
+		User Name: <input type="text" name="leftUserName" value="${status.value}" />
 		<form:input path="leftPassword" />
-		<input type="password" name="leftPassword" value="${status.value}" placeholder="Password" />	
+		Password: <input type="password" name="leftPassword" value="${status.value}" />	
 		<form:input path="leftDbDriver" />
 		<form:errors path="leftDbDriver" />
-		<input type="text" name="leftDbDriver" value="${status.value}" placeholder="Database Driver" value="com.mysql.jdbc.Driver"/>	
+		Database Driver: <input type="text" name="leftDbDriver" value="${status.value}" value="com.mysql.jdbc.Driver"/>	
 		<form:input path="leftDbName"/>
 		<form:errors path="leftDbName" />
-		<input type="text" name="leftDbName" value="${status.value}" placeholder="Database Name" value="openmrs"/>	
+		Database Name: <input type="text" name="leftDbName" value="${status.value}" value="openmrs"/>	
 		<form:input path="leftDbLocation"/>
 		<form:errors path="leftDbLocation" />
-		<input type="text" name="leftDbLocation" value="${status.value}" placeholder="Database Location" />
-	</p><br>	
-	<h2>Source Database</h2>
+		Database Location<input type="text" name="leftDbLocation" value="${status.value}" />
+	</p>	
+	<h3>Source Database</h3>
 	<p>
 		<form:input path="rightUserName"/>
-		<input type="text" name="rightUserName" value="${status.value}" placeholder="User Name" /> 	
+		User Name: <input type="text" name="rightUserName" value="${status.value}" /> 	
 		<form:input path="rightPassword"/>
-		<input type="password" name="rightPassword" value="${status.value}" placeholder="Password" />
+		Password: <input type="password" name="rightPassword" value="${status.value}" />
 		<form:input path="rightDbDriver"/>
 		<form:errors path="rightDbDriver" />
-		<input type="text" name="rightDbDriver" value="${status.value}" placeholder="Database Driver" value="com.mysql.jdbc.Driver"/>
+		Database Driver: <input type="text" name="rightDbDriver" value="${status.value}" value="com.mysql.jdbc.Driver"/>
 		<form:input path="rightDbName"/>
 		<form:errors path="rightDbName" />
-		<input type="text" name="rightDbName" value="${status.value}" placeholder="Database Name" value="openmrs"/>
+		Database Name: <input type="text" name="rightDbName" value="${status.value}" value="openmrs"/>
 		<form:input path="rightDbLocation"/>
 		<form:errors path="rightDbLocation" />
-		<input type="text" name="rightDbLocation" value="${status.value}" placeholder="Database Location" />
+		Database Location: <input type="text" name="rightDbLocation" value="${status.value}" />
 	</p>
-	<h2>Migration Options</h2>
+	<h3>Migration Options</h3>
 	 <p>
-		<h3>Configuration</h3>
     	<form:select path="allowCommit"/>
-		<input type="checkbox" name="allowCommit" value="True"checked> Yes<br>
-  		<input type="checkbox" name="allowCommit" value="False" > No<br>
+		Allow Commit
+		<input type="checkbox" name="allowCommit" value="True"checked>
+  		<input type="checkbox" name="allowCommit" value="False" >
 		<form:select path="resetProcess"/>
-			<input type="checkbox" name="resetProcess" value="True"> Yes<br>
-  			<input type="checkbox" name="resetProcess" value="False" checked> No<br>  
+		Reset Process
+			<input type="checkbox" name="resetProcess" value="True">
+  			<input type="checkbox" name="resetProcess" value="False" checked>
 		<form:input path="treeLimit"/>
-		<input type="number" name="treeLimit" placeholder="Tree Limit" value="0" />
+		Tree Limit<input type="number" name="treeLimit" placeholder="Tree Limit" value="0" />
 	</p>
 </form:form>
 <a href="continueMigration.jsp">Proceed with Migration</a>
