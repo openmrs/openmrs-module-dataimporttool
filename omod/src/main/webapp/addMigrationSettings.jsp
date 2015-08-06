@@ -11,7 +11,8 @@
 <br><b><i>Please Fill in the Migration Settings</i></b><br>
 	<h2>Matching File Data</h2>
 	<p>
-		<form:input path="matchFile" type="text" name="MatchFile" value="${status.value}" placeholder="Matching File Name" />
+		<input type="text" name="MatchFile" value="${status.value}" placeholder="Matching File Name" />
+		<form:input path="matchFile" />
 		<form:errors path="matchFile" />
 		<input path="matchFormat" type="text" name="matchFormat" value="xls" placeholder="Match File Type" />
 		<form:errors path="matchFormat" />
