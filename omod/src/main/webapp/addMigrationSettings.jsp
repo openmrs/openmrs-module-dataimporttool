@@ -54,8 +54,9 @@
 		<br><b>Tree Limit</b><br>
 		<input type="number" name="treeLimit" value="0" />
 	</p>
+	<input type="submit" name="startMigration" class="submit action-button" value="Start Migration" />
 </form:form>
-<a href="continueMigration.jsp">Proceed with Migration</a>
+<jsp:forward page="continueMigration.jsp"/>
 </body>
 </html>
 
