@@ -44,8 +44,8 @@ public class ContinueMigrationController extends ParameterizableViewController{
 	    	DataImportToolService svc = (DataImportToolService)ServiceContext.getInstance().getService(DataImportToolService.class);
 	    
 	    	log.info("Starting Data Migration" + " for Migration Setting " + svc.getDataImportTool(0));
-	    	model.put("Data Migration", svc.doMigration());
+	    	svc.doMigration();
 	    
-	    	return new ModelAndView(getViewName(), model);
+	    	return new ModelAndView("redirect:/module/dataimporttool/status.page");
     	}
 }
