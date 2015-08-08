@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
  */
 @Controller
 @RequestMapping(value="/module/dataimporttool/status.form")
-public class HelpController {
+public class StatusController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 
