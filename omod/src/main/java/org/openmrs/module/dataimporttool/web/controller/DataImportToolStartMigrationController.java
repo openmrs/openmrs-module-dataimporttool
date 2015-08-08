@@ -95,7 +95,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 		}
 		
 		//Move on to the next page
-		return new ModelAndView("redirect:/module/dataimporttool/continueMigration.form");
+		return "redirect:/module/dataimporttool/continueMigration.form";
 	}
 
 	
