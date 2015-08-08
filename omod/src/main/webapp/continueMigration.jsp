@@ -2,7 +2,7 @@
 
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
-<%@ include file="localHeader.jsp"%>
+<%@ include file="template/localHeader.jsp"%>
 
 
 <jsp:forward page="status.jsp"/>
