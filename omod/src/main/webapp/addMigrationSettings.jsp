@@ -54,9 +54,10 @@
 		<br><b>Tree Limit</b><br>
 		<input type="number" name="treeLimit" value="0" />
 	</p>
-	<input type="submit" name="startMigration" class="submit action-button" value="Start Migration" />
+	<td><input type="submit"
+				value="<spring:message code='dataimporttool.addMigrationSettings.saveDataImportTool'/>" /></springform:form> <a
+				href="${pageContext.request.contextPath}/module/dataimporttool/"continueMigration.jsp"></a></td>
 </form:form>
-<jsp:forward page="continueMigration.jsp"/>
 </body>
 </html>
 

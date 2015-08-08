@@ -86,12 +86,16 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	                                BindException exceptions) throws Exception {
 		
 		if (Context.isAuthenticated()) {
+		
+			//Form entries to be validated.
+			
 			DataImportTool dit = (DataImportTool) object;
 			DataImportToolService svc = (DataImportToolService) ServiceContext.getInstance().getService(DataImportToolService.class);
 			svc.saveDataImportTool(dit);
 		}
 		
-		return new ModelAndView(new RedirectView(getSuccessView()));
+		//Move on to the next page
+		return new ModelAndView("redirect:/module/dataimporttool/continueMigration.form");
 	}
 
 	
