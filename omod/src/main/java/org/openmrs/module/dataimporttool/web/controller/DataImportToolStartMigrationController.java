@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
+import org.openmrs.module.dataimporttool.resources.DataImportToolValidator;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletException;
@@ -26,8 +29,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.context.ServiceContext;
 import org.springframework.stereotype.Controller;
-import org.openmrs.module.dataimporttool.DataImportTool;
-import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,15 +53,41 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	
 	protected final Log log = LogFactory.getLog(getClass());
 
+	/** Validator for this controller */
+	private DataImportToolValidator validator;
 	
 	/**
-	 * Initially called after the formBackingObject method to get the landing form name
+	 * Constructor that registers validator
 	 * 
-	 * @return String form view name
+	 * @param validator
+	 */
+	@Autowired
+	publicDataImportToolStartMigrationController(DataImportToolValidator validator) {
+		this.validator = validator;
+	}
+	
+	/**
+	 * Displays the form to add a DataImportTool(Migration Settings)
+	 * 
+	 * @param request
+	 * @param model
+	 * @return new ModelAndView
+	 * @throws ServletRequestBindingException
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String showForm() {
-		return "/module/dataimporttool/addMigrationSettings";
+	public String showForm(HttpServletRequest request, ModelMap model) throws ServletRequestBindingException{
+	
+		DataImportTool dit;
+		Integer Id = ServletRequestUtils.getIntParameter(request, "priorityId");
+		
+		if (Id != null) {
+			dit = Context.getService(DataImportToolService.class).getDataImportTool(Id);
+		} else {
+			dit = new DataImportTool();
+		}
+		
+		model.addAttribute("dit", dit);
+		return new ModelAndView("/module/dataimporttool/addMigrationSettings", model);;
 	}
 
 	@Override
@@ -82,20 +109,23 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	 */
 	@Override
 	@RequestMapping(method = RequestMethod.POST)
-	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object object,
-	                                BindException exceptions) throws Exception {
+	protected ModelAndView onSubmit(@ModelAttribute("dit") DataImportTool dit, BindingResult result, SessionStatus status) {
 		
-		if (Context.isAuthenticated()) {
+		// validate form entries
+		validator.validate(dit, result);
 		
-			//Form entries to be validated.
-			
-			DataImportTool dit = (DataImportTool) object;
-			DataImportToolService svc = (DataImportToolService) ServiceContext.getInstance().getService(DataImportToolService.class);
-			svc.saveDataImportTool(dit);
+		if (result.hasErrors()) {
+			return new ModelAndView("/module/dataimporttool/addMigrationSettings");
 		}
 		
+		// add the new tag
+		Context.getService(DataImportToolService.class).saveDataImportTool(dit);
+		
+		// clears the command object from the session
+		status.setComplete();
+		
 		//Move on to the next page
-		return new ModelAndView("redirect:/module/dataimporttool/continueMigration.jsp");
+		return new ModelAndView("redirect:/module/dataimporttool/continueMigration.page");
 	}
 
 	

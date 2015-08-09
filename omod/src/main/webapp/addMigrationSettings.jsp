@@ -4,7 +4,7 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-<form:form method="post">
+<form:form modelAttribute="dit" method="post">
 <form:errors />
 <br><b><i>Please Fill in the Migration Settings</i></b><br>
 	<h3>Matching File Data</h3>
