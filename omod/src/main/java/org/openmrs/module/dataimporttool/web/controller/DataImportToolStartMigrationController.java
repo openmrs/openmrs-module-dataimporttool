@@ -78,7 +78,7 @@ public class  DataImportToolStartMigrationController {
 	public ModelAndView showForm(HttpServletRequest request, ModelMap model) throws ServletRequestBindingException{
 	
 		DataImportTool dit;
-		Integer Id = ServletRequestUtils.getIntParameter(request, "Id");
+		Integer Id = ServletRequestUtils.getIntParameter(request, "id");
 		
 		if (Id != null) {
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(Id);
