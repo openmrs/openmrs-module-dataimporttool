@@ -62,7 +62,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	 * @param validator
 	 */
 	@Autowired
-	publicDataImportToolStartMigrationController(DataImportToolValidator validator) {
+	public DataImportToolStartMigrationController(DataImportToolValidator validator) {
 		this.validator = validator;
 	}
 	
@@ -78,7 +78,7 @@ public class  DataImportToolStartMigrationController extends SimpleFormControlle
 	public String showForm(HttpServletRequest request, ModelMap model) throws ServletRequestBindingException{
 	
 		DataImportTool dit;
-		Integer Id = ServletRequestUtils.getIntParameter(request, "priorityId");
+		Integer Id = ServletRequestUtils.getIntParameter(request, "Id");
 		
 		if (Id != null) {
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(Id);
