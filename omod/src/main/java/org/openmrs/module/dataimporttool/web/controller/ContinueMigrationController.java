@@ -22,30 +22,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.ServiceContext;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
+import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 
 
-public class ContinueMigrationController extends ParameterizableViewController{
+public class ContinueMigrationController  extends CommonsMultipartResolver{
 
-	/** Logger for this class and subclasses */
-	protected final Log log = LogFactory.getLog(getClass());
+		/** Logger for this class and subclasses */
+		protected final Log log = LogFactory.getLog(getClass());
 
-	/**
-    	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 *	javax.servlet.http.HttpServletResponse)
+		/**
+    	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 	 *	javax.servlet.http.HttpServletResponse)
      	 */
-    	@Override
-    	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    	Map<String, Object> model = new HashMap<String, Object>();
-	    
-	    	DataImportToolService svc = (DataImportToolService)ServiceContext.getInstance().getService(DataImportToolService.class);
-	    
-	    	log.info("Starting Data Migration" + " for Migration Setting " + svc.getDataImportTool(0));
-	    	svc.doMigration();
-	    
-	    	return new ModelAndView("redirect:/module/dataimporttool/status.page");
-    	}
+     	 @RequestMapping("/module/dataimporttool/continueMigration.page")
+		public ModelAndView continueMigration() {
+		
+			DataImportTool dit;
+			ModelMap model = new ModelMap();
+			
+			log.info("Starting Data Migration");
+			DataImportToolService ditService = Context.getService(DataImportToolService.class);
+			dit = DataImportToolService.getDataImportTool(dit.getId());
+			ditService.doMigration();//starts Migration process.
+			
+			return new ModelAndView("redirect:/module/dataimporttool/status.page");
+		}
 }
