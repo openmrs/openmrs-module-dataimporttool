@@ -87,7 +87,7 @@ public class  DataImportToolStartMigrationController {
 		}
 		
 		model.addAttribute("dit", dit);
-		return new ModelAndView("/module/dataimporttool/addMigrationSettings", model);;
+		return new ModelAndView("/module/dataimporttool/addMigrationSettings", model);
 	}
 
 
