@@ -4,7 +4,7 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-<form:form action="continueMigration" modelAttribute="dit" method="post">
+<form:form action="continueMigration" commandName="dit" method="post">
 <form:errors />
 <td colspan="2" align="center"><h3>Add Migration Settings</h3></td>
 	<h3>Matching File Data</h3>
@@ -63,18 +63,15 @@
 	</p>
 	<h3>Migration Options</h3>
 	 <p>
-	 	<form:input path="allowCommit"/>
-		<b>Allow Commit<br>
+	 	<form:select path="allowCommit"/>
 		<input type="checkbox" name="allowCommit" value="True"checked>True
   		<input type="checkbox" name="allowCommit" value="False" >False
   		
-  		<form:input path="resetProcess"/>
-		<br><b>Reset Process</b><br>
+  		<form:select path="resetProcess"/>
 			<input type="checkbox" name="resetProcess" value="True">True
   			<input type="checkbox" name="resetProcess" value="False" checked>False
   			
-		<form:input path="treeLimit"/>
-		<br><b>Tree Limit</b><br>
+		<form:select path="treeLimit"/>
 		<input type="number" name="treeLimit" value="0" />
 	</p>
 	<td colspan="2" align="center"><input type="submit" value="Start Migration" ></td>
