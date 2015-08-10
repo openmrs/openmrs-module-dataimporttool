@@ -60,6 +60,10 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 		public synchronized boolean isCompleted() {
     		return counter == 100;
 		}
+		
+		public synchronized void setRunning(boolean running) {
+			this.running = running;
+		}
 	
 		public synchronized boolean isRunning() {
     		return running;
@@ -126,7 +130,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 		 */
 		@Override
 		@Transactional
-		public int doMigration() throws SystemException {
+		public int doMigration() {
 		
     		try {
         	Thread.sleep(sleep);
@@ -140,12 +144,13 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
     		counter = 100;
     		sum += counter;
        
-    		} catch (SystemException e ) {
+    		} catch (SystemException | InterruptedException e ) {
         		setRunning(false);
     		}			
 
 			return 0;
 		}
+		
 		
 		public void run() {
     		try {
@@ -155,6 +160,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
             		
     		} finally {
         	setRunning(false);
+    		}
     	}
 
 	
