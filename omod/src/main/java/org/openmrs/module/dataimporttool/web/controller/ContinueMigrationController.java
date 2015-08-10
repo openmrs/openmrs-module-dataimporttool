@@ -32,10 +32,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
-public class ContinueMigrationController  extends CommonsMultipartResolver{
+public class ContinueMigrationController {
 
 		/** Logger for this class and subclasses */
-		protected final Log log = LogFactory.getLog(getClass());
+		protected final Log log = LogFactory.getLog(this.getClass());
 
 		/**
     	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 	 *	javax.servlet.http.HttpServletResponse)
@@ -48,7 +48,7 @@ public class ContinueMigrationController  extends CommonsMultipartResolver{
 			
 			log.info("Starting Data Migration");
 			DataImportToolService ditService = Context.getService(DataImportToolService.class);
-			dit = DataImportToolService.getDataImportTool(dit.getId());
+			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
 			ditService.run();//starts Migration process.
 			
 			return new ModelAndView("redirect:/module/dataimporttool/status.page");
