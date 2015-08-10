@@ -96,7 +96,7 @@ public class  DataImportToolStartMigrationController {
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
 	 *      org.springframework.validation.BindException)
 	 */
-	@RequestMapping(method = RequestMethod.POST, value ="/continueMigration"))
+	@RequestMapping(value ="/continueMigration", method = RequestMethod.POST)
 	protected ModelAndView startMigration(@ModelAttribute("dit") DataImportTool dit, BindingResult result, SessionStatus status) {
 		
 		// validate form entries
