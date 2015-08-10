@@ -113,6 +113,6 @@ public class  DataImportToolStartMigrationController {
 		status.setComplete();
 		
 		//Move on to the next page
-		return new ModelAndView("redirect:/module/dataimporttool/continueMigration.page");
+		return new ModelAndView("redirect:/module/dataimporttool/continueMigration");
 	}
 }

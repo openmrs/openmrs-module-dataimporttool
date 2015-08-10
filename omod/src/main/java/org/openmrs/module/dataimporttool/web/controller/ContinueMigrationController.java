@@ -40,7 +40,7 @@ public class ContinueMigrationController {
 		/**
     	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 	 *	javax.servlet.http.HttpServletResponse)
      	 */
-     	 @RequestMapping("/module/dataimporttool/continueMigration.page")
+     	 @RequestMapping("/module/dataimporttool/continueMigration")
 		public ModelAndView continueMigration() {
 		
 			DataImportTool dit;
@@ -51,6 +51,6 @@ public class ContinueMigrationController {
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
 			ditService.run();//starts Migration process.
 			
-			return new ModelAndView("redirect:/module/dataimporttool/status.page");
+			return new ModelAndView("redirect:/module/dataimporttool/status");
 		}
 }
