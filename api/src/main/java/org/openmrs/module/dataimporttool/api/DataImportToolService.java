@@ -32,7 +32,7 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
  * @see org.openmrs.api.context.Context
  */
 @Transactional
-public interface DataImportToolService extends OpenmrsService {
+public interface DataImportToolService extends OpenmrsService, Runnable {
 
 	 /**
 	 * This performs the migration of the data

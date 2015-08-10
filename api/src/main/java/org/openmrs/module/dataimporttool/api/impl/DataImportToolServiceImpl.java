@@ -32,16 +32,52 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
  */
 public class DataImportToolServiceImpl extends BaseOpenmrsService implements DataImportToolService {
 	
-	protected final Log log = LogFactory.getLog(this.getClass());
+		protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private DataImportToolDAO dao;
+		private DataImportToolDAO dao;
+		private int counter;
+    	private int sum;
+    	private boolean started;
+    	private boolean running;
+    	private int sleep;
 
+    	public DataImportToolServiceImpl() {
+    
+        	counter = 0;
+        	sum     = 0;
+        	started = false;
+        	running = false;
+    	}
+
+		public synchronized int getPercent() {
+    		return counter;
+		}
+	
+		public synchronized boolean isStarted() {
+    		return started;
+		}
+	
+		public synchronized boolean isCompleted() {
+    		return counter == 100;
+		}
+	
+		public synchronized boolean isRunning() {
+    		return running;
+		}
+		
         /**
          * @param dao the dao to set
          */
         public void setDao(DataImportToolDAO dao) {
                 this.dao = dao;
         }
+        
+        public synchronized Object getResult() {
+    		if (isCompleted())
+        		return new Integer(sum);
+    		else
+        		return null;
+		}
 
         /**
          * @return the dao
@@ -54,7 +90,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getAllDataImportTools()
          */
         @Override
-	@Transactional
+		@Transactional
         public List<DataImportTool> getAllDataImportTools() {
                 return dao.getAllDataImportTools();
         }
@@ -62,7 +98,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
          * @see org.openmrs.module.department.api.DataImportToolService#getDataImportTool(java.lang.Integer)
          */
         @Override
-	@Transactional
+		@Transactional
     	public DataImportTool getDataImportTool(Integer Id) {
             	return dao.getDataImportTool(Id);
     	}
@@ -70,7 +106,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
          */
         @Override
-	@Transactional
+		@Transactional
         public DataImportTool saveDataImportTool(DataImportTool dit) {
                 return dao.saveDataImportTool(dit);
         }
@@ -78,27 +114,48 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#purgeDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
          */
         @Override
-	@Transactional
+		@Transactional
         public void purgeDataImportTool(DataImportTool dit) {
 	    dao.purgeDataImportTool(dit);
         }
 
-	/**
-	 * doMigration performs the migration process.
-	 *
-	 * @throws SystemException
-	 */
-	@Override
-	@Transactional
-	public int doMigration() throws SystemException {
-		ValidationManager vm = new ValidationManager();
+		/**
+		 * doMigration performs the migration process.
+	 	 *
+	 	 * @throws SystemException
+		 */
+		@Override
+		@Transactional
+		public int doMigration() throws SystemException {
+		
+    		try {
+        	Thread.sleep(sleep);
+        	ValidationManager vm = new ValidationManager();
     		if(!vm.execute()) return -1;
-
+			counter = 50;
+			sum += counter;
+		
     		TranslationManager tm = new TranslationManager(vm.getTree());
     		tm.execute();
+    		counter = 100;
+    		sum += counter;
+       
+    		} catch (SystemException e ) {
+        		setRunning(false);
+    		}			
 
-		return 0;
-	}
+			return 0;
+		}
+		
+		public void run() {
+    		try {
+        		setRunning(true);
+        		while (isRunning() && !isCompleted())
+            		doMigration();
+            		
+    		} finally {
+        	setRunning(false);
+    	}
 
 	
 }
