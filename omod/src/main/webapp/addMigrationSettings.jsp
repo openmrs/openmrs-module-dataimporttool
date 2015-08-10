@@ -4,9 +4,9 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-<form:form modelAttribute="dit" method="post">
+<form:form action="register" modelAttribute="dit" method="post">
 <form:errors />
-<br><b><i>Please Fill in the Migration Settings</i></b><br>
+<td colspan="2" align="center"><h2>Add Migration Settings</h2></td><br>
 	<h3>Matching File Data</h3>
 	<p>
 		<td><form:label path="matchFile">Matching File Name</form:label></td>
@@ -77,7 +77,7 @@
 		<br><b>Tree Limit</b><br>
 		<input type="number" name="treeLimit" value="0" />
 	</p>
-	<td><input type="submit" value="Start Migration" <a href="continueMigration.jsp" />></td>
+	<td colspan="2" align="center"><input type="submit" value="Start Migration" <a href="continueMigration.jsp" />></td>
 
 </form:form>
 </body>
