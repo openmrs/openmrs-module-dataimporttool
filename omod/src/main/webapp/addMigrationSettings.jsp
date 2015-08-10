@@ -56,7 +56,7 @@
 		<br><b>Tree Limit</b><br>
 		<input type="number" name="treeLimit" value="0" />
 	</p>
-	<td><input type="submit" value="Start Migration" <a href="ContinueMigration.jsp" />></td>
+	<td><input type="submit" value="Start Migration" <a href="continueMigration.jsp" />></td>
 
 </form:form>
 </body>
