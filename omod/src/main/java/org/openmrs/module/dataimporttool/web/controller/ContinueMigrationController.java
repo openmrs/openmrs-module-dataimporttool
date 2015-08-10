@@ -44,12 +44,10 @@ public class ContinueMigrationController {
 		public ModelAndView continueMigration() {
 		
 			DataImportTool dit;
-			ModelMap model = new ModelMap();
 			
 			log.info("Starting Data Migration");
-			DataImportToolService ditService = Context.getService(DataImportToolService.class);
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
-			ditService.run();//starts Migration process.
+			Context.getService(DataImportToolService.class).run();//starts Migration process.
 			
 			return new ModelAndView("redirect:/module/dataimporttool/status");
 		}

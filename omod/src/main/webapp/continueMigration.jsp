@@ -9,7 +9,7 @@
 <jsp:useBean id="ditService" scope="session"
     class="org.openmrs.module.dataimporttool.api.DataImportToolService;"/>
 
-<% task.setRunning(true); %>
+<% ditService.setRunning(true); %>
 
 <% new Thread(ditService).start(); %>
 
@@ -62,7 +62,5 @@ html>
 </head>
 
 <body>
-
-
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
