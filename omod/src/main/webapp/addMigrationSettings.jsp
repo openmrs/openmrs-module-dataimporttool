@@ -10,11 +10,11 @@
 	<h3>Matching File Data</h3>
 	<p>
 		Matching File Name: <input type="text" name="MatchFile" value="${status.value}" />
-		
+		<form:errors path="MatchFile" />
 		Match File Type: <input path="matchFormat" type="text" name="matchFormat" value="xls" />
-		
+		<form:errors path="matchFormat" />
 		Matching File Location: <input type="text" name="matchLocation" value="${status.value}" />
-		
+		<form:errors path="matchLocation" />
 	</p>
 	<h3>Target Database Data</h3>
 	<p>
@@ -24,10 +24,11 @@
 		Password: <input type="password" name="leftPassword" value="${status.value}" />	
 		
 		Database Driver: <input type="text" name="leftDbDriver" value="${status.value}" value="com.mysql.jdbc.Driver"/>	
-		
+		<form:errors path="leftDbDriver" />
 		Database Name: <input type="text" name="leftDbName" value="${status.value}" value="openmrs"/>	
-		
+		<form:errors path="leftDbName" />
 		Database Location<input type="text" name="leftDbLocation" value="${status.value}" />
+		<form:errors path="leftDbLocation" />
 	</p>	
 	<h3>Source Database</h3>
 	<p>
@@ -37,10 +38,11 @@
 		Password: <input type="password" name="rightPassword" value="${status.value}" />
 		
 		Database Driver: <input type="text" name="rightDbDriver" value="${status.value}" value="com.mysql.jdbc.Driver"/>
-
+		<form:errors path="rightDbDriver" />
 		Database Name: <input type="text" name="rightDbName" value="${status.value}" value="openmrs"/>
-		
+		<form:errors path="rightDbName" />
 		Database Location: <input type="text" name="rightDbLocation" value="${status.value}" />
+		<form:errors path="rightDbLocation" />
 	</p>
 	<h3>Migration Options</h3>
 	 <p>

@@ -103,6 +103,7 @@ public class  DataImportToolStartMigrationController {
 		validator.validate(dit, result);
 		
 		if (result.hasErrors()) {
+			result.getAllErrors();
 			return new ModelAndView("/module/dataimporttool/addMigrationSettings");
 		}
 		
