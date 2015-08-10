@@ -20,12 +20,15 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openmrs.api.context.Context;
+import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
@@ -46,7 +49,7 @@ public class ContinueMigrationController  extends CommonsMultipartResolver{
 			log.info("Starting Data Migration");
 			DataImportToolService ditService = Context.getService(DataImportToolService.class);
 			dit = DataImportToolService.getDataImportTool(dit.getId());
-			ditService.doMigration();//starts Migration process.
+			ditService.run();//starts Migration process.
 			
 			return new ModelAndView("redirect:/module/dataimporttool/status.page");
 		}
