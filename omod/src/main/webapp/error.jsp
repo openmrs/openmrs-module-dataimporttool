@@ -15,9 +15,6 @@
     <div align="center">
         <table border="0">
             <tr>
-                <td colspan="2" align="center"><h2>Migration Status</h2></td>
-            </tr>
-            <tr>
                 <td>Errors occured during Migration. Check the Logs!</td>
             </tr>
         </table>
