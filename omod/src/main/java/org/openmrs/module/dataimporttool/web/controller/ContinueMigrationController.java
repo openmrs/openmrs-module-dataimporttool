@@ -25,30 +25,33 @@ import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-
+@Controller
+@RequestMapping("/module/dataimporttool/continueMigration")
 public class ContinueMigrationController {
 
 		/** Logger for this class and subclasses */
 		protected final Log log = LogFactory.getLog(this.getClass());
 
 		/**
-    	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 	 *	javax.servlet.http.HttpServletResponse)
+    	 * Starts Migration Process
+    	 * @param HttpServletResponse
      	 */
-     	@RequestMapping("/module/dataimporttool/continueMigration")
-		public void continueMigration(HttpServletRequest request) {
+     	@RequestMapping(method = RequestMethod.GET)
+		public void continueMigration() {
 		
 			DataImportTool dit;
-			Context.openSession();
+			//Context.openSession();
 			log.info("Starting Data Migration");
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
 			Context.getService(DataImportToolService.class).run();//starts Migration process.
-			Context.closeSession();
+			//Context.closeSession();
 			
 			return;
 		}
