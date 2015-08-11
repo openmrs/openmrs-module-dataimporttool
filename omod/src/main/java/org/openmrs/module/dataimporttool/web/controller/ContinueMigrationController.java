@@ -41,7 +41,7 @@ public class ContinueMigrationController {
     	 * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, 		 	 *	javax.servlet.http.HttpServletResponse)
      	 */
      	@RequestMapping("/module/dataimporttool/continueMigration")
-		public ModelAndView continueMigration() {
+		public ModelAndView continueMigration(HttpServletRequest request) {
 		
 			DataImportTool dit;
 			Context.openSession();
