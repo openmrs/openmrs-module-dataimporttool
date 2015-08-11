@@ -29,7 +29,7 @@
 	<bean id="dataImportToolStartMigrationController"
 		class="org.openmrs.module.dataimporttool.web.controller.DataImportToolStartMigrationController" />
 
-	<bean id="continueMigration" class="org.openmrs.module.dataimporttool.web.controller.ContinueMigrationController" />
+	<!--bean id="continueMigration" class="org.openmrs.module.dataimporttool.web.controller.ContinueMigrationController" / -->
 
 
 	 

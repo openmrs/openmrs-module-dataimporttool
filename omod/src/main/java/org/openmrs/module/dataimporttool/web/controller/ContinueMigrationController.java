@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/module/dataimporttool/continueMigration")
+//@RequestMapping("/module/dataimporttool/continueMigration")
 public class ContinueMigrationController {
 
 		/** Logger for this class and subclasses */
@@ -43,14 +43,14 @@ public class ContinueMigrationController {
     	 * Starts Migration Process
     	 * @param HttpServletResponse
      	 */
-     	@RequestMapping(method = RequestMethod.GET)
+     	@RequestMapping(value="/module/dataimporttool/continueMigration", method = RequestMethod.GET)
 		public void continueMigration(ModelMap model) {
 		
 			DataImportTool dit;
 			Object getResult;
 			int getPercent;
 			boolean isRunning, isCompleted, isStarted;
-			//Context.openSession();
+			Context.openSession();
 			log.info("Starting Data Migration");
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
 			DataImportToolService ditService = Context.getService(DataImportToolService.class);
@@ -64,7 +64,7 @@ public class ContinueMigrationController {
 			model.addAttribute("isCompleted", ditService.isCompleted());
 			model.addAttribute("isStarted", ditService.isStarted());
 			
-			//Context.closeSession();
+			Context.closeSession();
 			
 			return;
 		}
