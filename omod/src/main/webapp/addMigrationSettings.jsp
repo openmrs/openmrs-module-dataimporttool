@@ -71,7 +71,7 @@
   			
 		<form:select path="treeLimit"/>
 		<td><form:label path="treeLimit">Tree Limit</form:label></td>
-        <td><form:input path="treeLimit" value="0" /></td>
+        <td><form:input path="treeLimit" /></td>
 	</p>
 	<td colspan="2" align="center"><input type="submit" value="Start Migration" ></td>
 
