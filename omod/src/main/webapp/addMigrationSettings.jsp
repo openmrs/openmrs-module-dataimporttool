@@ -68,7 +68,7 @@
 		<form:checkbox path="allowCommit" value="false"/>False
   		<br><form:label path="resetProcess">Reset Process</form:label></td>
   		<form:checkbox path="resetProcess" value="true"/>True 
-		<form:checkbox path="resetProcess" value="false"/>False
+		<form:checkbox path="resetProcess" value="false"/>False<br>
   			
 		<td><form:label path="treeLimit">Tree Limit</form:label></td>
         <td><form:input path="treeLimit" /></td>
