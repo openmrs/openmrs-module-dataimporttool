@@ -4,20 +4,11 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-<% session.removeAttribute("ditService"); %>
-
-<jsp:useBean id="ditService" scope="session"
-    class="org.openmrs.module.dataimporttool.api.DataImportToolService;"/>
-
-<% ditService.setRunning(true); %>
-
-<% new Thread(ditService).start(); %>
-
 html>
 
 <head>
     <title> </title>
-    <% if (ditService.isRunning()) { %>
+    <% if (${isRunning}) { %>
         <SCRIPT LANGUAGE="JavaScript">
             setTimeout("location='continueMigration.jsp'", 1000);
         </SCRIPT>
@@ -26,8 +17,8 @@ html>
 <h1 align="center">Data Validation and Translation...</h1>
 
 <h2 align="center">
-    Result: <%= ditService.getResult() %><br />
-    <% int percent = ditService.getPercent(); %>
+    Result: <%= ${getResult} %><br />
+    <% int percent = ${getPercent} %>
     <%= percent %>%
 </h2>
 
@@ -46,12 +37,12 @@ html>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
-            <% if (ditService.isRunning()) { %>
+            <% if (${isRunning}) { %>
                 Running
             <% } else { %>
-                <% if (ditService.isCompleted()) { %>
+                <% if (${isCompleted}) { %>
                    <jsp:redirect page="status.jsp"/>
-                <% } else if (!ditService.isStarted()) { %>
+                <% } else if (!${isStarted}) { %>
                      Data Migration Not Started
                 <% } else { %>
                     <jsp:redirect page="errorStatus.jsp"/>

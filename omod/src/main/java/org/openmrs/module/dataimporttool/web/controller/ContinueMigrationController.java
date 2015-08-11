@@ -44,13 +44,26 @@ public class ContinueMigrationController {
     	 * @param HttpServletResponse
      	 */
      	@RequestMapping(method = RequestMethod.GET)
-		public void continueMigration() {
+		public void continueMigration(ModelMap model) {
 		
 			DataImportTool dit;
+			Object getResult;
+			int getPercent;
+			boolean isRunning, isCompleted, isStarted;
 			//Context.openSession();
 			log.info("Starting Data Migration");
 			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
-			Context.getService(DataImportToolService.class).run();//starts Migration process.
+			DataImportToolService ditService = Context.getService(DataImportToolService.class);
+			ditService.run();//starts Migration process.
+			
+			// Adding Migration Results to ModelMap
+			// including runnable interface results.
+			model.addAttribute("isRunning", ditService.isRunning());
+			model.addAttribute("getResult", ditService.getResult());
+			model.addAttribute("getPercent", ditService.getPercent());
+			model.addAttribute("isCompleted", ditService.isCompleted());
+			model.addAttribute("isStarted", ditService.isStarted());
+			
 			//Context.closeSession();
 			
 			return;
