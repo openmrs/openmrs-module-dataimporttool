@@ -63,16 +63,15 @@
 	</p>
 	<h3>Migration Options</h3>
 	 <p>
-	 	<form:select path="allowCommit"/>
-		<input type="checkbox" name="allowCommit" value="True"checked>True
-  		<input type="checkbox" name="allowCommit" value="False" >False
+	 	<form:checkbox path="allowCommit" value="true"/>True 
+		<form:checkbox path="allowCommit" value="false"/>False
   		
-  		<form:select path="resetProcess"/>
-			<input type="checkbox" name="resetProcess" value="True">True
-  			<input type="checkbox" name="resetProcess" value="False" checked>False
+  		<form:checkbox path="resetProcess" value="true"/>True 
+		<form:checkbox path="resetProcess" value="false"/>False
   			
 		<form:select path="treeLimit"/>
-		<input type="number" name="treeLimit" value="0" />
+		<td><form:label path="treeLimit">Tree Limit</form:label></td>
+        <td><form:input path="treeLimit" value="0" /></td>
 	</p>
 	<td colspan="2" align="center"><input type="submit" value="Start Migration" ></td>
 
