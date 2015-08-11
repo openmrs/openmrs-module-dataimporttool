@@ -54,7 +54,7 @@ html>
                 <% } else if (!ditService.isStarted()) { %>
                      Data Migration Not Started
                 <% } else { %>
-                    <jsp:redirect page="status.jsp"/>
+                    <jsp:redirect page="errorStatus.jsp"/>
                 <% } %>
             <% } %>
         </td>
