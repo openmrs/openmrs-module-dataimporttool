@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Migration Success</title>
+<title>Migration Error!</title>
 </head>
 <body>
     <div align="center">
@@ -18,7 +18,7 @@
                 <td colspan="2" align="center"><h2>Migration Status</h2></td>
             </tr>
             <tr>
-                <td>${ditService.isCompleted()}</td>
+                <td>Errors occured during Migration. Check the Logs!</td>
             </tr>
         </table>
     </div>
