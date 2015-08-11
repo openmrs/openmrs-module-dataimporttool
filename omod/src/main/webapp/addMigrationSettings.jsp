@@ -34,7 +34,7 @@
 		
 		<td><form:label path="leftDbName">Database Name</form:label></td>
         <td><form:input path="leftDbName" /></td> 	
-		<form:errors path="leftDbName" />
+		<form:errors path="leftDbName" /><br>
 		
 		<td><form:label path="leftDbLocation">Database Location</form:label></td>
         <td><form:input path="leftDbLocation" /></td> 
@@ -55,7 +55,7 @@
 		
 		<td><form:label path="rightDbName">Database Name</form:label></td>
         <td><form:input path="rightDbName" /></td> 
-		<form:errors path="rightDbName" />
+		<form:errors path="rightDbName" /><br>
 	
 		<td><form:label path="rightDbLocation">Database Location</form:label></td>
         <td><form:input path="rightDbLocation" /></td> 
@@ -63,13 +63,13 @@
 	</p>
 	<h3>Migration Options</h3>
 	 <p>
+	 	<td><form:label path="allowCommit">Allow Commit</form:label></td>
 	 	<form:checkbox path="allowCommit" value="true"/>True 
 		<form:checkbox path="allowCommit" value="false"/>False
-  		
+  		<br><form:label path="resetProcess">Reset Process</form:label></td>
   		<form:checkbox path="resetProcess" value="true"/>True 
 		<form:checkbox path="resetProcess" value="false"/>False
   			
-		<form:select path="treeLimit"/>
 		<td><form:label path="treeLimit">Tree Limit</form:label></td>
         <td><form:input path="treeLimit" /></td>
 	</p>
