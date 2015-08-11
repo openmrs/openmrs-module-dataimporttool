@@ -34,29 +34,45 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 @Transactional
 public interface DataImportToolService extends OpenmrsService, Runnable {
 
-	 /**
-	 * This performs the migration of the data
-	 * datatype
-	 * 
-	 * @param null
-	 * @throws SystemException
-	 */
-	@Transactional
-	public int doMigration();
+		public int getPercent();
+		
+		public boolean isStarted();
+		
+		public boolean isCompleted();
+		
+		public void setRunning(boolean running);
+		
+		public boolean isRunning();
+		
+		public Object getResult();
+		
+		public void run();
+		
+	 	/**
+	 	 * This performs the migration of the data
+	     * datatype
+		 * 
+	 	 * @param null
+	 	 * @throws SystemException
+	 	 */
+		@Transactional
+		public int doMigration();
 
-	/**
+		/**
          * Gets a list of migration settings.
          *
          * @return the DataImportTool list.
          */
         @Transactional(readOnly = true)
         List<DataImportTool> getAllDataImportTools();
+        
         /**
          * Gets a migration setting for a given id.
          *
          * @param id the dit id
          * @return the dit with the given id
          */
+         
         @Transactional(readOnly = true)
         DataImportTool getDataImportTool(Integer Id);
         /**
@@ -65,13 +81,14 @@ public interface DataImportToolService extends OpenmrsService, Runnable {
          * @param dit the migration setting to save.
          * @return the saved setting.
          */
-	@Transactional
+		@Transactional
         DataImportTool saveDataImportTool(DataImportTool dit);
+        
         /**
          * Deletes a migration setting from the database.
          *
          * @param dit the setting to delete.
          */
-	@Transactional
+		@Transactional
         void purgeDataImportTool(DataImportTool dit);
 }

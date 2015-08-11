@@ -49,22 +49,27 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
         	running = false;
     	}
 
+		@Override
 		public synchronized int getPercent() {
     		return counter;
 		}
 	
+		@Override
 		public synchronized boolean isStarted() {
     		return started;
 		}
-	
+		
+		@Override
 		public synchronized boolean isCompleted() {
     		return counter == 100;
 		}
 		
+		@Override
 		public synchronized void setRunning(boolean running) {
 			this.running = running;
 		}
 	
+		@Override
 		public synchronized boolean isRunning() {
     		return running;
 		}
@@ -76,6 +81,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
                 this.dao = dao;
         }
         
+        @Override
         public synchronized Object getResult() {
     		if (isCompleted())
         		return new Integer(sum);
@@ -151,7 +157,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 			return 0;
 		}
 		
-		
+		@Override
 		public void run() {
     		try {
         		setRunning(true);
@@ -159,7 +165,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
             		doMigration();
             		
     		} finally {
-        	setRunning(false);
+        		setRunning(false);
     		}
     	}
 
