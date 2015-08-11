@@ -15,7 +15,6 @@
     <div align="center">
         <table border="0">
             <tr>
-                <td>${ditService.isCompleted()}</td>
                 <td> Data Migration Successful. View the Logs for Complete details!</td>
             </tr>
         </table>
