@@ -52,7 +52,7 @@ public interface DataImportToolDAO {
         /**
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getDataImportTool(java.lang.Integer)
 	 */
-        public DataImportTool getDataImportTool(Integer ditId);
+        public DataImportTool getDataImportTool();
         /**
          * @see org.openmrs.module.dataimportool.api.DataImportToolService#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
          */
