@@ -4,7 +4,7 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-<form:form action="continueMigration" commandName="dit" method="post">
+<form:form commandName="dit" method="post">
 <form:errors />
 <td colspan="2" align="center"><h3>Add Migration Settings</h3></td>
 	<h3>Matching File Data</h3>
