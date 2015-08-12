@@ -17,7 +17,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.openmrs.api.context.Context;
 import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
@@ -37,7 +39,10 @@ public final class DAOFactory {
 	}
 	
 	private DAOFactory(DataImportTool dit) {
-		this.dit = dit;
+		if( dit != null) 
+			this.dit = dit;
+		else
+			this.dit = Context.getService(DataImportToolService.class).getDataImportTool();
 	}
 	
 	/**

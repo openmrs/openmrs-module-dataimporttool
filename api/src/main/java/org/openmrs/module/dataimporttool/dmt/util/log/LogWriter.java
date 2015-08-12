@@ -30,7 +30,7 @@ public final class LogWriter {
 		if (writer == null) {
 			writer = new LogWriter();
 			
-			DOMConfigurator.configure(OpenmrsClassLoader.getInstance().findResource("log4j.xml").getPath());//to be checked
+			DOMConfigurator.configure(OpenmrsClassLoader.getInstance().findResource("log4j.xml"));//to be checked
 		}
 		return writer;
 	}
