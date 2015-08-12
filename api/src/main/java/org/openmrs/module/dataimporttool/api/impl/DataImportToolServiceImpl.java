@@ -106,14 +106,17 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
         }
         /**
          * @see org.openmrs.module.department.api.DataImportToolService#getDataImportTool(java.lang.Integer)
+         * TODO: Since Object will be serialised to file, it will be passed to validation manager for migration
          */
         @Override
 		@Transactional
-    	public DataImportTool getDataImportTool(Integer Id) {
-            	return dao.getDataImportTool(Id);
+    	public DataImportTool getDataImportTool() {
+            	return dao.getDataImportTool();
     	}
         /**
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
+         * TODO: Object will be saved to a file for further processing or further use in future session.
+         *
          */
         @Override
 		@Transactional

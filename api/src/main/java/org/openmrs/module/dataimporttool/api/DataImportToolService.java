@@ -69,12 +69,11 @@ public interface DataImportToolService extends OpenmrsService, Runnable {
         /**
          * Gets a migration setting for a given id.
          *
-         * @param id the dit id
          * @return the dit with the given id
          */
          
         @Transactional(readOnly = true)
-        DataImportTool getDataImportTool(Integer Id);
+        DataImportTool getDataImportTool();
         /**
          * Saves a new or existing setting.
          *
