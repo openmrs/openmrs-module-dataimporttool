@@ -28,7 +28,7 @@ public final class LogWriter {
 
 		if (writer == null) {
 			writer = new LogWriter();
-			DOMConfigurator.configure("log4j.xml");
+			DOMConfigurator.configure("api/src/main/resources/log4j.xml");//to be checked
 		}
 		return writer;
 	}
