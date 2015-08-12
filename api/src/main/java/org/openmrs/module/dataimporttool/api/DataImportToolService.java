@@ -81,7 +81,7 @@ public interface DataImportToolService extends OpenmrsService, Runnable {
          * @return the saved setting.
          */
 		@Transactional
-        DataImportTool saveDataImportTool(DataImportTool dit);
+        int saveDataImportTool(DataImportTool dit);
         
         /**
          * Deletes a migration setting from the database.

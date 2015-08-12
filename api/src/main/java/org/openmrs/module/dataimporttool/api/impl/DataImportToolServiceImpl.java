@@ -121,9 +121,9 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
          */
         @Override
 		@Transactional
-        public DataImportTool saveDataImportTool(DataImportTool dit) {
+        public int saveDataImportTool(DataImportTool dit) {
         		this.dit = dit;
-                return dao.saveDataImportTool(dit);
+                return 0;
         }
         /**
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#purgeDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
@@ -131,7 +131,8 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
         @Override
 		@Transactional
         public void purgeDataImportTool(DataImportTool dit) {
-	    dao.purgeDataImportTool(dit);
+        
+	    	dao.purgeDataImportTool(dit);
         }
 
 		/**
