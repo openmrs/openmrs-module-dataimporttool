@@ -35,6 +35,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 		protected final Log log = LogFactory.getLog(this.getClass());
 	
 		private DataImportToolDAO dao;
+		private DataImportTool dit;
 		private int counter;
     	private int sum;
     	private boolean started;
@@ -121,6 +122,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
         @Override
 		@Transactional
         public DataImportTool saveDataImportTool(DataImportTool dit) {
+        		this.dit = new DataImportTool(dit);
                 return dao.saveDataImportTool(dit);
         }
         /**
