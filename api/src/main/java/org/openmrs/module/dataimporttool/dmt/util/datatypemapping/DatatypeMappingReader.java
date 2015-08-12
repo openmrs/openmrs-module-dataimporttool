@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openmrs.util.OpenmrsClassLoader;
+
 /**
  * This class reads a CSV file of datatype mapping and composes a data structure representation
  * of the mappings.
@@ -33,14 +35,12 @@ import java.util.Map;
  * 		(b) The contained line can be transformed to receive values of the containing line
  * (4) The logic assumes that the contained line is always on top of the containing line
  * 
- * @author Valério João
- * @since 25-08-2014
  *
  */
 public final class DatatypeMappingReader {
 	private boolean match;
 	private BufferedReader br = null;
-	private final String csvFile = "api/src/main/resources/datatype_mapping.csv";
+	private final String csvFile = OpenmrsClassLoader.getInstance().findResource("datatype_mapping.csv").getPath();
 	private Map<String, DatatypeMapping> headMappings;
 	private Map<String, DatatypeMapping> currentMappings;
 	

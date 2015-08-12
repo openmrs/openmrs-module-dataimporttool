@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.dataimporttool.dmt.util.log;
 
+import org.openmrs.util.OpenmrsClassLoader;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -28,7 +29,8 @@ public final class LogWriter {
 
 		if (writer == null) {
 			writer = new LogWriter();
-			DOMConfigurator.configure("api/src/main/resources/log4j.xml");//to be checked
+			
+			DOMConfigurator.configure(OpenmrsClassLoader.getInstance().findResource("log4j.xml").getPath());//to be checked
 		}
 		return writer;
 	}

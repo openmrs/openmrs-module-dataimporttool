@@ -20,12 +20,14 @@ import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import org.openmrs.util.OpenmrsClassLoader;
+
 /**
  *  Event Code, contains the migration error messages.
  *  NOTE: Should be moved to messages.properties file
  */
 public class EventCode {
-	private final String BUNDLE_NAME = "api/src/main/resources/messages.properties";
+	private final String BUNDLE_NAME = OpenmrsClassLoader.getInstance().findResource("messages.properties").getPath();
 	private final Properties props = new Properties();
 
 	public EventCode() {
