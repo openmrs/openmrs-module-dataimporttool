@@ -27,68 +27,72 @@ import org.springframework.transaction.annotation.Transactional;
  * It is a default implementation of  {@link DataImportToolDAO}.
  */
 public class HibernateDataImportToolDAO implements DataImportToolDAO {
-	protected final Log log = LogFactory.getLog(this.getClass());
+		protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private SessionFactory sessionFactory;
+		private SessionFactory sessionFactory;
 	
-	/**
+		/**
      	 * @param sessionFactory the sessionFactory to set
      	 */
      	public void setSessionFactory(SessionFactory sessionFactory) {
-	   	this.sessionFactory = sessionFactory;
+	   		this.sessionFactory = sessionFactory;
     	}
     
-	/**
+		/**
      	 * @return the sessionFactory
     	 */
     	public SessionFactory getSessionFactory() {
-	   	return sessionFactory;
-   	 }
+	   		return sessionFactory;
+   	 	}
 
-	@Override
-	@Transactional
-	public int runUpdateQuery(String queryString) {
-		Query q = sessionFactory.getCurrentSession().createQuery(queryString);
-		return q.executeUpdate();
-	}
+		@Override
+		@Transactional
+		public int runUpdateQuery(String queryString) {
+			Query q = sessionFactory.getCurrentSession().createQuery(queryString);
+			return q.executeUpdate();
+		}
 
-	@Override
-	@Transactional
-	public List runListQuery(String queryString) {
-		Query q = sessionFactory.getCurrentSession().createQuery(queryString);
-		return q.list();
-	}
+		@Override
+		@Transactional
+		public List runListQuery(String queryString) {
+			Query q = sessionFactory.getCurrentSession().createQuery(queryString);
+			return q.list();
+		}
 
-	/**
+		/**
          * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#getAllDepartments()
          */
         @Override
-	@Transactional
+		@Transactional
         public List<DataImportTool> getAllDataImportTools() {
                 return sessionFactory.getCurrentSession().createCriteria(DataImportTool.class).list();
         }
+        
         /**
          * @see org.openmrs.module.dataimporttool.api.DataImportToolService#getDataImportTool(java.lang.Integer)
          */
         @Override
-	@Transactional
+		@Transactional
         public DataImportTool getDataImportTool() {
-                return (DataImportTool) sessionFactory.getCurrentSession().get(DataImportTool.class);
+        	
+                return (DataImportTool)sessionFactory.getCurrentSession().createCriteria(DataImportTool.class).list().get(0);
         }
+        
         /**
          * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#saveDataImportTool(org.openmrs.module.dataimporttool.DataImportTool)
          */
         @Override
-	@Transactional
+		@Transactional
         public DataImportTool saveDataImportTool(DataImportTool dit) {
                 sessionFactory.getCurrentSession().save(dit);
                 return dit;
         }
+        
         /**
          * @see org.openmrs.module.dataimporttool.api.db.DataImportToolDAO#purgeDataImportTool(org.openmrs.module.dataImportTool.DataImportTool)
          */
         @Override
-	@Transactional
+		@Transactional
         public void purgeDataImportTool(DataImportTool dit) {
                 sessionFactory.getCurrentSession().delete(dit);
         }
