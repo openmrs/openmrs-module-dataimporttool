@@ -22,13 +22,15 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
+import org.openmrs.api.context.Context;
 
 /**
  * A tool that reads data from XLS files. It uses JXL API
  * 
  */
 public class XlsProcessor {
-	private final DataImportTool config = new DataImportTool();
+	private final DataImportTool config = Context.getService(DataImportToolService.class).getDataImportTool();
 	private Workbook workbook;
 
 	/**
