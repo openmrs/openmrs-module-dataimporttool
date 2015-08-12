@@ -39,9 +39,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-
-
 /**
  * This controller backs the /web/module/startMigration.jsp page. This controller is tied to that
  * jsp page in the /resources/webmoduleApplicationContext.xml file
@@ -81,7 +78,7 @@ public class  DataImportToolStartMigrationController {
 		Integer Id = ServletRequestUtils.getIntParameter(request, "id");
 		
 		if (Id != null) {
-			dit = Context.getService(DataImportToolService.class).getDataImportTool(Id);
+			dit = Context.getService(DataImportToolService.class).getDataImportTool();
 		} else {
 			dit = new DataImportTool();
 		}

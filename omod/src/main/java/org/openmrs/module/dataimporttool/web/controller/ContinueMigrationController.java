@@ -52,7 +52,7 @@ public class ContinueMigrationController {
 			boolean isRunning, isCompleted, isStarted;
 			Context.openSession();
 			log.info("Starting Data Migration");
-			dit = Context.getService(DataImportToolService.class).getDataImportTool(0);
+			dit = Context.getService(DataImportToolService.class).getDataImportTool();
 			DataImportToolService ditService = Context.getService(DataImportToolService.class);
 			ditService.run();//starts Migration process.
 			
