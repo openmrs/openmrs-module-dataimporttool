@@ -19,6 +19,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.openmrs.module.dataimporttool.dmt.helper.EventCodeContants;
 import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
 import org.openmrs.module.dataimporttool.dmt.helper.ProcessPhases;
@@ -34,7 +37,6 @@ import org.openmrs.module.dataimporttool.dmt.util.log.Event;
 import org.openmrs.module.dataimporttool.dmt.util.log.EventCode;
 import org.openmrs.module.dataimporttool.dmt.util.log.Info;
 import org.openmrs.module.dataimporttool.dmt.util.log.LogIt;
-import org.openmrs.module.dataimporttool.dmt.util.log.LogWriter;
 import org.openmrs.module.dataimporttool.dmt.util.log.Warning;
 import org.openmrs.module.dataimporttool.dmt.xls.Sheets;
 import org.openmrs.module.dataimporttool.dmt.xls.XlsProcessor;
@@ -50,7 +52,7 @@ public class ValidationManager implements LogIt {
 
 	private static final long serialVersionUID = 1L;
 	private XlsProcessor processor;
-	private LogWriter writer;
+	protected final Log log = LogFactory.getLog(this.getClass());
 	private DatatypeMappingReader dmr;
 	private TupleTree tree;
 	private EventCode eventCode;
@@ -63,16 +65,14 @@ public class ValidationManager implements LogIt {
 	/**
 	 * Parameterized constructor
 	 * @param processor
-	 * @param writer
 	 * @param dmr
 	 * @param eventCode
 	 * @param keyPool
 	 */
 	public ValidationManager(final XlsProcessor processor,
-			final LogWriter writer, final DatatypeMappingReader dmr,
+	        final DatatypeMappingReader dmr,
 			final EventCode eventCode) {
 		this.processor = processor;
-		this.writer = writer;
 		this.dmr = dmr;
 		this.eventCode = eventCode;
 	}
@@ -82,7 +82,6 @@ public class ValidationManager implements LogIt {
 	 */
 	public ValidationManager() {
 		processor = new XlsProcessor();
-		writer = LogWriter.getWriter();
 		dmr = new DatatypeMappingReader();
 		dmr.process();
 		eventCode = new EventCode();
@@ -262,7 +261,7 @@ public class ValidationManager implements LogIt {
 		if (match.getLeft().getSize().intValue() < match.getRight().getSize()
 				.intValue()) {
 			// write warning log
-			writer.writeLog(new Warning(eventCode
+			log.warn(new Warning(eventCode
 					.getString(EventCodeContants.WAR002),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.WAR002, match.getTupleId(),
@@ -312,7 +311,7 @@ public class ValidationManager implements LogIt {
 		Event event = new Info();
 		event.setFase(phase);
 		event.setDescricao(text);
-		writer.writeLog(event);
+		log.warn(event);
 	}
 
 	/**
@@ -416,7 +415,7 @@ public class ValidationManager implements LogIt {
 			// otherwise.
 			if (!reference.getPredecessor().equals(Integer.valueOf(0))) {
 				// write error log
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR008),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR008,
@@ -431,7 +430,7 @@ public class ValidationManager implements LogIt {
 					.equalsIgnoreCase(reference.getReferencee().getTable())
 					&& !reference.getPredecessor().equals(Integer.valueOf(0))) {
 				// write error log
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR008),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR008,
@@ -446,7 +445,7 @@ public class ValidationManager implements LogIt {
 					.getTable()) && ! tableName.equalsIgnoreCase(MatchConstants.NA)) {
 				if (reference.getPredecessor().equals(Integer.valueOf(0))) {
 					// write error log
-					writer.writeLog(new Error(eventCode
+					log.warn(new Error(eventCode
 							.getString(EventCodeContants.ERR009),
 							ProcessPhases.VALIDATION, Calendar.getInstance()
 									.getTime(), EventCodeContants.ERR009,
@@ -462,7 +461,7 @@ public class ValidationManager implements LogIt {
 				if (!part.getReferences().containsKey(
 						reference.getPredecessor())) {
 					// write error log
-					writer.writeLog(new Error(eventCode
+					log.warn(new Error(eventCode
 							.getString(EventCodeContants.ERR010),
 							ProcessPhases.VALIDATION, Calendar.getInstance()
 									.getTime(), EventCodeContants.ERR010,
@@ -483,7 +482,7 @@ public class ValidationManager implements LogIt {
 						.getTable();
 				if (!indirectReferenceTable.equals(sequenceReferencedTable)) {
 					// write error log
-					writer.writeLog(new Error(eventCode
+					log.warn(new Error(eventCode
 							.getString(EventCodeContants.ERR011),
 							ProcessPhases.VALIDATION, Calendar.getInstance()
 									.getTime(), EventCodeContants.ERR011,
@@ -639,7 +638,7 @@ public class ValidationManager implements LogIt {
 				if (!dmr.verify(match.getRight().getDatatype(), match.getLeft()
 						.getDatatype())) {
 					// write error log
-					writer.writeLog(new Error(eventCode
+					log.warn(new Error(eventCode
 							.getString(EventCodeContants.ERR002),
 							ProcessPhases.VALIDATION, Calendar.getInstance()
 									.getTime(), EventCodeContants.ERR002, match
@@ -649,7 +648,7 @@ public class ValidationManager implements LogIt {
 					return false;// end execution
 				} else {
 					// write warning log
-					writer.writeLog(new Warning(eventCode
+					log.warn(new Warning(eventCode
 							.getString(EventCodeContants.WAR001),
 							ProcessPhases.VALIDATION, Calendar.getInstance()
 									.getTime(), EventCodeContants.WAR001, match
@@ -674,7 +673,7 @@ public class ValidationManager implements LogIt {
 		// value cannot be NULL
 		if (match.getLeft().isIsRequired().equals(MatchConstants.YES)
 				&& defaultValue.equals(MatchConstants.NULL)) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR012),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR012, match.getTupleId(),
@@ -685,7 +684,7 @@ public class ValidationManager implements LogIt {
 		// 18. If the default value of a Match-L-to-R is TOP, the match must not
 		// have a right side, an error must be thrown otherwise
 		if (defaultValue.equals(MatchConstants.TOP) && match.getRight() != null) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR013),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR013, match.getTupleId(),
@@ -697,7 +696,7 @@ public class ValidationManager implements LogIt {
 		// have a right side, an error must be thrown otherwise
 		if (defaultValue.equals(MatchConstants.SKIP)
 				&& match.getRight() == null) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR014),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR014, match.getTupleId(),
@@ -720,7 +719,7 @@ public class ValidationManager implements LogIt {
 		Object defaultValue = match.getDefaultValue();
 		// check if match has a default value
 		if (defaultValue.equals(MatchConstants.NA)) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR001),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR001, match.getTupleId(),
@@ -732,7 +731,7 @@ public class ValidationManager implements LogIt {
 		// compatible
 		if (defaultValue.equals(MatchConstants.AI)
 				&& !match.getLeft().getDatatype().equals(MatchConstants.INT)) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR003),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR003, match.getTupleId(),
@@ -755,7 +754,7 @@ public class ValidationManager implements LogIt {
 		// check if match has a default value
 		if (match.getRight().isIsRequired().equals(MatchConstants.NO)) {
 			if (defaultValue.equals(MatchConstants.NA)) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR001),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR001, match
@@ -769,7 +768,7 @@ public class ValidationManager implements LogIt {
 		// compatible
 		if (defaultValue.equals(MatchConstants.AI)
 				&& !match.getLeft().getDatatype().equals(MatchConstants.INT)) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR003),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR003, match.getTupleId(),
@@ -784,7 +783,7 @@ public class ValidationManager implements LogIt {
 			String datatype = match.getRight().getDatatype();
 
 			if (!dmr.verify(MatchConstants.BOOL, datatype)) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR004),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR004, match
@@ -796,7 +795,7 @@ public class ValidationManager implements LogIt {
 		// If right side is required, then the default value cannot not be SKIP
 		if (defaultValue.equals(MatchConstants.SKIP)
 				&& match.getRight().isIsRequired().equals(MatchConstants.YES)) {
-			writer.writeLog(new Error(eventCode
+			log.warn(new Error(eventCode
 					.getString(EventCodeContants.ERR005),
 					ProcessPhases.VALIDATION, Calendar.getInstance().getTime(),
 					EventCodeContants.ERR005, match.getTupleId(),
@@ -808,7 +807,7 @@ public class ValidationManager implements LogIt {
 		if (defaultValue.equals(MatchConstants.NOW)) {
 			if (!Arrays.asList(MatchConstants.DATETIME, MatchConstants.DATE)
 					.contains(match.getLeft().getDatatype())) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR016),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR016, match
@@ -839,7 +838,7 @@ public class ValidationManager implements LogIt {
 			}
 			// print and log error message
 			if (pkMatch == null) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR017),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR017, tuple
@@ -850,7 +849,7 @@ public class ValidationManager implements LogIt {
 			// validate PK match must have L-References
 			if (pkMatch.getReferences() == null
 					|| pkMatch.getReferences().isEmpty()) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR018),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR018, tuple
@@ -875,7 +874,7 @@ public class ValidationManager implements LogIt {
 					}
 				}
 				if (!hasReferenceWithParent) {
-					writer.writeLog(new Error(eventCode
+					log.warn(new Error(eventCode
 							.getString(EventCodeContants.ERR019),
 							ProcessPhases.VALIDATION, Calendar.getInstance()
 									.getTime(), EventCodeContants.ERR019, tuple
@@ -909,7 +908,7 @@ public class ValidationManager implements LogIt {
 		// otherwise an error must be logged
 		if (pk.equals(MatchConstants.YES)) {
 			if (!dmr.verify(MatchConstants.INT, match.getLeft().getDatatype())) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR006),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR006, match
@@ -920,7 +919,7 @@ public class ValidationManager implements LogIt {
 			// If match is PK, then it must be required, otherwise an error must
 			// be logged
 			if (!match.getLeft().isIsRequired().equals(MatchConstants.YES)) {
-				writer.writeLog(new Error(eventCode
+				log.warn(new Error(eventCode
 						.getString(EventCodeContants.ERR007),
 						ProcessPhases.VALIDATION, Calendar.getInstance()
 								.getTime(), EventCodeContants.ERR007, match

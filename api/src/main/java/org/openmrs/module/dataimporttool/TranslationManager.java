@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.ibatis.jdbc.SQL;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.dataimporttool.dmt.dao.DAOFactory;
 import org.openmrs.module.dataimporttool.dmt.dao.DatabaseUtil;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
@@ -39,7 +41,6 @@ import org.openmrs.module.dataimporttool.dmt.util.log.Event;
 import org.openmrs.module.dataimporttool.dmt.util.log.EventCode;
 import org.openmrs.module.dataimporttool.dmt.util.log.Info;
 import org.openmrs.module.dataimporttool.dmt.util.log.LogIt;
-import org.openmrs.module.dataimporttool.dmt.util.log.LogWriter;
 import org.openmrs.module.dataimporttool.matchingschema.MatchType;
 import org.openmrs.module.dataimporttool.matchingschema.ReferenceType;
 import org.openmrs.module.dataimporttool.matchingschema.TupleType;
@@ -56,7 +57,7 @@ public class TranslationManager implements LogIt {
 	private DatabaseUtil sourceDAO;
 	private DatabaseUtil targetDAO;
 	private DatatypeEnforcer de;
-	private LogWriter writer;
+	protected final Log log = LogFactory.getLog(this.getClass());
 	private EventCode eventCode;
 	private boolean skip;// this variable indicates whether or not a tuple must
 							// return an insert query or an empty string.
@@ -74,7 +75,6 @@ public class TranslationManager implements LogIt {
 		try {
 			sourceDAO = DAOFactory.getInstance().getDAO(DAOTypes.SOURCE);
 			targetDAO = DAOFactory.getInstance().getDAO(DAOTypes.TARGET);
-			writer = LogWriter.getWriter();
 			de = new DatatypeEnforcer();
 			eventCode = new EventCode();
 		} catch (SystemException e) {
@@ -727,7 +727,7 @@ public class TranslationManager implements LogIt {
 		Event event = new Info();
 		event.setFase(phase);
 		event.setDescricao(text);
-		writer.writeLog(event);
+		log.warn(event);
 	}
 	
 	/**
