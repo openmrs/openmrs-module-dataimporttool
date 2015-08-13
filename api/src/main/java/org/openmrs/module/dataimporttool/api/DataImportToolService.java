@@ -18,6 +18,7 @@ import java.util.List;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 import org.openmrs.module.dataimporttool.DataImportTool;
+import org.openmrs.module.dataimporttool.api.db.DataImportToolDAO;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 
@@ -47,6 +48,8 @@ public interface DataImportToolService extends OpenmrsService, Runnable {
 		public Object getResult();
 		
 		public void run();
+		
+		public DataImportToolDAO getDao();
 		
 	 	/**
 	 	 * This performs the migration of the data

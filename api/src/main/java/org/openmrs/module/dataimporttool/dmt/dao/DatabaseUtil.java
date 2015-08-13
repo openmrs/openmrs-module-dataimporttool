@@ -23,7 +23,10 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import org.openmrs.api.context.Context;
+import org.hibernate.Session;
 
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.module.dataimporttool.dmt.helper.MatchConstants;
 import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
@@ -53,6 +56,9 @@ public class DatabaseUtil {
 		try {
 			if (this.connection != null) {
 				statement = this.connection.createStatement();
+			} else {
+				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().getCurrentSession();
+				this.connection = session.connection();
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();

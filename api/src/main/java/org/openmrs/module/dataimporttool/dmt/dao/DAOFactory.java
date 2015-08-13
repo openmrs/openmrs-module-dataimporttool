@@ -18,6 +18,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.openmrs.api.context.Context;
+
+import org.hibernate.Session;
+
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
@@ -143,6 +146,8 @@ public final class DAOFactory {
 		if (type == DAOTypes.TARGET) { //only for target data source
 		
 			try {
+				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().getCurrentSession();
+				connection = session.connection();
 				connection.setAutoCommit(false);// disable auto-commit
 				connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);			
 							

@@ -14,6 +14,7 @@
 package org.openmrs.module.dataimporttool.api.db;
 
 import org.openmrs.module.dataimporttool.DataImportTool;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -28,6 +29,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface DataImportToolDAO {
+
+	/**
+	 * getSessionFactory
+	 *
+	 */
+	public SessionFactory getSessionFactory();
 
 	/**
 	 * runUpdateQuery
