@@ -33,23 +33,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-//@RequestMapping("/module/dataimporttool/continueMigration")
+@RequestMapping("/module/dataimporttool/continueMigration")
 public class ContinueMigrationController {
 
 		/** Logger for this class and subclasses */
 		protected final Log log = LogFactory.getLog(this.getClass());
-
+		
+		/** Success form view name */
+		private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration";
+		
 		/**
     	 * Starts Migration Process
     	 * @param HttpServletResponse
      	 */
-     	@RequestMapping(value="/module/dataimporttool/continueMigration", method = RequestMethod.GET)
+		@RequestMapping(method = RequestMethod.GET)
+		public String showForm() {
+			return SUCCESS_FORM_VIEW;
+		}
+     	 
+     	 
+     	@RequestMapping(value="/module/dataimporttool/continueMigration", method = RequestMethod.POST)
 		public void continueMigration(ModelMap model) {
 		
 			DataImportTool dit;
 			
 			log.info("Starting Data Migration");
 			DataImportToolService ditService = Context.getService(DataImportToolService.class);
+			
+			//starts migration
+			ditService.run();//starts Migration process.
 			
 			// Adding Migration Results to ModelMap
 			// including runnable interface results.
