@@ -81,7 +81,8 @@ public final class DAOFactory {
 	public DatabaseUtil getDAO(DAOTypes type) throws SystemException {
 		
 			if (type == DAOTypes.SOURCE) {
-				sourceDAO = createDAOs(dit, type);
+				if( sourceDAO == null)
+					sourceDAO = createDAOs(dit, type);
 
 				try {
 					// set the database driver class
@@ -93,8 +94,9 @@ public final class DAOFactory {
 
 			} else if (type == DAOTypes.TARGET) {
 				// create DAO if not exists
+				if( targetDAO == null) 
+					targetDAO = createDAOs(dit, type);
 					
-				targetDAO = createDAOs(dit, type);
 				try {
 					Class.forName(dit.getLeftDbDriver());
 				} catch (ClassNotFoundException e) {
@@ -146,14 +148,14 @@ public final class DAOFactory {
 		if (type == DAOTypes.TARGET) { //only for target data source
 		
 			try {
-				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().getCurrentSession();
+				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().openSession();
 				connection = session.connection();
 				connection.setAutoCommit(false);// disable auto-commit
 				connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);			
 							
-				connection = DriverManager.getConnection(
-					dit.getLeftDbLocation() + dit.getLeftDbName(),
-					dit.getLeftUserName(), dit.getLeftPassword());
+				//connection = DriverManager.getConnection(
+					//dit.getLeftDbLocation() + dit.getLeftDbName(),
+					//dit.getLeftUserName(), dit.getLeftPassword());
 
 				if (connection != null)
 					return new DatabaseUtil(connection);
