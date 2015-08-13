@@ -28,9 +28,6 @@ import org.openmrs.module.ModuleFactory;
  * This class contains the logic that is run every time this module is either started or stopped.
  */
 public class DataImportToolActivator implements Activator {
-
-	public static final String MAIN_PATH = "api/target";
-	public static final String TEST_PATH = "api/src/test";
 	
 	protected Log log = LogFactory.getLog(getClass());
 		
