@@ -171,8 +171,6 @@ public final class DAOFactory {
 			try {	
 				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().openSession();
 				connection = session.connection();
-				log.warn("Connection details: " + dit.getRightDbLocation() + dit.getRightDbName() +dit.getRightUserName() + dit.getRightPassword());			
-				DriverManager.getDriver(dit.getRightDbDriver());
 				connection = DriverManager.getConnection(dit.getRightDbLocation() + dit.getRightDbName(),
 														 dit.getRightUserName(), dit.getRightPassword());
 				
