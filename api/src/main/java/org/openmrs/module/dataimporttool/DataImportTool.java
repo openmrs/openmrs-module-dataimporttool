@@ -297,7 +297,7 @@ public class DataImportTool extends BaseOpenmrsObject implements Serializable {
 	 *
 	 * @param rightUserName
 	 */
-	public void setRightUserName(String RightUserName) {
+	public void setRightUserName(String rightUserName) {
 		this.rightUserName = rightUserName;
 	}
 

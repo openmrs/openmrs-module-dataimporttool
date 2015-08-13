@@ -153,9 +153,9 @@ public final class DAOFactory {
 				connection.setAutoCommit(false);// disable auto-commit
 				connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);			
 							
-				//connection = DriverManager.getConnection(
-					//dit.getLeftDbLocation() + dit.getLeftDbName(),
-					//dit.getLeftUserName(), dit.getLeftPassword());
+				connection = DriverManager.getConnection(
+				dit.getLeftDbLocation() + dit.getLeftDbName(),
+				dit.getLeftUserName(), dit.getLeftPassword());
 
 				if (connection != null)
 					return new DatabaseUtil(connection);
@@ -166,7 +166,11 @@ public final class DAOFactory {
 
 		} else {
 			
-			try {						
+			try {	
+				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().openSession();
+				connection = session.connection();
+				log.info("Connection details: " + dit.getRightDbLocation() + dit.getRightDbName(),
+					dit.getRightUserName(), dit.getRightPassword());				
 				connection = DriverManager.getConnection(
 					dit.getRightDbLocation() + dit.getRightDbName(),
 					dit.getRightUserName(), dit.getRightPassword());

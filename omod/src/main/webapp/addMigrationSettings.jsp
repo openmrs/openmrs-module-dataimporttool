@@ -45,7 +45,8 @@
 		
 		<td><form:label path="rightUserName">User Name</form:label></td>
         <td><form:input path="rightUserName" /></td> 
-		 	
+		<form:errors path="rightUserName" /> 	
+		
 		<td><form:label path="rightPassword">Password</form:label></td>
         <td><form:input path="rightPassword" /></td> 
 		
