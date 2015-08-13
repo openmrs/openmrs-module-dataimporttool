@@ -22,7 +22,7 @@ import org.apache.commons.logging.LogFactory;
  * Controller behind the "status.jsp" page. Should list off available urls and representations.
  */
 @Controller
-@RequestMapping(value="/module/dataimporttool/status.page")
+@RequestMapping(value="/module/dataimporttool/status.list")
 public class StatusController {
 	
 	protected final Log log = LogFactory.getLog(getClass());

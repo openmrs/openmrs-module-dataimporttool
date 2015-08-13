@@ -33,14 +33,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/module/dataimporttool/continueMigration")
+@RequestMapping("/module/dataimporttool/continueMigration.list")
 public class ContinueMigrationController {
 
 		/** Logger for this class and subclasses */
 		protected final Log log = LogFactory.getLog(this.getClass());
 		
 		/** Success form view name */
-		private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration";
+		private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration.list";
 		
 		/**
     	 * Starts Migration Process
@@ -52,7 +52,7 @@ public class ContinueMigrationController {
 		}
      	 
      	 
-     	@RequestMapping(value="/module/dataimporttool/continueMigration", method = RequestMethod.POST)
+     	@RequestMapping(method = RequestMethod.POST)
 		public void continueMigration(ModelMap model) {
 		
 			DataImportTool dit;

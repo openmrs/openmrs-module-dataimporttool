@@ -44,11 +44,11 @@ html>
                 Running
             <% } else { %>
                 <% if (${isCompleted}) { %>
-                   <jsp:redirect page="status.jsp"/>
+                   <jsp:forward page="status.jsp"/>
                 <% } else if (!${isStarted}) { %>
                      Data Migration Not Started
                 <% } else { %>
-                    <jsp:redirect page="errorStatus.jsp"/>
+                    <jsp:forward page="error.jsp"/>
                 <% } %>
             <% } %>
         </td>
