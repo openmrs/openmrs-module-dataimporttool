@@ -20,7 +20,8 @@ import java.sql.SQLException;
 import org.openmrs.api.context.Context;
 
 import org.hibernate.Session;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
@@ -36,9 +37,10 @@ public final class DAOFactory {
 	private DatabaseUtil targetDAO;
 	private static DAOFactory instance;
 	private Connection connection;
+	protected final Log log = LogFactory.getLog(this.getClass());
 
 	private DAOFactory() {
-		dit = new DataImportTool();
+		dit = Context.getService(DataImportToolService.class).getDataImportTool();
 	}
 	
 	private DAOFactory(DataImportTool dit) {
@@ -169,11 +171,10 @@ public final class DAOFactory {
 			try {	
 				Session session = Context.getService(DataImportToolService.class).getDao().getSessionFactory().openSession();
 				connection = session.connection();
-				log.info("Connection details: " + dit.getRightDbLocation() + dit.getRightDbName(),
-					dit.getRightUserName(), dit.getRightPassword());				
-				connection = DriverManager.getConnection(
-					dit.getRightDbLocation() + dit.getRightDbName(),
-					dit.getRightUserName(), dit.getRightPassword());
+				log.warn("Connection details: " + dit.getRightDbLocation() + dit.getRightDbName() +dit.getRightUserName() + dit.getRightPassword());			
+				DriverManager.getDriver(dit.getRightDbDriver());
+				connection = DriverManager.getConnection(dit.getRightDbLocation() + dit.getRightDbName(),
+														 dit.getRightUserName(), dit.getRightPassword());
 				
 				if (connection != null) 
 					return new DatabaseUtil(connection);

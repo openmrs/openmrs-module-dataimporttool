@@ -24,8 +24,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.ibatis.jdbc.SQL;
+import org.openmrs.api.context.Context;
+
+import org.hibernate.Session;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.openmrs.module.dataimporttool.dmt.dao.DAOFactory;
 import org.openmrs.module.dataimporttool.dmt.dao.DatabaseUtil;
 import org.openmrs.module.dataimporttool.dmt.helper.DAOTypes;
@@ -61,7 +65,7 @@ public class TranslationManager implements LogIt {
 	private EventCode eventCode;
 	private boolean skip;// this variable indicates whether or not a tuple must
 							// return an insert query or an empty string.
-	private final DataImportTool config = new DataImportTool();
+	private final DataImportTool config = Context.getService(DataImportToolService.class).getDataImportTool();
 	private int processCount, treeCount, totalTreeNo, currTupleId;
 	private boolean firstRun = true;
 
