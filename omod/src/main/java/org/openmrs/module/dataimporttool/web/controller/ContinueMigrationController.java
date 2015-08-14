@@ -30,6 +30,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
+
 
 
 @Controller
@@ -40,25 +43,22 @@ public class ContinueMigrationController {
 		protected final Log log = LogFactory.getLog(this.getClass());
 		
 		/** Success form view name */
-		private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration.list";
+		private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/status.list";
 		
 		/**
     	 * Starts Migration Process
     	 * @param HttpServletResponse
      	 */
 		@RequestMapping(method = RequestMethod.GET)
-		public String showForm() {
-			return SUCCESS_FORM_VIEW;
-		}
-     	 
-     	 
-     	@RequestMapping(method = RequestMethod.POST)
-		public void continueMigration(ModelMap model) {
+		public ModelAndView showForm(HttpServletRequest request, ModelMap model) {
 		
-			DataImportTool dit;
+			//receives the parameters from the previous page and continues.
+			log.info("Starting Data Migration");
+			DataImportToolService ditService = Context.getService(DataImportToolService.class);
 			
-			/*receives the parameters from the previous page and continues.
-			
+			//starts migration
+			ditService.run();
+		
 			// Adding Migration Results to ModelMap
 			// including runnable interface results.
 			model.addAttribute("isRunning", ditService.isRunning());
@@ -66,8 +66,17 @@ public class ContinueMigrationController {
 			model.addAttribute("getPercent", ditService.getPercent());
 			model.addAttribute("isCompleted", ditService.isCompleted());
 			model.addAttribute("isStarted", ditService.isStarted());
-			*/
 			
-			return;
+			return new ModelAndView("/module/dataimporttool/continueMigration");
+		}
+     	 
+     	 
+     	@RequestMapping(method = RequestMethod.POST)
+		public String continueMigration(SessionStatus status) {
+			
+			// clears the command object from the session
+			status.setComplete();
+			
+			return SUCCESS_FORM_VIEW;
 		}
 }
