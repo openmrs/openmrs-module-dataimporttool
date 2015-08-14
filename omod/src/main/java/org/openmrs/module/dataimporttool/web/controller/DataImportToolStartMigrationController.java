@@ -106,13 +106,6 @@ public class  DataImportToolStartMigrationController {
 		
 		// add the new tag
 		Context.getService(DataImportToolService.class).saveDataImportTool(dit);
-		log.info("Starting Data Migration");
-		DataImportToolService ditService = Context.getService(DataImportToolService.class);
-			
-		//starts migration
-		ditService.run();//starts Migration process.
-		
-		//Passes the parameters to the next page.
 		
 		// clears the command object from the session
 		status.setComplete();
