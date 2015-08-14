@@ -21,25 +21,7 @@ This OpenMRS specific module integrates  the eSaude Data Migration Tool (eSaudeD
 </p>
 
 <h2> Overview</h2>
-<p>The main architectural idea is to have a tool that takes a matching file as input, validates the matches, translates them into SQL SELECT, INSERT and/or UPDATE statements (mapping), and execute the resulting mapping.
-<br>The tool tries to accomplish the following: 
 
-<br><b><i>Reusability</i></b> - Developed once and used when needed. The mapping created is based on input logic
-<br><b><i>Configurability</i></b> - The migration logic is structured in a user friendly OpenMRS interface.
-<br><b><i>Auditability</i></b> -  Provides user feedback with appropriate error messages.
-</p>
-
-<h2> Development Environment Specs</h2>
-<p>For the development of data migration tool here are the minimum specs of the development environment:
-
-<br>Windows OS 7+ (currently being used by the majority)
-<br>Eclipse or Netbeans IDE 
-<br>Java 7+ 
-<br>Apache Maven 3 (http://maven.apache.org/download.cgi)
-<br>Git (http://git-scm.com/downloads)
-</p>
-
-<h2>Test and Production environment Specs</h2>
 <p>In order to execute the system in test environment make sure you have the following tools installed:
 <br>
 <br>Java 7 
