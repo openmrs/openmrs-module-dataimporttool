@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.openmrs.api.context.Context;
-import org.openmrs.module.dataimporttool.DataImportTool;
 import org.openmrs.module.dataimporttool.api.DataImportToolService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,44 +38,34 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/module/dataimporttool/continueMigration.list")
 public class ContinueMigrationController {
 
-		/** Logger for this class and subclasses */
-		protected final Log log = LogFactory.getLog(this.getClass());
+	/** Logger for this class and subclasses */
+	protected final Log log = LogFactory.getLog(this.getClass());
 		
-		/** Success form view name */
-		private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/status.list";
+	/** Success form view name */
+	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration.list";
 		
-		/**
-    	 * Starts Migration Process
-    	 * @param HttpServletResponse
-     	 */
-		@RequestMapping(method = RequestMethod.GET)
-		public ModelAndView showForm(HttpServletRequest request, ModelMap model) {
+	/**
+     * Starts Migration Process
+     * @param HttpServletResponse
+     */
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView showForm(ModelMap model) {
 		
-			//receives the parameters from the previous page and continues.
-			log.info("Starting Data Migration");
-			DataImportToolService ditService = Context.getService(DataImportToolService.class);
+		//receives the parameters from the previous page and continues.
+		log.info("Starting Data Migration");
+		DataImportToolService ditService = Context.getService(DataImportToolService.class);
 			
-			//starts migration
-			ditService.run();
+		//starts migration
+		ditService.run();
 		
-			// Adding Migration Results to ModelMap
-			// including runnable interface results.
-			model.addAttribute("isRunning", ditService.isRunning());
-			model.addAttribute("getResult", ditService.getResult());
-			model.addAttribute("getPercent", ditService.getPercent());
-			model.addAttribute("isCompleted", ditService.isCompleted());
-			model.addAttribute("isStarted", ditService.isStarted());
+		// Adding Migration Results to ModelMap
+		// including runnable interface results.
+		model.addAttribute("isRunning", ditService.isRunning());
+		model.addAttribute("getResult", ditService.getResult());
+		model.addAttribute("getPercent", ditService.getPercent());
+		model.addAttribute("isCompleted", ditService.isCompleted());
+		model.addAttribute("isStarted", ditService.isStarted());
 			
-			return new ModelAndView("/module/dataimporttool/continueMigration");
-		}
-     	 
-     	 
-     	@RequestMapping(method = RequestMethod.POST)
-		public String continueMigration(SessionStatus status) {
-			
-			// clears the command object from the session
-			status.setComplete();
-			
-			return SUCCESS_FORM_VIEW;
-		}
+		return new ModelAndView(SUCCESS_FORM_VIEW);
+	}
 }
