@@ -8,17 +8,17 @@ html>
 
 <head>
     <title> </title>
-    <% if (Boolean.valueOf("${isRunning}")) { %>
-        <SCRIPT LANGUAGE="JavaScript">
-            setTimeout("location='continueMigration.jsp'", 1000);
+    <% if ( Boolean.valueOf(request.getParameter("isRunning"))) { %>
+        <SCRIPT>
+            setTimeout("location='continueMigration.jsp'", 10000);
         </SCRIPT>
     <% } %>
     
 <h1 align="center">Data Validation and Translation...</h1>
 
 <h2 align="center">
-    Result: <%= "${getResult}" %><br />
-    <% int percent = Integer.parseInt("${getPercent}"); %>
+    Result: <%= request.getParameter("getResult") %><br />
+    <% int percent = Integer.parseInt(request.getParameter("getPercent")); %>
     <%= percent %>%
 </h2>
 
@@ -37,12 +37,12 @@ html>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
-            <% if (Boolean.valueOf("{isRunning}")) { %>
+            <% if ( Boolean.valueOf(request.getParameter("isRunning"))) { %>
                 Running
             <% } else { %>
-                <% if (Boolean.valueOf("${isCompleted}")) { %>
+                <% if ( Boolean.valueOf(request.getParameter("isCompleted"))) { %>
                    <jsp:forward page="status.jsp"/>
-                <% } else if (!Boolean.valueOf("${isStarted}")) { %>
+                <% } else if (! Boolean.valueOf(request.getParameter("isStarted"))) { %>
                      Data Migration Not Started
                 <% } else { %>
                     <jsp:forward page="error.jsp"/>
