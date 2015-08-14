@@ -17,7 +17,7 @@ html>
 <h1 align="center">Data Validation and Translation...</h1>
 
 <h2 align="center">
-    Result: <%= Integer.parseInt("${getResult}") %><br />
+    Result: <%= "${getResult}" %><br />
     <% int percent = Integer.parseInt("${getPercent}"); %>
     <%= percent %>%
 </h2>
