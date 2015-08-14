@@ -11,29 +11,10 @@
 This OpenMRS specific module integrates  the eSaude Data Migration Tool (eSaudeDMT) in order to migrate data from SQL-based data source into OpenMRS.
 <br>It provides a WUI which takes Migration settings on the startMigration page replacing the old config.xml file of the DMT tool. 
 <br>
-<br>you can check out the new branch:
-<br>
-<i>```</i>
-<br><i>$ git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git</i>
-<br><i>$ git checkout gh-pages</i>
-<br><i>```</i>
-<br>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.
 </p>
 
 <h2> Overview</h2>
 
-<p>In order to execute the system in test environment make sure you have the following tools installed:
-<br>
-<br>Java 7 
-<br>Apache Maven 3 (http://maven.apache.org/download.cgi)
-<br>Git (http://git-scm.com/downloads)
-<br>Perform the following steps using command line:
-<i>
-<br>1.) Clone the project repository from github git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git
-<br>
-<br>2.) run 'mvn clean install'
-</i>
-<br>...
 
 
 <h2>Authors and Contributors</h2>
