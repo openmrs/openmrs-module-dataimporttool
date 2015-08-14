@@ -57,7 +57,7 @@ public class ContinueMigrationController {
 		
 			DataImportTool dit;
 			
-			//receives the parameters from the previous page and continues.
+			/*receives the parameters from the previous page and continues.
 			
 			// Adding Migration Results to ModelMap
 			// including runnable interface results.
@@ -66,6 +66,7 @@ public class ContinueMigrationController {
 			model.addAttribute("getPercent", ditService.getPercent());
 			model.addAttribute("isCompleted", ditService.isCompleted());
 			model.addAttribute("isStarted", ditService.isStarted());
+			*/
 			
 			return;
 		}
