@@ -83,11 +83,11 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
         }
         
         @Override
-        public synchronized Object getResult() {
+        public synchronized int getResult() {
     		if (isCompleted())
-        		return new Integer(sum);
+        		return sum;
     		else
-        		return null;
+        		return 0;
 		}
 
         /**

@@ -45,7 +45,7 @@ public interface DataImportToolService extends OpenmrsService, Runnable {
 		
 		public boolean isRunning();
 		
-		public Object getResult();
+		public int getResult();
 		
 		public void run();
 		
