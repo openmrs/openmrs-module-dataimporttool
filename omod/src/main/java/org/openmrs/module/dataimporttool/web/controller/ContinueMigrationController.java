@@ -57,11 +57,7 @@ public class ContinueMigrationController {
 		
 			DataImportTool dit;
 			
-			log.info("Starting Data Migration");
-			DataImportToolService ditService = Context.getService(DataImportToolService.class);
-			
-			//starts migration
-			ditService.run();//starts Migration process.
+			//receives the parameters from the previous page and continues.
 			
 			// Adding Migration Results to ModelMap
 			// including runnable interface results.
