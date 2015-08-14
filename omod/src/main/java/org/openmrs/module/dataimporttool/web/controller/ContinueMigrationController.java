@@ -45,13 +45,12 @@ public class ContinueMigrationController {
 	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration";
 		
 	/**
-     * Starts Migration Process
+     * Shows Migration Progress
      * @param HttpServletResponse
      */
 	@RequestMapping(method = RequestMethod.GET)
-	public String showMigration(ModelMap model, SessionStatus status, RedirectAttributes redirectAttributes) {
+	public String showMigration(ModelMap model, SessionStatus status) {
 		
-			
 		return SUCCESS_FORM_VIEW;
 	}
 }
