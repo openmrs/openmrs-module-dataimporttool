@@ -4,9 +4,6 @@
 
 <%@ include file="template/localHeader.jsp"%>
 
-<openmrs:require privilege="start Migration" otherwise="/login.htm"
-	redirect="/module/dataimporttool/continueMigration.jsp" />
-
 html>
 
 <head>
