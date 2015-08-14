@@ -18,7 +18,7 @@ html>
 
 <h2 align="center">
     Result: <%= Integer.parseInt("${getResult}") %><br />
-    <% int percent = Integer.parseInt("${getPercent}") %>
+    <% int percent = Integer.parseInt("${getPercent}"); %>
     <%= percent %>%
 </h2>
 
