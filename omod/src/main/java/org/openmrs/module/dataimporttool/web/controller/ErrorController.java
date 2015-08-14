@@ -37,19 +37,8 @@ public class ErrorController {
 	 * @return String form view name
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String showForm() {
+	public String showForm(ModelMap model) {
 		return SUCCESS_FORM_VIEW;
 	}
 	
-	/**
-	 * All the parameters are optional based on the necessity
-	 * 
-	 * @param httpSession
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(HttpSession httpSession) {
-		
-		return SUCCESS_FORM_VIEW;
-	}
 }
