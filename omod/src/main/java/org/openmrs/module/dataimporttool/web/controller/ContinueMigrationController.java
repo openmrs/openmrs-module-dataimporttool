@@ -49,7 +49,7 @@ public class ContinueMigrationController {
      * @param HttpServletResponse
      */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showForm(ModelMap model) {
+	public String showForm(ModelMap model) {
 		
 		//receives the parameters from the previous page and continues.
 		log.info("Starting Data Migration");
@@ -66,6 +66,6 @@ public class ContinueMigrationController {
 		model.addAttribute("isCompleted", ditService.isCompleted());
 		model.addAttribute("isStarted", ditService.isStarted());
 			
-		return new ModelAndView(SUCCESS_FORM_VIEW);
+		return SUCCESS_FORM_VIEW;
 	}
 }
