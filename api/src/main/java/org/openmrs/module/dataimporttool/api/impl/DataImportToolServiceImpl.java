@@ -145,20 +145,20 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
 		public int doMigration() {
 		
     		try {
-        	Thread.sleep(sleep);
-        	ValidationManager vm = new ValidationManager();
-    		if(!vm.execute()) return -1;
-			counter = 50;
-			sum += counter;
+        		Thread.sleep(sleep);
+        		ValidationManager vm = new ValidationManager();
+    			if(!vm.execute()) return -1;
+				counter = 50;
+				sum += counter;
 		
-    		TranslationManager tm = new TranslationManager(vm.getTree());
-    		tm.execute();
-    		counter = 100;
-    		sum += counter;
+    			TranslationManager tm = new TranslationManager(vm.getTree());
+    			tm.execute();
+    			counter = 100;
+    			sum += counter;
        
-    		} catch (SystemException | InterruptedException e ) {
-        		setRunning(false);
-    		}			
+    			} catch (SystemException | InterruptedException e ) {
+        			setRunning(false);
+    			}			
 
 			return 0;
 		}
