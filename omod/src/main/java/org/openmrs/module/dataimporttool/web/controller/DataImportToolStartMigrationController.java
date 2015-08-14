@@ -51,6 +51,12 @@ public class  DataImportToolStartMigrationController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 
+	/** Success form view name */
+	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/status";
+	
+	/** Success form view name */
+	private final String ERROR_FORM_VIEW = "/module/dataimporttool/error";
+	
 	/** Validator for this controller */
 	private DataImportToolValidator validator;
 	
@@ -117,12 +123,20 @@ public class  DataImportToolStartMigrationController {
 		
 		// Adding Migration results for the redirect attribute going to the next page.
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/module/dataimporttool/continueMigration");
+		mv.setViewName("/module/dataimporttool/continueMigration");
 		mv.addObject("isRunning", ditService.isRunning());
 		mv.addObject("getResult", ditService.getResult());
 		mv.addObject("getPercent", ditService.getPercent());
 		mv.addObject("isCompleted", ditService.isCompleted());
 		mv.addObject("isStarted", ditService.isStarted());
+		
+		if ( ditService.run().doMigration == 0) 
+			return ModelAndView(SUCCESS_FORM_VIEW, model);
+		else 
+			return ModelAndView(ERROR_FORM_VIEW, model);
+			
+		// clears the command object from the session
+		status.setComplete();
 		
 		//load next view
 		return mv;
