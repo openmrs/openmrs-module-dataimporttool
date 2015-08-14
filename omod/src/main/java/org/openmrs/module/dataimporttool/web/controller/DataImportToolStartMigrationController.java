@@ -108,7 +108,6 @@ public class  DataImportToolStartMigrationController {
 		Context.getService(DataImportToolService.class).saveDataImportTool(dit);
 		
 		// clears the command object from the session
-		status.setComplete();
 		
 		//Move on to the next page
 		return new ModelAndView("/module/dataimporttool/continueMigration");
