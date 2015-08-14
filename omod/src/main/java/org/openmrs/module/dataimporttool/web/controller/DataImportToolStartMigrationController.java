@@ -39,6 +39,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
 /**
  * This controller backs the /web/module/startMigration.jsp page. This controller is tied to that
  * jsp page in the /resources/webmoduleApplicationContext.xml file
@@ -107,9 +108,23 @@ public class  DataImportToolStartMigrationController {
 		// add the new tag
 		Context.getService(DataImportToolService.class).saveDataImportTool(dit);
 		
-		// clears the command object from the session
+		//receives the parameters from the previous page and continues.
+		DataImportToolService ditService = Context.getService(DataImportToolService.class);
+			
+		//starts migration
+		log.info("Starting Data Migration");
+		ditService.run();
 		
-		//Move on to the next page
-		return new ModelAndView("/module/dataimporttool/continueMigration");
+		// Adding Migration results for the redirect attribute going to the next page.
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/module/dataimporttool/continueMigration");
+		mv.addObject("isRunning", ditService.isRunning());
+		mv.addObject("getResult", ditService.getResult());
+		mv.addObject("getPercent", ditService.getPercent());
+		mv.addObject("isCompleted", ditService.isCompleted());
+		mv.addObject("isStarted", ditService.isStarted());
+		
+		//load next view
+		return mv;
 	}
 }

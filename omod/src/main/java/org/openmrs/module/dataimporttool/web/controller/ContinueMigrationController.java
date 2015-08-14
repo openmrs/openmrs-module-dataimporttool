@@ -49,22 +49,8 @@ public class ContinueMigrationController {
      * @param HttpServletResponse
      */
 	@RequestMapping(method = RequestMethod.GET)
-	public String showForm(ModelMap model, SessionStatus status) {
+	public String showMigration(ModelMap model, SessionStatus status, RedirectAttributes redirectAttributes) {
 		
-		//receives the parameters from the previous page and continues.
-		log.info("Starting Data Migration");
-		DataImportToolService ditService = Context.getService(DataImportToolService.class);
-			
-		//starts migration
-		ditService.run();
-		
-		// Adding Migration Results to ModelMap
-		// including runnable interface results.
-		model.addAttribute("isRunning", ditService.isRunning());
-		model.addAttribute("getResult", ditService.getResult());
-		model.addAttribute("getPercent", ditService.getPercent());
-		model.addAttribute("isCompleted", ditService.isCompleted());
-		model.addAttribute("isStarted", ditService.isStarted());
 			
 		return SUCCESS_FORM_VIEW;
 	}
