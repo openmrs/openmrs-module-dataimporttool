@@ -53,6 +53,7 @@ public class  DataImportToolStartMigrationController {
 
 	/** Success form view name */
 	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/status";
+	private final String NEXT_FORM_VIEW = "/module/dataimporttool/continueMigration";
 	
 	/** Success form view name */
 	private final String ERROR_FORM_VIEW = "/module/dataimporttool/error";
@@ -101,7 +102,7 @@ public class  DataImportToolStartMigrationController {
 	 *      org.springframework.validation.BindException)
 	 */
 	@RequestMapping(value ="/continueMigration", method = RequestMethod.POST)
-	protected ModelAndView startMigration(@ModelAttribute("dit") DataImportTool dit, BindingResult result, SessionStatus status) {
+	protected ModelAndView startMigration(@ModelAttribute("dit") DataImportTool dit, BindingResult result, SessionStatus status, ModelMap model) {
 		
 		// validate form entries
 		validator.validate(dit, result);
@@ -123,22 +124,17 @@ public class  DataImportToolStartMigrationController {
 		
 		// Adding Migration results for the redirect attribute going to the next page.
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/module/dataimporttool/continueMigration");
+		
 		mv.addObject("isRunning", ditService.isRunning());
 		mv.addObject("getResult", ditService.getResult());
 		mv.addObject("getPercent", ditService.getPercent());
 		mv.addObject("isCompleted", ditService.isCompleted());
 		mv.addObject("isStarted", ditService.isStarted());
 		
-		if ( ditService.run().doMigration == 0) 
-			return ModelAndView(SUCCESS_FORM_VIEW, model);
+		if ( ditService.isCompleted()) 
+			return new ModelAndView(SUCCESS_FORM_VIEW);
 		else 
-			return ModelAndView(ERROR_FORM_VIEW, model);
-			
-		// clears the command object from the session
-		status.setComplete();
+			return new ModelAndView(ERROR_FORM_VIEW);
 		
-		//load next view
-		return mv;
 	}
 }
