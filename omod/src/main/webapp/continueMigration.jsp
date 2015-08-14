@@ -8,7 +8,7 @@ html>
 
 <head>
     <title> </title>
-    <% if (${isRunning}) { %>
+    <% if (${model.isRunning}) { %>
         <SCRIPT LANGUAGE="JavaScript">
             setTimeout("location='continueMigration.jsp'", 1000);
         </SCRIPT>
@@ -17,8 +17,8 @@ html>
 <h1 align="center">Data Validation and Translation...</h1>
 
 <h2 align="center">
-    Result: <%= ${getResult} %><br />
-    <% int percent = ${getPercent} %>
+    Result: <%= ${model.getResult} %><br />
+    <% int percent = ${model.getPercent} %>
     <%= percent %>%
 </h2>
 
@@ -37,12 +37,12 @@ html>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
-            <% if (${isRunning}) { %>
+            <% if (${model.isRunning}) { %>
                 Running
             <% } else { %>
-                <% if (${isCompleted}) { %>
+                <% if (${model.isCompleted}) { %>
                    <jsp:forward page="status.jsp"/>
-                <% } else if (!${isStarted}) { %>
+                <% } else if (!${model.isStarted}) { %>
                      Data Migration Not Started
                 <% } else { %>
                     <jsp:forward page="error.jsp"/>
