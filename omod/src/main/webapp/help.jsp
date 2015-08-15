@@ -18,7 +18,7 @@ This document will describe how to use the Data Import Tool to migrate data from
 Clone the DMT repo and build it.
 <p>
 ````
-<br><i>  $ git git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git</i>
+<br><i>  $ git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git</i>
 <br><i>  $ cd openmrs-module-dataimporttool </i>
 <br><i>  $ mvn clean install </i>
 <br><br><br>
