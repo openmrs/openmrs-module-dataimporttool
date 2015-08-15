@@ -1,58 +1,79 @@
-### Welcome to openmrs-module-dataimporttool.
-The goal of this project is to improve ease of data migration for production settings by improving upon an existing data migration tool to make it more user friendly.
-The student will develop an OpenMRS specific module that either (a) reuses components from or (b) integrates  the eSaude Data Migration Tool (eSaudeDMT) it in order to migrate data from SQL-based data source into OpenMRS. The completed module will provide a WUI to configure migration settings that are currently being performed using an XML file (config.xml), and a command button to ignite the execution. 
+### The OpenMRS Data Import Tool Guide
 
-you can check out the new branch:
+This project improves ease of data migration for production settings by improving upon an existing data migration tool to make it more user friendly. The Data Import Tool integrates  the eSaude Data Migration Tool (eSaudeDMT) it in order to migrate data from SQL-based data source into OpenMRS. This module provides a WUI to configure migration settings that are currently being performed using an XML file (config.xml), and a Start Migration(command) button to ignite the execution. 
 
-```
-$ git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git
-$ git checkout gh-pages
-```
-If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.
+## Instructions
 
+This document will describe how to use the Data Import Tool to migrate data from a dummy database into OpenMRS.
 
-### Overview
-The main architectural idea is to have a tool that takes a matching file as input, validates the matches, translates them into SQL SELECT, INSERT and/or UPDATE statements (mapping), and execute the resulting mapping.
-The tool tries to accomplish the following: 
+### Step 1. Build The Data Import Tool
 
-Reusability - Developed once and used when needed. The mapping created is based on input logic
-Configurability - The migration logic is structured in a user friendly OpenMRS interface.
-Auditability -  Provides user feedback with appropriate error messages.
+Clone the DMT repo and build it.
 
+````
+  $ git git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git
+  $ cd openmrs-module-dataimporttool
+  $ mvn clean install
 
-### Development Environment Specs
-For the development of data migration tool here are the minimum specs of the development environment:
+  
+  This command generates a omod file for the data-importtool 
+````
 
-Windows OS 7+ (currently being used by the majority)
-Eclipse or Netbeans IDE 
-Java 7+ 
-Apache Maven 3 (http://maven.apache.org/download.cgi)
-Git (http://git-scm.com/downloads)
+### Step 2. Install OpenMRS 1.11.3
 
+Download the [OpenMRS WAR file](http://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_1.11.3/openmrs.war/download) and deploy it to Tomcat.
 
-### Test and Production environment Specs
-In order to execute the system in test environment make sure you have the following tools installed:
+### Step 3. Prepare Dummy Database
 
-Java 7 
-Apache Maven 3 (http://maven.apache.org/download.cgi)
-Git (http://git-scm.com/downloads)
-Perform the following steps using command line:
+Import the dummy database.
 
-1.) Clone the project repository from github git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git
+````
+  $ mysql -uroot -p
+  mysql> create database dummy;
+  mysql> use dummy;
+  mysql> \. resources/source_medical_dummy.sql
+````
 
-2.) run 'mvn clean install'
-...
+### Step 4. Complete The Mapping Spreadsheet
+
+The mapping sheet we are using can be download from [Google Sheets](https://docs.google.com/spreadsheets/d/1ljn2hyf9Qk3IFfQWYiCmuwgJxDWn2hnzX4m2dLhR0mk/edit#gid=1416522886).
+
+Once the mappings have been correctly specified and the file has been downloaded and saved. Update the `file_name` and `location` values in the [`config.xml`](https://github.com/esaude/data-migration-system/blob/master/src/main/resources/config.xml) file.
 
 
-### Launching the DIT from OpenMRS 
+### Step 4. Linux Users Only
+
+I 1.) Install the MySQL/Mariadb java connector/driver[MariaDB Connector](https://code.mariadb.com/connectors/java/).
+      Alternatively you can copy the mariadb connector.jar files to the appropriate /usr/lib/java*/jre/lib/ext/ directory
+  
+  2.) Modify the [`config.xml`](https://github.com/esaude/dmt-guide/tree/master/resources/config.xml)
 
 
+### Step 5. Run The DIT from OpenMRS 
+
+1.) Upload the module from the OpenMRS Manage modules link
+
+2.) Click on the Start Migration link under the Data Import Tool
+
+3.) Verify the migration settings and click 'Start Migration'
+
+
+## Resources
+
+1.) [Google Sheets](https://docs.google.com/spreadsheets/d/1ljn2hyf9Qk3IFfQWYiCmuwgJxDWn2hnzX4m2dLhR0mk/edit#gid=1416522886)
+
+2.) [MariaDB Connector](https://code.mariadb.com/connectors/java/)
+
+3.) [Sample Linux Config](https://github.com/esaude/dmt-guide/tree/master/resources/config.xml)
+
+The docs can be downloaded from [the OpenMRS DMT wiki page](https://wiki.openmrs.org/pages/viewpageattachments.action?pageId=80379983).
+OpenMRS mailing list [OpenMRS talk](https://talk.openmrs.org).
+
+If you have any further questions send an email to ch3ck [at] openmrs [dot] org 
 
 
 ### Authors and Contributors
-In 2015 Nyah Check(Ch3ck), as a Google Summer of code student was inspired by the eSaude Data Migration System developed by Valerio Joao(@vjoao) to work on the Data Import Tool for OpenMRS.
 
-
-### Support or Contact
-Having trouble with our tool? Check out the documentation at https://wiki.openmrs.org/display/projects/Data+Import+using+eSaude+Data+Migration+Tool or contact us on the openmrs mailing list(dev@openmrs.org) and we’ll help you sort it out.
-
+1.)Nyah Check(Ch3ck)
+2.) Valerio Joao(vjoao)
+3.) Pascal Brandt(psbrandt) 
