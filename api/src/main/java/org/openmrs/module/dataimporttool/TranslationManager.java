@@ -50,10 +50,11 @@ import org.openmrs.module.dataimporttool.matchingschema.ReferenceType;
 import org.openmrs.module.dataimporttool.matchingschema.TupleType;
 import org.openmrs.module.dataimporttool.matchingschema.ValueMatchType;
 
+
+
 /**
  * This manager is responsible to generate SQL queries to either SELECT or
  * INSERT data from source into target databases
- * 
  *
  */
 public class TranslationManager implements LogIt {
