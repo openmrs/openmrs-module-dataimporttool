@@ -1,3 +1,17 @@
+/**
+ * The contents of this file are subject to the OpenMRS Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://license.openmrs.org
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+ */
+
 package org.openmrs.module.dataimporttool.matchingschema;
 
 import java.util.ArrayList;
@@ -16,24 +30,6 @@ import javax.xml.bind.annotation.XmlType;
  * <p>Java class for tupleType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="tupleType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="terminology" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="table" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="desc" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="matches" type="{http://esaude.org/matchingschema}matchType" maxOccurs="unbounded"/>
- *         &lt;element name="references" type="{http://esaude.org/matchingschema}referenceType" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
  * 
  */
 @SuppressWarnings("restriction")
@@ -119,7 +115,7 @@ public class TupleType implements ReferencedPart {
         return desc;
     }
 
-    /**
+    /**.openmrs.org/
      * Sets the value of the desc property.
      * 
      * @param value
