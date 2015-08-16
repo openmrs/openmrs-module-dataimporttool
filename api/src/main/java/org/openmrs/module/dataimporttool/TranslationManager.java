@@ -399,7 +399,7 @@ public class TranslationManager implements LogIt {
 									.toString().toLowerCase());
 							// log an error if value match doesn't exist
 							if (valueMatch == null) {
-								// get the value of UN.openmrs.org/MATCHED match in case the
+								// get the value of UNMATCHED match in case the
 								// value is not in the group
 								valueMatch = valueMatchGroup
 										.get(MatchConstants.UNMATCHED

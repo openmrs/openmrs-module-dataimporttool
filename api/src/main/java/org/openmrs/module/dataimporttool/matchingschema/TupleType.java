@@ -115,7 +115,7 @@ public class TupleType implements ReferencedPart {
         return desc;
     }
 
-    /**.openmrs.org/
+    /**
      * Sets the value of the desc property.
      * 
      * @param value

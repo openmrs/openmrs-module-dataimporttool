@@ -114,7 +114,7 @@ public class ReferenceType {
 
     /**
      * Gets the value of the nameDesc property.
-     * .openmrs.org/
+     * 
      * @return
      *     possible object is
      *     {@link String }
