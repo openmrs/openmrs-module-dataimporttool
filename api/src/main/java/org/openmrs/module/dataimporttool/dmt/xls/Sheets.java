@@ -14,10 +14,10 @@
 
 package org.openmrs.module.dataimporttool.dmt.xls;
 
+
+
 /**
  * A list of index mapped to the XLS input file
- * @author Valério João
- * @since 22-08-2014
  *
  */
 public class Sheets {
