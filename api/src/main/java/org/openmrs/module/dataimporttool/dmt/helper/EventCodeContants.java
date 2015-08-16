@@ -15,9 +15,7 @@
 package org.openmrs.module.dataimporttool.dmt.helper;
 
 /**
- * 
- * @author Valério João
- * @since 31-08-2014
+ * Event Code Constants
  *
  */
 public interface EventCodeContants {

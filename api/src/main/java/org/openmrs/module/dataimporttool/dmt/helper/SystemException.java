@@ -15,8 +15,6 @@ package org.openmrs.module.dataimporttool.dmt.helper;
 
 /**
  * A system specific exception class
- * @author Valério João
- * @since 27-08-2014
  *
  */
 public class SystemException extends Exception {

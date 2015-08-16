@@ -16,8 +16,6 @@ package org.openmrs.module.dataimporttool.dmt.helper;
 
 /**
  * This class represents the constant statuses of the translation/execution processes
- * @author Valério João
- * @since 18-11-2014
  *
  */
 public class ProcessStatuses {

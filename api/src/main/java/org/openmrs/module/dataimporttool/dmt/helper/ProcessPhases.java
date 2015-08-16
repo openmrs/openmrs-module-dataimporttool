@@ -16,8 +16,6 @@ package org.openmrs.module.dataimporttool.dmt.helper;
 
 /**
  * System representation of the process phases
- * @author Valério João
- * @since 29-08-2014
  *
  */
 public interface ProcessPhases {
