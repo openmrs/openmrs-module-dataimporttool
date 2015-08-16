@@ -131,10 +131,13 @@ public class  DataImportToolStartMigrationController {
 		mv.addObject("isCompleted", ditService.isCompleted());
 		mv.addObject("isStarted", ditService.isStarted());
 		
+		return mv;
+		/*
 		if ( ditService.isCompleted()) 
 			return new ModelAndView(SUCCESS_FORM_VIEW);
 		else 
 			return new ModelAndView(ERROR_FORM_VIEW);
+		*/
 		
 	}
 }
