@@ -33,8 +33,6 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 /**
  * This class is used to manipulate SQL-based databases using SQL native queries
  * 
- * @author Valério João
- * @since May 22, 2008 Modified on August 23, 2008
  */
 public class DatabaseUtil {
 
