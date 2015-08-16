@@ -21,10 +21,10 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 import org.openmrs.module.dataimporttool.matchingschema.ReferenceSideType;
 import org.openmrs.module.dataimporttool.matchingschema.ReferenceType;
 
+
+
 /**
  * A builder that creates the {@link ReferenceType } instances
- * @author Valério João
- * @since 27-08-2014
  *
  */
 public class ReferenceBuilder {

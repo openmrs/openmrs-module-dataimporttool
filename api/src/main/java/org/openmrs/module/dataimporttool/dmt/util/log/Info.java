@@ -18,9 +18,8 @@ import java.util.Date;
 
 /**
  * 
- * Classe que define os atributos para eventos do tipo INFO
- * @author Valério João
- * @since 21-08-2014
+ * Class defines attribute for an INFO event.
+ *
  */
 public class Info extends Event {
 	public final static String TYPE = "INFO";
@@ -31,16 +30,16 @@ public class Info extends Event {
 	
 	/**
 	 * Parameterized constructor
-	 * @param descricao
-	 * @param fase
+	 * @param description
+	 * @param phase
 	 * @param timestamp
 	 * @param tupleId
 	 * @param partId
 	 * @param partName
 	 */
-	public Info(String descricao, String fase, Date timestamp,
+	public Info(String description, String phase, Date timestamp,
 			int tupleId, int partId, String partName) {
-		super(descricao, fase, timestamp, tupleId, partId, partName);
+		super(description, phase, timestamp, tupleId, partId, partName);
 	}
 
 	@Override

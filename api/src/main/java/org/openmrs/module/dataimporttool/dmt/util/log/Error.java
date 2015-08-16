@@ -11,9 +11,11 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
+ 
 package org.openmrs.module.dataimporttool.dmt.util.log;
 
 import java.util.Date;
+
 
 public class Error extends Event implements Codable {
 	

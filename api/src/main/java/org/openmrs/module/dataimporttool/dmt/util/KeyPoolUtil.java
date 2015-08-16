@@ -22,9 +22,6 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 /**
  * This class create pools of TOPs, it is used to access a TOP value from a
  * tuple that has no parenthood with the TOP that it wants to access the value
- * 
- * @author Valério João
- * @since 09-12-2014
  *
  */
 public class KeyPoolUtil {

@@ -17,11 +17,9 @@ package org.openmrs.module.dataimporttool.dmt.util.log;
 import java.util.Date;
 
 /**
- * Classe que define um evento para Log
+ * Class logs an event
  * 
- * @author Edias Jambaia
- * @author Valério João
- * @since 21-08-2014
+ * 
  */
 public abstract class Event {
 

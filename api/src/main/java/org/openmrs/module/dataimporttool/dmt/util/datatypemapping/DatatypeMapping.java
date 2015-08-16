@@ -20,8 +20,6 @@ import java.util.List;
 /**
  * This class maps the datatypes based on their compatibility. The mapping itself
  * is created in a CSV file
- * @author Valério João
- * @since 25-08-2014
  *
  */
 public class DatatypeMapping {

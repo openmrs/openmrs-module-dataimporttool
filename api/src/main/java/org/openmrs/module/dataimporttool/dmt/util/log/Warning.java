@@ -18,11 +18,8 @@ import java.util.Date;
 
 /**
  * 
- * Classe que define os atributos para eventos do tipo WARNING
+ * Class defines attributes for a WARNING Event
  * 
- * @author Edias Jambaia
- * @author Valério João
- * @since 21-08-2014
  */
 public class Warning extends Event implements Codable {
 	private String codigo;

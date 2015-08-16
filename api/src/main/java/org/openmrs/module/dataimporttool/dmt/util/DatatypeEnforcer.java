@@ -19,8 +19,6 @@ import org.openmrs.module.dataimporttool.dmt.helper.SystemException;
 
 /**
  * This class enforces string values to be of a certain datatype format
- * @author Valério João
- * @since 07-11-2014
  *
  */
 public class DatatypeEnforcer {

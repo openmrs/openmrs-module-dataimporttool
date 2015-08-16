@@ -44,8 +44,6 @@ import org.openmrs.module.dataimporttool.dmt.process.schema.Process;
  * unmarshal/marshal XML into Java Objects.
  * Note: This tool needs to be refactored since migration settings are read from the Entity class.
  * 
- * @author Valério João
- * @since 188-11-2014
  *
  */
 public final class ProcessReader {

@@ -16,8 +16,6 @@ package org.openmrs.module.dataimporttool.dmt.util.log;
 
 /**
  * This contract must be implemented by all the components performing logs
- * @author Valério João
- * @since 17-12-2014
  *
  */
 public interface LogIt {
