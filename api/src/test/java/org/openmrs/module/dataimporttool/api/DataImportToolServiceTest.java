@@ -31,17 +31,21 @@ public class  DataImportToolServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		dit = new DataImportTool();
+		dit = new DataImportTool("matchFile", "xls", "matchLocation", "leftDbDriver",
+				"leftUserName", "leftPassword", "leftDbLocation", "leftDbName", "rightDbDriver", 
+				"rightUserName", "rightPassword", "rightDbLocation", "rightDbName", 1,
+				false,false);
 	}
 
 	@Test
 	public void testReadConfigData() {
 		
+		//Dummy tests checks proper creation of migration settings entity class
 		assertNotNull(dit);
-		//assertNotNull(dit.getMatchFile());
-		//assertNotNull(dit.getMatchFormat());
-		//assertNotNull(dit.getMatchLocation());
-		//assertNotNull(dit.getResetProcess());
+		assertNotNull(dit.getMatchFile());
+		assertNotNull(dit.getMatchFormat());
+		assertNotNull(dit.getMatchLocation());
+		assertNotNull(dit.getResetProcess());
 	}
 	
 }
