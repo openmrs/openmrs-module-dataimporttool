@@ -39,9 +39,9 @@
                 Running
             <% } else { %>
                 <% if ( percent == 100) { %>
-                   <jsp:forward page="status.jsp"/>
+      				<meta http-equiv="refresh" content="10; url=status.jsp">
                 <% } else { %>
-                    <jsp:forward page="error.jsp"/>
+                    <meta http-equiv="refresh" content="10; url=error.jsp">
                 <% } %>
             <% } %>
         </td>
