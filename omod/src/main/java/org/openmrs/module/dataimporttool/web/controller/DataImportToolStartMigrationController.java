@@ -28,6 +28,7 @@ import org.openmrs.api.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -122,22 +123,11 @@ public class  DataImportToolStartMigrationController {
 		log.info("Starting Data Migration");
 		ditService.run();
 		
-		// Adding Migration results for the redirect attribute going to the next page.
-		ModelAndView mv = new ModelAndView();
+		// clears the command object from the session
+		status.setComplete();
 		
-		mv.addObject("isRunning", ditService.isRunning());
-		mv.addObject("getResult", ditService.getResult());
-		mv.addObject("getPercent", ditService.getPercent());
-		mv.addObject("isCompleted", ditService.isCompleted());
-		mv.addObject("isStarted", ditService.isStarted());
 		
-		return mv;
-		/*
-		if ( ditService.isCompleted()) 
-			return new ModelAndView(SUCCESS_FORM_VIEW);
-		else 
-			return new ModelAndView(ERROR_FORM_VIEW);
-		*/
+		return new ModelAndView(NEXT_FORM_VIEW);
 		
 	}
 }
