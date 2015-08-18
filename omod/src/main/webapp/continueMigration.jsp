@@ -3,29 +3,21 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 <%@ include file="template/localHeader.jsp"%>
+<%@ page autoFlush="true" buffer="1094kb"%>
+
 
 <html>
 
 <head>
-    <title> </title>
-    <% if ( Boolean.valueOf(request.getParameter("isRunning"))) { %>
-        <SCRIPT>
-            setTimeout("location='continueMigration.jsp'", 10000);
-        </SCRIPT>
-    <% } %>
-    
-<h1 align="center">Data Validation and Translation...</h1>
+    <title><h1 align="center"> Data Validation and Translation...</h1></title>    
+
 
 <h2 align="center">
-    Result: <%= request.getParameter("getResult") %><br />
-    <% String str = request.getParameter("getPercent"); %>
-    <% int percent = 0; %>
-    <% if (str != null) { %>
-  	<% 	percent = Integer.parseInt(str); %>
-	<% } else { %>
-  	<%	  percent = 50; %>
-	<% }  %>
+<% for(int k = 1; k < 101; k+=1) { %>
+    Result: <%= k %><br />
+    <% int percent = k; %>
     <%= percent %>%
+  
 </h2>
 
 <table width="60%" align="center"
@@ -34,7 +26,7 @@
         <% for (int i = 10; i <= percent; i += 10) { %>
             <td width="10%" bgcolor="#000080">&nbsp;</td>
         <% } %>
-        <% for (int i = 100; i > percent; i -= 10) { %>
+        <% for (int j = 100; j > percent; j -= 10) { %>
             <td width="10%">&nbsp;</TD>
         <% } %>
     </tr>
@@ -43,21 +35,23 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center">
-            <% if ( Boolean.valueOf(request.getParameter("isRunning"))) { %>
+            <% if ( percent < 100) { %>
                 Running
             <% } else { %>
-                <% if ( Boolean.valueOf(request.getParameter("isCompleted"))) { %>
+                <% if ( percent == 100) { %>
                    <jsp:forward page="status.jsp"/>
-                <% } else if (! Boolean.valueOf(request.getParameter("isStarted"))) { %>
-                     Data Migration Not Started
                 <% } else { %>
                     <jsp:forward page="error.jsp"/>
                 <% } %>
             <% } %>
         </td>
     </tr>
-</head>
+  </table>
+  
+<% } %>
 
-<body>
+</body>
+</html>
+</head>
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
