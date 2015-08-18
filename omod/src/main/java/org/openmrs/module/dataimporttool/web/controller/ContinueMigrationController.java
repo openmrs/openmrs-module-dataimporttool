@@ -42,15 +42,17 @@ public class ContinueMigrationController {
 	protected final Log log = LogFactory.getLog(this.getClass());
 		
 	/** Success form view name */
-	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/continueMigration";
+	private final String NEXT_FORM_VIEW = "/module/dataimporttool/continueMigration";
+
 		
 	/**
      * Shows Migration Progress
      * @param HttpServletResponse
      */
 	@RequestMapping(method = RequestMethod.GET)
-	public String showMigration(ModelMap model, SessionStatus status) {
+	public ModelAndView showMigration(ModelMap model, SessionStatus status) {
 		
-		return SUCCESS_FORM_VIEW;
+		
+		return new ModelAndView(NEXT_FORM_VIEW);
 	}
 }
