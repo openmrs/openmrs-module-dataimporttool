@@ -18,7 +18,13 @@
 
 <h2 align="center">
     Result: <%= request.getParameter("getResult") %><br />
-    <% int percent = Integer.parseInt(request.getParameter("getPercent")); %>
+    <% String str = request.getParameter("getPercent"); %>
+    <% int percent = 0; %>
+    <% if (str != null) { %>
+  	<% 	percent = Integer.parseInt(str); %>
+	<% } else { %>
+  	<%	  percent = 50; %>
+	<% }  %>
     <%= percent %>%
 </h2>
 
