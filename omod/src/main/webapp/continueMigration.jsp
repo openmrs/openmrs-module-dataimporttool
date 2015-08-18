@@ -9,9 +9,10 @@
 <html>
 
 <head>
-    <title><h1 align="center"> Data Validation and Translation...</h1></title>    
-
-
+    <title><h1 align="center"> Data Validation and Translation...</h1></title>
+            <meta http-equiv="refresh" content="1; url=continueMigration.jsp">
+</head>
+            
 <h2 align="center">
 <% for(int k = 1; k < 101; k+=1) { %>
     Result: <%= k %><br />
@@ -52,6 +53,6 @@
 
 </body>
 </html>
-</head>
+
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
