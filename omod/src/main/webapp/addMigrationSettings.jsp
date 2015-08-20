@@ -69,7 +69,7 @@
   		<br><form:label path="resetProcess">Reset Process</form:label></td>
   		<form:checkbox path="resetProcess" value="true"/> 
   			
-		<td><form:label path="treeLimit">Tree Limit</form:label></td>
+		<br><td><form:label path="treeLimit">Tree Limit</form:label></td>
         <td><form:input path="treeLimit" /></td>
 	</p>
 	<td colspan="2" align="center"><input type="submit" value="Start Migration" ></td>
