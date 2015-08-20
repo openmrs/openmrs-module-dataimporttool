@@ -16,7 +16,7 @@ Clone the DMT repo and build it.
   $ mvn clean install
 
   
-  This command generates a omod file for the data-importtool 
+  This command generates a omod file for the openmrs-module-data-importtool 
 ````
 
 ### Step 2. Install OpenMRS 1.11.3
@@ -25,7 +25,16 @@ Download the [OpenMRS WAR file](http://sourceforge.net/projects/openmrs/files/re
 
 ### Step 3. Prepare Dummy Database
 
-Import the dummy database.
+Refer to the DMT-Guide on Github: https://github.com/esaude/dmt-guide
+for test Database and instructions on data migration.
+
+I.) Create a dummy database, populated with data.
+
+Clone dmt-guide
+````
+	$git clone https://github.com/esaude/dmt-guide
+	cd dmt-guide
+````
 
 ````
   $ mysql -uroot -p
@@ -34,19 +43,30 @@ Import the dummy database.
   mysql> \. resources/source_medical_dummy.sql
 ````
 
+II.) Create a dummy OpenMRS database
+
+````
+  $ mysql -uroot -p
+  mysql> create database openmrs2;
+  mysql> use openmrs2;
+  mysql> \. resources/openmrs-1.11.3-clean.sql
+````
+There is a required change that must be done in OpenMRS database in order to run the migration, in OpenMRS 11 the PATIENT.patient_id column is not AUTO_INCREMENT, this way JDBC will not return the generated key. 
+Use the script(alter_patient_id.sql) to alter the patient_id, after the migration you can change it back to normal
+
+````
+  mysql> \. resources/alter_patient_id.sql
+````
+
 ### Step 4. Complete The Mapping Spreadsheet
 
-The mapping sheet we are using can be download from [Google Sheets](https://docs.google.com/spreadsheets/d/1ljn2hyf9Qk3IFfQWYiCmuwgJxDWn2hnzX4m2dLhR0mk/edit#gid=1416522886).
-
-Once the mappings have been correctly specified and the file has been downloaded and saved. Update the `file_name` and `location` values in the [`config.xml`](https://github.com/esaude/data-migration-system/blob/master/src/main/resources/config.xml) file.
+The mapping sheet we are using can be download from [Mapping Sheet](https://github.com/esaude/dmt-guide/blob/master/resources/dummy-data-mapping_version.xls).
 
 
 ### Step 4. Linux Users Only
 
 I 1.) Install the MySQL/Mariadb java connector/driver[MariaDB Connector](https://code.mariadb.com/connectors/java/).
       Alternatively you can copy the mariadb connector.jar files to the appropriate /usr/lib/java*/jre/lib/ext/ directory
-  
-  2.) Modify the [`config.xml`](https://github.com/esaude/dmt-guide/tree/master/resources/config.xml)
 
 
 ### Step 5. Run The DIT from OpenMRS 
@@ -60,7 +80,7 @@ I 1.) Install the MySQL/Mariadb java connector/driver[MariaDB Connector](https:/
 
 ## Resources
 
-1.) [Google Sheets](https://docs.google.com/spreadsheets/d/1ljn2hyf9Qk3IFfQWYiCmuwgJxDWn2hnzX4m2dLhR0mk/edit#gid=1416522886)
+1.) [Matching File](https://github.com/esaude/dmt-guide/blob/master/resources/dummy-data-mapping_version.xls)
 
 2.) [MariaDB Connector](https://code.mariadb.com/connectors/java/)
 
