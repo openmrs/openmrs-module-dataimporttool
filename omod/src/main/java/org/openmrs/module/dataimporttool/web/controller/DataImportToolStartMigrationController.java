@@ -47,6 +47,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class  DataImportToolStartMigrationController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+	private int status;
 
 	/** Success form view name */
 	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/status";
@@ -117,13 +118,14 @@ public class  DataImportToolStartMigrationController {
 			
 		//starts migration
 		log.info("Starting Data Migration");
-		ditService.run();
+		status = ditService.doMigration();
 		
 		// clears the command object from the session
 		status.setComplete();
-		if ( ditService.isCompleted()) 
-			return new ModelAndView(NEXT_FORM_VIEW);
-		else 
+		if ( status < 0) 
 			return new ModelAndView(ERROR_FORM_VIEW);
+			
+		return new ModelAndView(NEXT_FORM_VIEW); 
+			
 	}
 }
