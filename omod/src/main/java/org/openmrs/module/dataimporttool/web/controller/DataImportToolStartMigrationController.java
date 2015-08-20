@@ -118,11 +118,11 @@ public class  DataImportToolStartMigrationController {
 			
 		//starts migration
 		log.info("Starting Data Migration");
-		status = ditService.doMigration();
+		stat = ditService.doMigration();
 		
 		// clears the command object from the session
 		status.setComplete();
-		if ( status < 0) 
+		if ( stat < 0) 
 			return new ModelAndView(ERROR_FORM_VIEW);
 			
 		return new ModelAndView(NEXT_FORM_VIEW); 
