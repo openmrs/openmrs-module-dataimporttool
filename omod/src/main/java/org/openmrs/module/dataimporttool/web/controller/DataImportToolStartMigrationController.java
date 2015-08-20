@@ -121,9 +121,9 @@ public class  DataImportToolStartMigrationController {
 		
 		// clears the command object from the session
 		status.setComplete();
-		
-		
-		return new ModelAndView(NEXT_FORM_VIEW);
-		
+		if ( ditService.isCompleted()) 
+			return new ModelAndView(NEXT_FORM_VIEW);
+		else 
+			return new ModelAndView(ERROR_FORM_VIEW);
 	}
 }
