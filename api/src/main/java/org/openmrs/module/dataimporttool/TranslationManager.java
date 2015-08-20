@@ -103,9 +103,8 @@ public class TranslationManager implements LogIt {
 			ProcessReader.getInstance().recordProcess(0,//To be re designed.
 					Calendar.getInstance().getTime(), ProcessStatuses.RESET);
 		}
-		// set the process position to start
-		processCount = ProcessReader.getInstance().getProcess()
-				.getLastStopPoint().intValue();
+		// sets the process position to start. Default 0
+		processCount = 0;
 
 		try {
 			read(tree, null);
