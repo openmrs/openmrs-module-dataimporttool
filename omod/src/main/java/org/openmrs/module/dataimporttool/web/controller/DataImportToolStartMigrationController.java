@@ -47,7 +47,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class  DataImportToolStartMigrationController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-	private int status;
+	private int stat;
 
 	/** Success form view name */
 	private final String SUCCESS_FORM_VIEW = "/module/dataimporttool/status";
