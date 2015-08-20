@@ -10,7 +10,6 @@
 
 <head>
     <title><h1 align="center"> Data Validation and Translation...</h1></title>
-            <meta http-equiv="refresh" content="1; url=continueMigration.jsp">
 </head>
             
 <h2 align="center">
@@ -40,9 +39,11 @@
                 Running
             <% } else { %>
                 <% if ( percent == 100) { %>
-      				<meta http-equiv="refresh" content="10; url=status.jsp">
+                <%	Thread.sleep(10000); %>
+      				<jsp:forward page="status.jsp" />
                 <% } else { %>
-                    <meta http-equiv="refresh" content="10; url=error.jsp">
+                	<% Thread.sleep(10000); %>
+                   <jsp:forward page="error.jsp"/>
                 <% } %>
             <% } %>
         </td>
