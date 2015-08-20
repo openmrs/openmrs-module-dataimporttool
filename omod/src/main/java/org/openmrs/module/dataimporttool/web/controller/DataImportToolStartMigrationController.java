@@ -121,7 +121,7 @@ public class  DataImportToolStartMigrationController {
 		stat = ditService.doMigration();
 		
 		// clears the command object from the session
-		status.setComplete();
+		//status.setComplete();
 		if ( stat < 0) 
 			return new ModelAndView(ERROR_FORM_VIEW);
 			
