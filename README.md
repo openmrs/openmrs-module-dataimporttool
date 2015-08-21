@@ -63,9 +63,9 @@ Use the script(alter_patient_id.sql) to alter the patient_id, after the migratio
 The mapping sheet we are using can be download from [Mapping Sheet](https://github.com/esaude/dmt-guide/blob/master/resources/dummy-data-mapping_version.xls).
 
 
-### Step 4. Linux Users Only
+I) Linux Users Only
 
-I 1.) Install the MySQL/Mariadb java connector/driver[MariaDB Connector](https://code.mariadb.com/connectors/java/).
+ 1.) Install the MySQL/Mariadb java connector/driver[MariaDB Connector](https://code.mariadb.com/connectors/java/).
       Alternatively you can copy the mariadb connector.jar files to the appropriate /usr/lib/java*/jre/lib/ext/ directory
 
 
