@@ -122,7 +122,7 @@ public class  DataImportToolStartMigrationController {
 		
 		// clears the command object from the session
 		//status.setComplete();
-		if ( stat < 0) 
+		if ( stat == -1) 
 			return new ModelAndView(ERROR_FORM_VIEW);
 			
 		return new ModelAndView(NEXT_FORM_VIEW); 

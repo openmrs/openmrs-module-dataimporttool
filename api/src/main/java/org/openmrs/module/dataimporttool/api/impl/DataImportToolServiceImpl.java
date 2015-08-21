@@ -152,7 +152,7 @@ public class DataImportToolServiceImpl extends BaseOpenmrsService implements Dat
     			counter = 100;
     			sum += counter;
        
-    			} catch (SystemException | InterruptedException | Exception e ) {
+    			} catch (Exception e ) {
         			setRunning(false);
         			return -1;
     			}			
