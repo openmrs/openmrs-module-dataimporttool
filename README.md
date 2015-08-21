@@ -89,7 +89,7 @@ I) Linux Users Only
 The docs can be downloaded from [the OpenMRS DMT wiki page](https://wiki.openmrs.org/pages/viewpageattachments.action?pageId=80379983).
 OpenMRS mailing list [OpenMRS talk](https://talk.openmrs.org).
 
-If you have any further questions send an email to ch3ck [at] openmrs [dot] org 
+If you have any further questions reach out on [OpenMRS Talk](https://talk.openmrs.org)
 
 
 ### Authors and Contributors
