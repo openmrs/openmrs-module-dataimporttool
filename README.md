@@ -25,7 +25,7 @@ Download the [OpenMRS WAR file](http://sourceforge.net/projects/openmrs/files/re
 
 ### Step 3. Prepare Dummy Database
 
-Refer to the DMT-Guide on Github: https://github.com/esaude/dmt-guide
+Refer to the [DMT-Guide](https://github.com/esaude/dmt-guide)
 for test Database and instructions on data migration.
 
 I.) Create a dummy database, populated with data.
@@ -93,7 +93,6 @@ If you have any further questions reach out on [OpenMRS Talk](https://talk.openm
 
 
 ### Authors and Contributors
-
 1.)Nyah Check(Ch3ck)
 2.) Valerio Joao(vjoao)
 3.) Pascal Brandt(psbrandt) 
