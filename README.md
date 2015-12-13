@@ -1,6 +1,6 @@
 ### The OpenMRS Data Import Tool Guide
 
-This project improves ease of data migration for production settings by improving upon eSaude Data Migration Tool making it more user friendly. The Data Import Tool integrates  the eSaude Data Migration Tool (eSaudeDMT) in order to migrate data from SQL-based data sources into OpenMRS. This module provides a WUI to configure migration settings and a Start Migration(command) button to ignite the execution. 
+This project improves ease of data migration for production settings by improving upon eSaude Data Migration Tool making it more user friendly. The Data Import Tool integrates  the eSaude Data Migration Tool (eSaude DMT) in order to migrate data from SQL-based data sources into OpenMRS. This module provides a WUI to configure migration settings and a Start Migration(command) button to ignite the execution. 
 
 ## Instructions
 
