@@ -176,4 +176,98 @@ input[type=radio]:checked + label:after {
 	background: #27AE60;
 	color: white;
 }
-
+#dit {
+  max-width: 1000px;
+}
+#dit fieldset {
+  width: 95%;
+  display: block;
+  padding: 5px 10px;
+  margin: 5px 0;
+  background-color: #E8FBF9;
+  border: 1px solid #009384;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 2px rgba(0,0,0,.075);
+}
+#dit fieldset #block {
+    display: block;
+    margin: 2px 1px 5px 2px;
+    position: relative;
+}
+#dit fieldset #block input {
+  width: 200px;
+  padding: 3px 5px;
+  border: 1px solid #009384;
+  border-radius: 4px;
+  box-shadow: inset 0 3px 3px rgba(0,0,0,.15);
+}
+#dit fieldset #box input {
+  width: 200px;
+  height: 18px;
+  border: 1px solid #009384;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+#dit fieldset label {
+  display: inline-block;
+  width: 200px;
+  padding-right: 10px;
+}
+#dit fieldset legend {
+  color: #009384;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0 5px;
+}
+#dit h2 {
+  padding-top: 5px;
+  color: #009384;
+}
+#dit #button input {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color:  #009384;
+  border: 1px solid #009384;
+  border-radius: 7px;
+  box-shadow: inset 0 2px 2px rgba(0,0,0,.075);
+}
+#dit #button input:hover {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #838383;
+  background-color:  #009384;
+  border: 1px solid #009384;
+  border-radius: 7px;
+  box-shadow: inset 0 4px 4px rgba(0,0,0,.1);
+}
+#block span {
+  margin-left: 10px;
+  color: red;
+  font-weight: bold;
+}
+#dit fieldset span.appear {
+    max-width: 350px;
+    font-weight: normal;
+    border: #00463f 1px solid;
+    background: #BDF3EE;
+    color: black;
+    border-radius: 0 10px 10px 10px;
+    box-shadow: 4px 4px 5px rgba(0,0,0,.15);
+    display:none;
+    padding: 10px 10px 10px 10px;
+    z-index: 1000000;
+}
+#block label:hover ~ .appear {
+    display: inline-block;
+    top: 20px;
+    left: 125px;
+    position: absolute;
+}
