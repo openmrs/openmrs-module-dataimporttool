@@ -1,7 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
- 
+
+<openmrs:htmlInclude file="/moduleResources/dataimporttool/css/statusPages.css"/>
  
 <html>
 <head>
@@ -9,12 +10,9 @@
 <title>Migration Error!</title>
 </head>
 <body>
-    <div align="center">
-        <table border="0">
-            <tr>
-                <td>Errors occured during Migration. Check the Logs!</td>
-            </tr>
-        </table>
+    <div class="container">
+        <h1>Errors occured during Migration.</h1>
+        <h3><a href="openmrs/admin/maintenance/serverLog.form">Check the logs</a></h3>
     </div>
 </body>
 </html>
