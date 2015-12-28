@@ -5,13 +5,6 @@
 * {margin: 0; padding: 0;}
 
 html {
-	height: 100%;
-	/*Image only BG fallback*/
-	background: url('url('../fonts/gs.jpg');');
-	/*background = gradient + image pattern combo*/
-	background: 
-		linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)), 
-		url('../fonts/gs.jpg');
 }
 
 body {
@@ -270,4 +263,107 @@ input[type=radio]:checked + label:after {
     top: 20px;
     left: 125px;
     position: absolute;
+}
+/*Status pages*/
+.dialog {
+    width: 450px;
+    padding: 0 0 30px 0;
+    text-align: left;
+    background: white;
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 2px 2px 15px #999999, -2px -2px 15px #999999;
+    -webkit-box-shadow: 2px 2px 15px #999999, -2px -2px 15px #999999;
+    -o-box-shadow: 2px 2px 15px #999999, -2px -2px 15px #999999;
+    box-shadow: 2px 2px 15px #999999, -2px -2px 15px #999999;
+}
+.dialog .dialog-header {
+    background: #00463f;
+    color: white;
+    padding: 0 20px;
+    padding-top: 5px;
+    border-bottom: black 1px solid;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.dialog .dialog-header h3 {
+    display: inline-block;
+    color: white;
+    margin: 5px 0;
+    vertical-align: middle;
+}
+.dialog .dialog-header .fa {
+    font-size: 24px;
+    vertical-align: middle;
+}
+.dialog .dialog-content {
+    padding: 20px 30px 0 30px;
+    color: #363463;
+    font-size: 16px;
+}
+.dialog .dialog-content a {
+    color: white !important;
+}
+.dialog .dialog-content .button.back {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #88af28;
+    border: #88af28 1px solid;
+    padding: 8px 20px;
+    display: inline-block;
+    line-height: 1.2em;
+    cursor: pointer;
+    min-width: 0;
+    max-width: 300px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.dialog .dialog-content .button.logs {
+    margin-left: 30px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #ff3d3d;
+    border: #ff3d3d 1px solid;
+    padding: 8px 20px;
+    display: inline-block;
+    line-height: 1.2em;
+    cursor: pointer;
+    min-width: 0;
+    max-width: 300px;
+    text-decoration: none;
+}
+.dialog .dialog-content .button.help {
+    float: right;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #5B57A6;
+    border: #5B57A6 1px solid;
+    padding: 8px 20px;
+    display: inline-block;
+    line-height: 1.2em;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.dialog .button:hover {
+  box-shadow: inset 0 4px 4px rgba(0,0,0,.1);
 }
