@@ -1,14 +1,14 @@
 ### The OpenMRS Data Import Tool Guide
 
-This project improves ease of data migration for production settings by improving upon eSaude Data Migration Tool making it more user friendly. The Data Import Tool integrates  the eSaude Data Migration Tool (eSaude DMT) in order to migrate data from SQL-based data sources into OpenMRS. This module provides a WUI to configure migration settings and a Start Migration(command) button to ignite the execution. 
+This project eases data migration for production settings by improving upon eSaude Data Migration Tool making it more user friendly. The Data Import Tool integrates  the eSaude Data Migration Tool (eSaude DMT) in order to migrate data from SQL-based data sources into OpenMRS. This module provides a WUI to configure migration settings and perform migration. 
 
 ## Instructions
 
-This document will describe how to use the Data Import Tool to migrate data from a dummy database into OpenMRS.
+This document describes how to use the Data Import Tool to migrate data from a dummy database into OpenMRS.
 
 ### Step 1. Build The Data Import Tool
 
-Clone the DMT repo and build it.
+Clone the **DIT** repo and build it.
 
 ````
   $ git clone https://github.com/openmrs/openmrs-module-dataimporttool.git
@@ -16,7 +16,7 @@ Clone the DMT repo and build it.
   $ mvn clean install
 
   
-  This command generates a omod file for the openmrs-module-data-importtool 
+  This command generates an **omod** file for the openmrs-module-data-importtool 
 ````
 
 ### Step 2. Install OpenMRS 1.11.3
@@ -63,10 +63,14 @@ Use the script(alter_patient_id.sql) to alter the patient_id, after the migratio
 The mapping sheet we are using can be download from [Mapping Sheet](https://github.com/esaude/dmt-guide/blob/master/resources/dummy-data-mapping_version.xls).
 
 
-I) Linux Users Only
+I)   **Linux Users** only
 
- 1.) Install the MySQL/Mariadb java connector/driver[MariaDB Connector](https://code.mariadb.com/connectors/java/).
-      Alternatively you can copy the mariadb connector.jar files to the appropriate /usr/lib/java*/jre/lib/ext/ directory
+Install the **MySQL/Mariadb** Java connector or driver[MariaDB Connector](https://code.mariadb.com/connectors/java/).
+Alternatively you could copy the mariadb connector.jar files to the appropriate /usr/lib/java*/jre/lib/ext/ directory
+      
+II)  **Windows User** and **Mac OSX Users** only
+
+Refer to the [DMT README](https://github.com/esaude/data-migration-system/blob/master/README.md) document for specific configuration settings.
 
 
 ### Step 5. Run The DIT from OpenMRS 
@@ -86,15 +90,16 @@ I) Linux Users Only
 
 3.) [Sample Linux Config](https://github.com/esaude/dmt-guide/tree/master/resources/config.xml)
 
-The docs can be downloaded from [the OpenMRS DMT wiki page](https://wiki.openmrs.org/pages/viewpageattachments.action?pageId=80379983).
+The Docs can be downloaded from [the OpenMRS DMT wiki page](https://wiki.openmrs.org/pages/viewpageattachments.action?pageId=80379983).
 OpenMRS mailing list [OpenMRS talk](https://talk.openmrs.org).
 
 If you have any further questions reach out on [OpenMRS Talk](https://talk.openmrs.org)
 
 
-### Authors and Contributors
-1.)Nyah Check(Ch3ck)
+## Authors and Contributors
 
-2.) Valerio Joao(vjoao)
+1.) Nyah Check(**Ch3ck**)
 
-3.) Pascal Brandt(psbrandt) 
+2.) Valerio Joao(**vjoao**)
+
+3.) Pascal Brandt(**psbrandt**) 
