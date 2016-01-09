@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>dataimporttool</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Data Import Tool</name>
 	<description>A system to migrate from SQL-based databases to OpenMRS</description>
@@ -28,9 +28,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:git:git@github.com:Ch3ck/openmrs-module-dataimporttool.git</connection>
-		<developerConnection>scm:git:git@github.com:Ch3ck/openmrs-module-dataimporttool.git</developerConnection>
-		<url>https://github.com/Ch3ck/openmrs-module-dataimporttool</url>
+		<connection>scm:git:git@github.com:openmrs/openmrs-module-dataimporttool.git</connection>
+		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-dataimporttool.git</developerConnection>
+		<url>https://github.com/openmrs/openmrs-module-dataimporttool.git</url>
 	</scm>
 	
 	<!-- TODO: Distribution Management link to be added once  module is ready.-->
@@ -210,7 +210,7 @@
 		<profile>
 			<id>openmrs-1.11</id>
 			<properties>
-				<openMRSVersion>1.11.1</openMRSVersion>
+				<openMRSVersion>1.11.3</openMRSVersion>
 				<openMRSMinorVersion>1.11</openMRSMinorVersion>
 			</properties>
 		</profile>
