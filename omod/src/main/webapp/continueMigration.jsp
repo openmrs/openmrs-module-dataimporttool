@@ -7,11 +7,14 @@
 
 
 <html>
-
 <head>
-    <title><h1 align="center"> Data Validation and Translation...</h1></title>
+    <openmrs:htmlInclude file="/moduleResources/dataimporttool/css/component.css"/>
+    <openmrs:htmlInclude file="/moduleResources/dataimporttool/css/font-awesome.min.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><h1 align="center"> <spring:message code="dataimporttool.migrationProgress" /></h1></title>
 </head>
-            
+
+<body>       
 <h2 align="center">
 <% for(int k = 1; k < 101; k+=1) { %>
     Result: <%= k %><br />
@@ -36,7 +39,7 @@
     <tr>
         <td align="center">
             <% if ( percent < 100) { %>
-                Running
+                <spring:message code="dataimporttool.running" />
             <% } else { %>
                 <% if ( percent == 100) { %>
                 <%	Thread.sleep(10000); %>
