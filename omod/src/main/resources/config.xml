@@ -43,6 +43,8 @@
 	<messages>
 		<lang>en</lang>
 		<file>messages.properties</file>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
 	</messages>
 	<!-- /Internationalization -->
 	<privilege>
