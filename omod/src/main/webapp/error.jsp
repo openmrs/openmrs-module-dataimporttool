@@ -14,16 +14,16 @@
     <div align="center" class="dialog">
         <div class="dialog-header">
             <i class="fa fa-times"></i>
-            <h3>Migration Error</h3>
+            <h3><spring:message code="dataimporttool.migrationError" /></h3>
         </div>
         <div class="dialog-content">
-            <p>Errors occured during Migration. Check the Logs.</p>
+            <p><spring:message code="dataimporttool.errorLog" /></p>
             <br />
-            <p><em>Edit your migration settings or look on the guide.</em></p>
+            <p><em><spring:message code="dataimporttool.errorRef" /></em></p>
             <br />
-            <a href="#" onclick="history.go(-1)" class="button back"><i class="fa fa-pencil"></i> Edit </a>
-            <a href="${pageContext.request.contextPath}/admin/maintenance/serverLog.form" class="button logs"><i class="fa fa-list"></i> Logs </a>
-            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button help"><i class="fa fa-info-circle"></i> Help </a>
+            <a href="#" onclick="history.go(-1)" class="button back"><i class="fa fa-pencil"></i><spring:message code="dataimporttool.edit" /></a>
+            <a href="${pageContext.request.contextPath}/admin/maintenance/serverLog.form" class="button logs"><i class="fa fa-list"></i><spring:message code="dataimporttool.logs" /></a>
+            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button help"><i class="fa fa-info-circle"></i><spring:message code="dataimporttool.help" /></a>
         </div>
     </div>
 </body>

@@ -1,10 +1,17 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-
 <%@ include file="/WEB-INF/template/header.jsp"%>
-
 <%@ include file="template/localHeader.jsp"%>
 
-<h2><b> The OpenMRS Data Import Tool Guide</b></h2>
+
+<html>
+<head>
+<openmrs:htmlInclude file="/moduleResources/dataimporttool/css/component.css"/>
+<openmrs:htmlInclude file="/moduleResources/dataimporttool/css/font-awesome.min.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><b> The OpenMRS Data Import Tool Guide</b></title>
+</head>
+
+<body>
 <br>
 <p>This project improves ease of data migration for production settings by improving upon an existing data migration tool to make it more user friendly. The Data Import Tool integrates  the eSaude Data Migration Tool (eSaudeDMT) it in order to migrate data from SQL-based data source into OpenMRS. This module provides a WUI to configure migration settings that are currently being performed using an XML file (config.xml), and a Start Migration(command) button to ignite the execution. 
 </p><br>
@@ -18,7 +25,7 @@ This document will describe how to use the Data Import Tool to migrate data from
 Clone the DMT repo and build it.
 <p>
 ````
-<br><i>  $ git clone https://github.com/Ch3ck/openmrs-module-dataimporttool.git</i>
+<br><i>  $ git clone https://github.com/openmrs/openmrs-module-dataimporttool.git</i>
 <br><i>  $ cd openmrs-module-dataimporttool </i>
 <br><i>  $ mvn clean install </i>
 <br><br><br>
@@ -85,5 +92,8 @@ Import the dummy database.
 <br>2.) Valerio Joao(vjoao)
 <br>3.) Pascal Brandt(psbrandt) 
 <br>
+
+</body>
+</html>
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
