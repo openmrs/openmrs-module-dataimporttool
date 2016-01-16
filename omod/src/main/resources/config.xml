@@ -40,9 +40,25 @@
 
 	<!-- Internationalization -->
 	<!-- All message codes should start with ${project.parent.artifactId}. -->
+	<!-- English -->
 	<messages>
 		<lang>en</lang>
 		<file>messages.properties</file>
+	</messages>
+	<!-- Spanish -->
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- Portuguese -->
+	<messages>
+		<lang>pt</lang>
+		<file>messages_pt.properties</file>
+	</messages>
+	<!-- Italian -->
+	<messages>
+		<lang>it</lang>
+		<file>messages_it.properties</file>
 	</messages>
 	<!-- /Internationalization -->
 	<privilege>
