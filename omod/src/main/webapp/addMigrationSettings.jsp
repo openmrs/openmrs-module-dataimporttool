@@ -12,8 +12,8 @@
 	<fieldset>
         <legend><spring:message code="dataimporttool.matchFileData" /></legend>
 		<div id="block">
-            <td><form:label path="matchFile"></form:label><spring:message code="dataimporttool.matchFile" /></td>
-            <td><form:input path="matchFile" /></td> 
+            <td><form:label path="matchFile"><spring:message code="dataimporttool.matchFile" /></form:label></td>
+            <td><form:input path="matchFile" /></td>
             <form:errors path="matchFile" />
             <span class="appear">
             <p><spring:message code="dataimporttool.matchFilePopUp" /></p>
@@ -24,7 +24,7 @@
             <td><form:input path="matchFormat" /></td> 
             <form:errors path="matchFormat" />
             <span class="appear">
-            <p>${project.parent.artifactId}.matchFormatPopUp</p>
+            <p><spring:message code="dataimporttool.matchFormatPopUp" /></p>
             </span>
         </div>
 		<div id="block">
@@ -47,13 +47,13 @@
 	
 		<div id="block">
             <td><form:label path="leftDbDriver"><spring:message code="dataimporttool.dbDriver" /></form:label></td>
-            <td><form:input path="leftDbDriver" /></td> 
+            <td><form:input path="leftDbDriver" /></td>
             <form:errors path="leftDbDriver" />
         </div>
 		
 		<div id="block">
             <td><form:label path="leftDbName"><spring:message code="dataimporttool.dbName" /></form:label></td>
-            <td><form:input path="leftDbName" /></td> 	
+            <td><form:input path="leftDbName" /></td>
             <form:errors path="leftDbName" /><br>
         </div>
 		
