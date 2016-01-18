@@ -367,3 +367,99 @@ input[type=radio]:checked + label:after {
 .dialog .button:hover {
   box-shadow: inset 0 4px 4px rgba(0,0,0,.1);
 }
+/*Help page*/
+.help a {
+	color: #007fff !important;
+	text-decoration: none;
+}
+.help a:hover {
+	text-decoration: underline !important;
+}
+.help { /*rename to id on help page*/ 
+    max-width: 1000px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.help ol {
+    list-style-type: decimal;    
+}
+.help ul {
+    list-style-type: circle;
+    color: #363463;
+}
+.help section {
+    background: #eeeeee;
+    display: block;
+    width: auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+.help .code {
+    font-family: monospace, serif;
+    position: relative;
+    margin: 35px 0 15px 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border-left: 2px solid #007fff;
+}
+.help .code::after {
+    content: "Commands";
+    font-family: sans-serif;
+    position: absolute;
+    top: -22px;
+    left: -2px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    color: #969696;
+    background: #F9F9F9;
+}
+.help .code ul {
+    background-color: #fff;
+    list-style-type: none;
+    font-family: monospace, serif;
+}
+.help .code .ulmys {
+    margin-left: 70px;
+}
+.help .code .ulmys .norm:before {
+    margin: 0 -3.5em;
+}
+.help .code .norm:before {
+    position: absolute;
+    content: '$';
+    margin: 0 -2.4em;
+}
+.help .code .mysql:before {
+    position: absolute;
+    content: 'mysql>';
+    margin: 0 -5em;
+}
+.help .code ul li {
+    padding: 2px 10px;
+    color: #BBB;
+    line-height: 20px;
+    border-bottom: 1px solid #F9F9F9;
+}
+.help .code ul li span {
+    color: #363463;
+}
+.help .code ul li span.comm {
+    color: #888;
+}
+.help ul, .help ol {
+    margin-left: 40px;
+}
+.help h3 {
+	color: #00463f;
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 3px;
+}
+.help .light {
+	color: #009384;
+}
