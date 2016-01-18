@@ -23,7 +23,7 @@
             <br />
             <a href="#" onclick="history.go(-1)" class="button back"><i class="fa fa-pencil"></i><spring:message code="dataimporttool.edit" /></a>
             <a href="${pageContext.request.contextPath}/admin/maintenance/serverLog.form" class="button logs"><i class="fa fa-list"></i><spring:message code="dataimporttool.logs" /></a>
-            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button help"><i class="fa fa-info-circle"></i><spring:message code="dataimporttool.help" /></a>
+            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button btnhelp"><i class="fa fa-info-circle"></i><spring:message code="dataimporttool.help" /></a>
         </div>
     </div>
 </body>
