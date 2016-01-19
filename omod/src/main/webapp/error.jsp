@@ -8,7 +8,6 @@
 <openmrs:htmlInclude file="/moduleResources/dataimporttool/css/component.css"/>
 <openmrs:htmlInclude file="/moduleResources/dataimporttool/css/font-awesome.min.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Migration Error!</title>
 </head>
 <body>
     <div align="center" class="dialog">
@@ -22,8 +21,8 @@
             <p><em><spring:message code="dataimporttool.errorRef" /></em></p>
             <br />
             <a href="#" onclick="history.go(-1)" class="button back"><i class="fa fa-pencil"></i><spring:message code="dataimporttool.edit" /></a>
-            <a href="${pageContext.request.contextPath}/admin/maintenance/serverLog.form" class="button logs"><i class="fa fa-list"></i><spring:message code="dataimporttool.logs" /></a>
-            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button btnhelp"><i class="fa fa-info-circle"></i><spring:message code="dataimporttool.help" /></a>
+            <a href="${pageContext.request.contextPath}/admin/maintenance/serverLog.form" target="_blank" class="button logs"><i class="fa fa-list"></i><spring:message code="dataimporttool.logs" /></a>
+            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" target="_blank" class="button btnhelp"><i class="fa fa-info-circle"></i><spring:message code="dataimporttool.help" /></a>
         </div>
     </div>
 </body>
