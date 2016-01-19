@@ -20,7 +20,7 @@
             <p><spring:message code="dataimporttool.successLog" /></p>
             <br />
             <a href="${pageContext.request.contextPath}/" class="button back"><i class="fa fa-home"></i><spring:message code="dataimporttool.home" /></a>
-            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button help"><i class="fa fa-list"></i><spring:message code="dataimporttool.logs" /></a>
+            <a href="${pageContext.request.contextPath}/module/dataimporttool/help.form" class="button btnhelp"><i class="fa fa-list"></i><spring:message code="dataimporttool.logs" /></a>
         </div>
     </div>
 </body>

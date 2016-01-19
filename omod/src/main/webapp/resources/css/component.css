@@ -311,6 +311,9 @@ input[type=radio]:checked + label:after {
 .dialog .dialog-content a {
     color: white !important;
 }
+.dialog .dialog-content .button i {
+    padding-right: 7px;
+}
 .dialog .dialog-content .button.back {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -347,7 +350,7 @@ input[type=radio]:checked + label:after {
     max-width: 300px;
     text-decoration: none;
 }
-.dialog .dialog-content .button.help {
+.dialog .dialog-content .button.btnhelp {
     float: right;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
