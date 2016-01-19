@@ -293,6 +293,10 @@ input[type=radio]:checked + label:after {
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
 }
+.dialog .dialogTable {
+    text-align: center;
+    width: 100%;
+}
 .dialog .dialog-header h3 {
     display: inline-block;
     color: white;
@@ -333,7 +337,6 @@ input[type=radio]:checked + label:after {
     margin-right: 10px;
 }
 .dialog .dialog-content .button.logs {
-    margin-left: 30px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -o-border-radius: 3px;
