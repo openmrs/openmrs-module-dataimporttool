@@ -60,6 +60,11 @@
 		<lang>it</lang>
 		<file>messages_it.properties</file>
 	</messages>
+	<!-- French -->
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
 	<!-- /Internationalization -->
 	<privilege>
 		<name>Start Migration</name>
