@@ -16,7 +16,7 @@ Clone the **DIT** repo and build it.
   $ mvn clean install
 ````
 
-These commands generates an **omod** file for the openmrs-module-data-importtool.
+The last command above generates an **omod** file for the openmrs-module-data-importtool.
 
 ### Step 2. Install OpenMRS 1.11.3
 
